@@ -1,1 +1,23 @@
+<div class="container-fluid" >
+  <div class="row" style="background-color: white">
+    <div class="col-lg-2 text-left row-transperant">
+        <p> Chinmay
+          Chicago IL
+        </p>
+    </div>
+    <div class="col-lg-8 text-center row-transperant">
+        <h4>Costco</h4>
+    </div>
+    <div class="col-lg-2 text-right row-transperant">
+        <h4 id="demo"></h4>
+        <script>
+            var d = new Date();
+            var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            document.getElementById("demo").innerHTML = days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate();
+            console.log("Date is :" + d + "and formated one is " + days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate() );
+        </script>
+    </div>
+  </div>
+</div>
 <p>search works!</p>
