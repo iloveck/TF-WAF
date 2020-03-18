@@ -11,6 +11,17 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
+    "paths": {
+      "@core/*": [ "src/app/core/*" ],
+      "@model/*": [ "src/app/core/model/*" ],
+      "@appinitialzer/*": [ "src/app/core/app-initializer/*" ],
+      "@exceptionhandling/*": [ "src/app/core/exception-handling/*" ],
+      "@service/*": [ "src/app/core/service/*" ],
+      "@common/*": [ "src/app/core/common/*" ],
+      "@httpinterceptor/*": [ "src/app/core/http-interceptor/*" ],
+      "@cache/*": [ "src/app/core/cache/*" ],
+      "@environments/*": [ "environments/*" ]
+    },
     "typeRoots": [
       "node_modules/@types"
     ],

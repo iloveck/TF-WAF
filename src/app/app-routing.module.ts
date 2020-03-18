@@ -8,7 +8,10 @@ import { PaidMembershipComponent } from './paid-membership/paid-membership.compo
 
 
 const routes: Routes = [
+  { path: '',   redirectTo: '/sample',    pathMatch: 'full'  },
+  {path: 'search', component: SearchComponent},
   {path: 'sample', component: SampleComponent},
+
 ];
 
 @NgModule({
