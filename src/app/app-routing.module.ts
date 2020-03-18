@@ -9,11 +9,6 @@ import { PaidMembershipComponent } from './paid-membership/paid-membership.compo
 
 const routes: Routes = [
   {path: 'sample', component: SampleComponent},
-  {path: 'member', component: MemberComponent},
-  {path: 'rewards', component: RewardsComponent},
-  {path: 'search', component: SearchComponent},
-  {path: 'paid-membership', component: PaidMembershipComponent},
-  {path: 'search', component: SearchComponent},
 ];
 
 @NgModule({
