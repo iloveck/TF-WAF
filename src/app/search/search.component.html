@@ -1,279 +1,34 @@
-<style>
-  .my-panels{
-    margin-top:30px!important;
-    margin-right: 20px;
-    margin-left: 20px;
-  }
+<app-search-header></app-search-header>
 
-  .text-margins{
-    margin-left: 30px;
-  }
-  .fit-image{
-    width: 100%;
-    object-fit: cover;
-
-    }
-  .row-transperant{
-    background-color: transparent!important;
-    border-style: none;
-  }
-  .btn-transperant{
-    font-size: 18px;
-    background-color: transparent;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    border:1px solid #005dab;
-    color: #005dab;
-    font-size: 15PX;
-    border-radius: 2px;
-    margin-top: 10px;
-    margin-right: 20px;
-  }
-  .btn-style-guide{
-    font-size: 18px;
-    background-color:  #3071a9;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    border:1px solid #005dab;
-    color: white;
-    font-size: 15PX;
-    border-radius: 2px;
-    margin-top: 10px;
-    margin-right: 20px;
-  }
-  .h1-style-guide{
-    font-size: 36px;
-    color: #333333;
-  }
-  .h2-style-guide{
-    font-size: 30px;
-    color: #333333;
-  }
-  .h3-style-guide{
-    font-size: 24px;
-    color: #333333;
-  }
-  .h4-style-guide{
-    font-size: 24px;
-    color: #333333;
-  }
-  .h4-style-link{
-    font-size: 24px;
-    color: #0060a9;
-    cursor: pointer;
-  }
-  .h5-style-guide{
-    font-size: 20px;
-    color: #333333;
-  }
-  .h5-style-guide-white{
-    font-size: 20px;
-    color: #ffffff;
-  }
-  .h5-style-guide-link{
-    font-size: 20px;
-    color: #0060a9;
-    cursor: pointer;
-  }
-  .h5-style-guide-medium{
-    font-size: 20px;
-    color: #333333;
-    font-weight: medium;
-  }
-  .h6-style-guide{
-    font-size: 18px;
-    color: #333333;
-  }
-  .h6-style-guide-white{
-    font-size: 18px;
-    color: #ffffff;
-  }
-  .h6-style-guide-link{
-    font-size: 18px;
-    color: #0060a9;
-    cursor: pointer;
-  }
-  .h6-style-guide-medium{
-    font-size: 18px;
-    color: #333333;
-    font-weight: medium;
-  }
-  .h6-style-guide-light{
-    font-size: 18px;
-    color: #707070
-  }
- .accordion.panel-group .panel {
-	border: 0;
-	margin-top: 0;
-	border-radius: 0;
-	box-shadow: none;
-	background-color: inherit;
-}
-  .h7-style-guide-light{
-    font-size: 16px;
-    color: #707070
-  }
-  .h7-style-guide-link{
-    font-size: 16px;
-    color: #0060a9;
-    cursor: pointer;
-  }
-  .h8-style-guide-link{
-    font-size: 14px;
-    color: #0060a9;
-    cursor: pointer;
-  }
-  .h8-style-guide{
-    font-size: 14px;
-    color: #333333;
-  }
-  .h8-style-guide-light{
-    font-size: 14px;
-    color: #707070
-  }
-  
-  .accordion.panel-group .panel:last-child .panel-heading.collapsed {
-	border-bottom: 1px solid #ccc;
-}
-	.accordion.panel-group .panel .panel-heading {
-		cursor: pointer;
-		position: relative;
-		border-top: 1px solid #ccc;
-		border-radius: 0;
-		background-color: transparent;
-		padding: 15px 15px 15px 0;
-		padding: 0.9375rem 0.9375rem 0.9375rem 0;
-	}
-
-	.accordion.panel-group .panel .panel-heading a {
-		text-decoration: none;
-	}
-
-	.accordion.panel-group .panel .panel-heading .collapsed:after {
-		content: "Icon";
-	}
-	.accordion.panel-group .panel .panel-heading .panel-title {
-		font-size: 20px;
-		font-size: 1.25rem;
-		color: #333;
-	}
-
-	.accordion.panel-group .panel .panel-body {
-		position: relative;
-		border: 0;
-		padding: 10px 0;
-	}
-
-</style>
-
-<div class="container-fluid" >
-  <div class="row" style="background-color: white">
-    <div class="col-lg-2 text-left row-transperant">
-        <p> <!-- <a [routerLink]="['search']" routerLinkActive="search" >Home</a> -->
-        </p>
+<div id="menu_screen" class="container-fluid" style="background-color: #005dab;min-height: 92vh;">
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
     </div>
-    <div class="col-lg-8 text-center row-transperant">
-        <h4>Costco</h4>
+   <!-- <div class="col-lg-9 col-md-9 row-transperant h1-style-guide justify-content-md-left" style="margin-bottom: 4vh;color: white;margin-top:20vh ;">
+      Weather Widget
+    </div> -->
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
     </div>
-    <div class="col-lg-2 text-right row-transperant">
-        <!-- Add locale information as internationalization is implemented
-        <h4 id="demo">{{today | date: 'EEEE, MMMM d': '' : 'en-US'}}</h4> -->
+    <!-- Adjust Div Height once weather widget is added -->
+    <div class="col-lg-9 col-md-9 row-transperant h1-style-guide search-heading-style justify-content-md-left" style="margin-top: 15vh;">
+      <span *ngIf="hour >= 6 && hour < 12">Good Morning,<br/> Username! </span>
+      <span *ngIf="hour >= 12 && hour < 18">Good Afternoon,<br/> Username!</span>
+      <span *ngIf="hour >= 18 && hour < 21">Good Evening,<br/> Username!</span>
+      <span *ngIf="hour >= 21 || hour < 6">Good Night,<br/> Username!</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+    </div>
+    <div class="col-lg-9 col-md-9 row-transperant h1-style-guide search-heading-style justify-content-md-left">
+      <input type="form-control" id="lg" role="combobox" aria-autocomplete="list" style="border-radius: 0;height: 09vh; margin-left: 0px; width: 800px;">
+      <button type="button" class="btn btn-primary btn-lg h4-style-guide search-button" >Search</button>
     </div>
   </div>
 </div>
-<div class="container-fluid  fixed-container">
-  <div class="row row-eq-height">
-    <div class="col-lg-4 text-center" style="background-color:white;">
-          <!-- isGroceryDept false    -->
-     <form id="facetForm" autocomplete="off">
-  <!--   <div id="search-filter" class="col-md-3 hidden-xs hidden-sm"> -->
-      <div id="filter-header">
-
-        <span class="filter-title">Filter Results</span>
-          <a class="clear-filter" href="javascript:void(0);" data-url="https://www.costco.ca/CatalogSearch?keyword=unlocked+cellphone" onclick="COSTCO.Search.clear_filter.call(this);">
-                Clear All
-          </a>
-      </div>
-      <div class="accordion panel-group" id="accordion-filter" role="tablist" aria-multiselectable="true">
-
-                  <div class="panel panel-default">
-                        <div class="panel-heading " role="tab" id="accordion-filter_heading-1" data-toggle="collapse" href="#accordion-filter_collapse-1" aria-expanded="true" aria-controls="accordion-filter_collapse-1">
-                            <p class="panel-title ">
-                                <a class="" role="button" data-toggle="collapse" href="#accordion-filter_collapse-1" aria-expanded="true" aria-controls="accordion-filter_collapse-1">Category</a>
-                            </p>
-                        </div>
-
-
-                        <div id="accordion-filter_collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="accordion-filter_heading-1" aria-expanded="true" style="">
-                            <div class="panel-body">
-
-                                                <div class="style-check ">
-                                                      <a href="https://www.costco.ca/electronics.html?keyword=unlocked-cellphone&refine=31360|" onclick="COSTCO.Search.buildDeptURL(this); return false;" data-url="https://www.costco.ca/electronics.html?keyword=unlocked-cellphone&refine=31360|" base-url="https://www.costco.ca/electronics.html" data-dimensionid="31360" title="Electronics">
-                                                           <label> Electronics <span class="count">(6)</span> </label>
-                                                      </a>
-                                               </div>
-
-                            </div>
-                        </div>
-                    </div>
-      </div>
-
-   </form>
-    </div>
-
-    <div class="col-lg-8" style="background-color:#eff7fb ;">
-
-      <div class="flex-row-reverse">
-        <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-default btn-transperant" >Add New Member</button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="h4-style-guide text-margins">2 Results for </div>
-      </div>
-      <div class="row">
-        <button class="btn-default text-margins">kadgasdhas@ksfh.com</button>
-      </div>
-      <div class="row">
-        <h5 class="h5-style-guide text-margins">Members (2)</h5>
-      </div>
-      <div class="panel-group" *ngFor="let person of jsonArrayObject">
-        <div class="panel panel-default my-panels">
-          <div class="panel-body">
-            <div class="row col-lg-2 row-transperant text-center">
-              <img src="C:\Users\atsurana\Desktop\Atish_Photoes\29936A0299.jpg" class="img-fluid fit-image" alt="Responsive image">
-            </div>
-            <div class="row col-lg-8 row-transperant">
-              <p class="h4-style-guide">{{person.fname}}</p>
-              <p class="h6-style-guide-light">4356242636</p>
-              <p class="h8-style-guide">gsdjhdgsg@gmail.com</p>
-            </div>
-            <div class="row col-lg-2 row-transperant">
-              <button type="button" class="btn btn-default btn-style-guide" >View Profile </button>
-              <button type="button" class="btn btn-default btn-transperant" >Quick Profile</button>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-
-
-
-    </div>
-
-
-  </div>
-</div>
-
 
 

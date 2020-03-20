@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-search-result',
+  templateUrl: './search-result.component.html',
+  styleUrls: ['./search-result.component.scss']
 })
-export class AppComponent {
-  title = 'mglo-web';
+export class SearchResultComponent implements OnInit {
   jsonArrayObject = [
     {
         fname: 'Christopher',
@@ -33,7 +32,9 @@ export class AppComponent {
   Mobile: '(997)-689-9990'
 }
 ];
+  constructor() { }
 
-  today: number = Date.now();
-  hour: number = (new Date()).getHours();
+  ngOnInit(): void {
+  }
+
 }

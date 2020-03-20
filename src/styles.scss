@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./assets/styles/_variables";
+@import "./assets/styles/_forms";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body{
+  background: $costco-gradient;
+  min-height: 100vh;
+  font-family: Helvetica Neue;
+}
