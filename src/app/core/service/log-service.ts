@@ -7,25 +7,27 @@ import { BaseService } from '@service/base-service';
 export class LogService extends BaseService {
 
   private apiUrl: any = {
-    error: 'api/logger/clientError',
-    warning: 'api/logger/clientWarning'
+    error: '',
+    warning: ''
   };
   private defaultsParam = { message: 'none provided', url: '', lineNumber: '', columnNumber: '', stackTrace: 'none' };
   constructor(http: HttpClient, private util: Util) { super(http); }
 
-  error(options) {
+  error(options: any) {
     const param = this.util.merge(this.defaultsParam, options);
-    return super.post(this.apiUrl.error, param,
-      {
+    return super.post({
+      url: this.apiUrl.error, params: param, options: {
         responseType: 'json'
+      }
       });
   }
 
-  warning(options) {
+  warning(options: any) {
     const param = this.util.merge(this.defaultsParam, options);
-    return super.post(this.apiUrl.warning, param,
-      {
+    return super.post({
+      url: this.apiUrl.warning, params: param, options: {
         responseType: 'json'
+      }
       });
   }
 }

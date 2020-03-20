@@ -56,7 +56,7 @@ export class Logger {
   }
 
   private postLog(error) {
-    this.logService.error(error).catch((error) => {
+    this.logService.error(error)((error) => {
       console.log('Error occurred while logging error.');
     });
   }

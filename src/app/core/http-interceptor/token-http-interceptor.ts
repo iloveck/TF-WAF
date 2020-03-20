@@ -10,10 +10,12 @@ export class TokenHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    const token = (<HTMLInputElement>document.getElementsByName('__RequestVerificationToken').item(0)).value;
-
+    //ToDo: Get Token
+    const token = ""
+    //const token = (<HTMLInputElement>document.getElementsByName('__RequestVerificationToken').item(0)).value;
+    //Add Token to the request
     const reqWithToken = request.clone({
-      headers: request.headers.append('__RequestVerificationToken', token)
+      headers: request.headers.append('__bearer', token)
     });
 
     return next.handle(reqWithToken);
