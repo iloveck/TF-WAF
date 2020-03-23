@@ -11,6 +11,7 @@ import { PaidMembershipModule } from './paid-membership/paid-membership.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { SearchModule } from './search/search.module';
 
+
 registerLocaleData(localeFr, 'fr-FR');
 
 @NgModule({

@@ -1,10 +1,33 @@
-@import "../../../assets/styles/variables";
-.search-button {
-  color: $white;
-  border: 0.0625rem solid #DBDBDB;
-  box-sizing: border-box;
-  margin-left: 15px;
-  background-color: $costco-dark-blue;
-  border-radius: 0.1875rem;
-  height: 50px;
+@import "../../../assets/styles/headings";
+.person-name{
+  font-size: 18px;
+  font-weight: bold;
+  color: #002242;
+}
+.person-id{
+  font-size: 14px;
+  color: #878787;
+}
+.email-phone{
+  font-size: 14px;
+  color: #002242;
+  font-stretch: semi-condensed;
+  font-weight: bold;
+}
+.button-filled{
+  background-color: #005CB1;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  font-style: bold;
+  font-weight: bold;
+}
+.button-transperant{
+  background-color:transparent;
+  border-radius: 3px;
+  color: #1970C9;
+  font-size: 14px;
+  border-color:#1970C9;
+  border-style: solid;
+  font-weight: bold;
 }
