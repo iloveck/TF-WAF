@@ -6,8 +6,8 @@ export class BaseService {
 
   constructor(private http: HttpClient) { }
 
-   public get({ url, options }: { url: string; options?: any; }): Observable<any>{
-     return this.http.get(url, options);
+   public get({ url,  options }: { url: string; options?: any; }): Observable<any> {
+     return this.http.get(url,  options);
 
   }
 
