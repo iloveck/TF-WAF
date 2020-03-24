@@ -1,1 +1,34 @@
-<p>search works!</p>
+<app-search-header></app-search-header>
+
+<div id="menu_screen" class="container-fluid set-page-style" >
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+    </div>
+   <!-- <div class="col-lg-9 col-md-9 row-transperant h1-style-guide justify-content-md-left" style="margin-bottom: 4vh;color: white;margin-top:20vh ;">
+      Weather Widget
+    </div> -->
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+    </div>
+    <!-- Adjust Div Height once weather widget is added -->
+    <div class="col-lg-9 col-md-9 row-transperant h1-style-guide search-heading-style justify-content-md-left">
+      <span *ngIf="hour >= 6 && hour < 12">Good Morning,<br/> Username! </span>
+      <span *ngIf="hour >= 12 && hour < 18">Good Afternoon,<br/> Username!</span>
+      <span *ngIf="hour >= 18 && hour < 21">Good Evening,<br/> Username!</span>
+      <span *ngIf="hour >= 21 || hour < 6">Good Night,<br/> Username!</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+    </div>
+    <div class="col-lg-9 col-md-9 row-transperant mt-5 justify-content-md-left">
+      <input  [(ngModel)]="searchTerm" type="text" placeholder="Search by member information"  class="search-box">
+      <button type="button" class="btn btn-primary btn-lg h4-style-guide search-button mb-1" (click)="onSearch()">Search</button>
+    </div>
+  </div>
+</div>
+
+
