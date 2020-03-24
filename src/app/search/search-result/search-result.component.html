@@ -7,7 +7,7 @@
       <img class="bc-logo logo-us" src="/assets/images/filter-results.png" alt="Costco Logo" style="object-fit: fill;width:100%;height:80vh;margin-top: 2vh;">
       <span class="badge badge-pill badge-primary text-margins" style="background-color: #005DAB;font-size: 14px;">Placeholder</span>
 -->
-      <div class="mt-4 ml-3" style="text-align: left;"><a class="filter-links" href="#">Back</a> </div>
+      <div class="mt-4 ml-3" style="text-align: left;"><a [routerLink]="['/search']"  routerLinkActive="filter-links">Back</a> </div>
         <div class="row mt-4 ml-0" style="text-align: left;">
           <div class="col-lg-8 " style="text-align: left;">
             <label class="filter-text">Filters</label>
@@ -80,7 +80,7 @@
         <div class="h4-style-guide text-margins">{{jsonArrayObject.value.length}} Results for </div>
       </div>
 
-     <app-search-tag tag="kadgasdhas@ksfh.com"></app-search-tag>
+     <app-search-tag [tag]="searchTerm"></app-search-tag>
 
 
       <div class="flex-row mt-5">

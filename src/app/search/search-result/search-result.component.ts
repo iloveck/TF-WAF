@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormatPhonePipe } from '../../shared/pipes/format-phone.pipe'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-result',
@@ -7,6 +8,8 @@ import { FormatPhonePipe } from '../../shared/pipes/format-phone.pipe'
   styleUrls: ['./search-result.component.scss']
 })
 export class SearchResultComponent implements OnInit {
+
+
   jsonArrayObject = {
     "@odata.context": "https://membersearch.search.windows.net/indexes('persons-index')/$metadata#docs(*)",
     "value": [
@@ -67,9 +70,20 @@ export class SearchResultComponent implements OnInit {
     ]
   };
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
+  searchTerm: string = ''
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.params['term']);
+    this.searchTerm = this.route.snapshot.params['term'];
+    this.onSearch();
   }
 
+    onSearch(): void {
+
+
+    }
+
 }
+
+
