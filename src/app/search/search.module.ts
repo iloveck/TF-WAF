@@ -9,6 +9,8 @@ import { PersonCardComponent } from './components/person-card/person-card.compon
 
 
 
+import { SearchRoutingModule } from './search-routing.module';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { PersonCardComponent } from './components/person-card/person-card.compon
     CommonModule
   ],
   exports: [
-    SearchHeaderComponent
+    SearchHeaderComponent,
+    SearchRoutingModule
   ]
 })
 export class SearchModule { }

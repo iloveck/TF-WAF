@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -7,8 +6,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 })
 export class SampleService {
 
-  constructor(private http: HttpClient) { }
-  costcoApiUrl = 'http://azure.costco.com';
+  constructor() { }
 
   // A single sample from object
   getSample(): any {
@@ -20,8 +18,10 @@ export class SampleService {
     return ['Muffins', 'Chicken', 'Batteries', 'LED TV'];
   }
 
+  /*
   // Imaginary endpoint to get samples
   getRealSamples(id: string): Observable<any> {
-    return this.http.get(`${this.costcoApiUrl}/samples`);
+    return this.httpService.get('/samples', id);
   }
+  */
 }

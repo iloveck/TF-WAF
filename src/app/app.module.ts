@@ -10,6 +10,9 @@ import { MemberModule } from './member/member.module';
 import { PaidMembershipModule } from './paid-membership/paid-membership.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { SearchModule } from './search/search.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CoreModule } from './core/core.module';
+import { HttpClientModule} from '@angular/common/http';
 
 
 registerLocaleData(localeFr, 'fr-FR');
@@ -19,6 +22,9 @@ registerLocaleData(localeFr, 'fr-FR');
     AppComponent,
   ],
   imports: [
+    NgbModule,
+    HttpClientModule,
+    CoreModule,
     MemberModule,
     PaidMembershipModule,
     RewardsModule,

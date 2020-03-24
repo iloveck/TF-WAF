@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaidMembershipComponent } from './paid-membership.component';
 
+import { PaidMembershipRoutingModule } from './paid-membership-routing.module';
+import { PaidMembershipComponent } from './paid-membership.component';
 
 
 @NgModule({
   declarations: [PaidMembershipComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    PaidMembershipRoutingModule
   ]
 })
 export class PaidMembershipModule { }
