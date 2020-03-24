@@ -4,20 +4,21 @@
     <div class="row">
         <div class="col"></div>
         <div class="col">
-            <button class="button">Walk-In Signup 10001</button>
+            <button id="10001" [ngClass]="{'button' : !selected10001, 'button-selected': selected10001}" (click)=onAwarenessSelection(10001)>Walk-In Signup 10001</button>
         </div>
         <div class="col">
-            <button class="button">New Warehouse 62000</button>
+            <button id="62000" [ngClass]="{'button' : !selected62000, 'button-selected': selected62000}"  (click)=onAwarenessSelection(62000)>New Warehouse 62000</button>
         </div>
         <div class="col">
-            <button class="button">Joined Through Work 22318</button>
+            <button id="22318" [ngClass]="{'button' : !selected22318, 'button-selected': selected22318}"  (click)=onAwarenessSelection(22318)>Joined Through Work 22318</button>
         </div>
         <div class="col">
-            <button class="button">Joined Through Work 22318</button></div>
+            <button id="22318" [ngClass]="{'button' : !selected22318, 'button-selected': selected22318}"  (click)=onAwarenessSelection(22318)>Joined Through Work 22318</button></div>
         <div class="col">
-            <button class="button">Search <br> <br></button>
+            <button id="Search" [ngClass]="{'button' : !selectedSearch, 'button-selected': selectedSearch}"  (click)=onAwarenessSelection(5000)>Search <br> <br></button>
         </div>
         <div class="col"></div>
     </div>
+    
     
 </div>
