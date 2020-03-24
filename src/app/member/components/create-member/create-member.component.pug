@@ -1,0 +1,132 @@
+.container
+  .row
+    .col
+      h1 Member Information
+  .row
+    .col
+      .form-group
+        label(for='prefix') Prefix
+        select#exampleInputPassword1.form-control(type='', placeholder='' )
+          option(value="Ms") Ms
+          option(value="Miss") Miss
+          option(value="Mrs") Mrs
+          option(value="Mr") Mr
+    .col
+      .form-group
+        label(for='first-name') First Name
+        input#first-name.form-control(type='text', aria-describedby='firstName', placeholder='', [(ngModel)]="person.firstName")
+    .col
+      .form-group
+        label(for='middle-initial') Middle Initial
+        input#middle-initial.form-control(type='', placeholder='', [(ngModel)]="person.middleInitial")
+  .row
+    .col
+      .form-group
+        label(for='last-name') Last Name
+        input#last-name.form-control(type='', placeholder='', [(ngModel)]="person.lastName")
+    .col
+      .form-group
+        label(for='suffix') Suffix
+        select#suffix.form-control(type='', placeholder='')
+          option(value="null") test 1
+          option(value="null") test 2
+          option(value="null") test 3
+          option(value="null") test 4
+  .row
+    .col
+      .form-group
+        label(for='address1') Address
+        input#address1.form-control(type='', placeholder='', [(ngModel)]="person.mailingAddressLine1")
+  .row
+    .col
+      .form-group
+        div(*ngIf="!additionalAddressLine")
+          button.btn.btn-secondary.btn-block(type="button", (click)="addAddressLine()") Add Additional Address Line
+        div(*ngIf="additionalAddressLine")
+          label(for='address2') Address 2
+          input#address2.form-control(type='', placeholder='', [(ngModel)]="person.mailingAddressLine2")
+  .row
+    .col
+      .form-group
+        label(for='city') City
+        input#city.form-control(type='', placeholder='', [(ngModel)]="person.mailingAddressLocality")
+    .col
+      .form-group
+        label(for='state') State
+        select#state.form-control(type='', placeholder='',  [(ngModel)]="person.mailingAddressStateProvinceCode")
+          option(value="California") California
+          option(value="Colorado") Colorado
+          option(value="Idaho") Idaho
+          option(value="Oregon") Oregon
+          option(value="Utah") Utah
+          option(value="Washington") Washington
+
+  .row
+    .col
+      .form-group
+        label(for='postal-code') Zip
+        input#postal-code.form-control(type='', placeholder='5 digits', [(ngModel)]="person.mailingAddressPostalCode")
+    .col
+      .form-group
+        label(for='exampleInputPassword1') Country
+        select#exampleInputPassword1.form-control(type='', placeholder='',  [(ngModel)]="person.mailingAddressCountryAlpha2Code")
+          option(value="US") United States
+          option(value="CA") Canada
+          option(value="MX") Mexico
+  .row
+    .col
+      .form-group
+        label(for='dob') Date of Birth
+        input#dob.form-control(type='', placeholder='MM-DD-YYYY', [(ngModel)]="person.birthdate")
+  .row
+    .col
+      .form-group
+        label(for='id-typ') ID Type
+        select#id-typ.form-control(type='', placeholder='')
+          option(value="null") test 1
+          option(value="null") test 2
+          option(value="null") test 3
+          option(value="null") test 4
+    .col
+      .form-group
+        label(for='id-number') ID Number
+        input#id-number.form-control(type='', placeholder='', [(ngModel)]="person.firstName")
+  .row
+    .col
+      .form-group
+        label(for='phone') Phone Number
+        input#phone.form-control(type='', placeholder='(___) ___-____', [(ngModel)]="person.mobilePhoneNumber")
+    .col
+      .form-group
+        label(for='phone-type') Phone Type
+        select#phone-type.form-control(type='', placeholder='')
+          option(value="Mobile") Mobile
+          option(value="Home") Home
+          option(value="Work") Work
+  .row
+    .col
+      .form-group
+        label(for='email') Email Address
+        input#email.form-control(type='', placeholder='', [(ngModel)]="person.personalEmailAddress")
+    .col
+      .form-group
+        label(for='email-type') Email Type
+        select#email-type.form-control(type='', placeholder='')
+          option(value="personal") Personal
+          option(value="work") Work
+  .row
+    .col
+      .form-group
+        label(for='exampleInputPassword1') Preferred Language
+        select#exampleInputPassword1.form-control(type='', placeholder='', [(ngModel)]="person.language" )
+          option(value="en") English
+          option(value="fr") French
+          option(value="sp") Spanish
+  .row
+    .col.col-sm
+    .col.col-sm
+    .col.col-sm
+    .col.col-sm
+    .col.col-sm
+      button.btn.btn-primary(type="button", (click)="continue()") Continue
+

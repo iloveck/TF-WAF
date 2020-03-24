@@ -5,7 +5,8 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  apiUrl = 'https://fakeazure.costco.com';
+  apiUrl = 'https://createpartner2.azurewebsites.net/api';
+
 
   get(url: string, id: string) {
     return this.http.get(this.apiUrl + url);

@@ -13,6 +13,7 @@ import { SearchModule } from './search/search.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 registerLocaleData(localeFr, 'fr-FR');
@@ -31,7 +32,8 @@ registerLocaleData(localeFr, 'fr-FR');
     SearchModule,
     SampleModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
