@@ -1,0 +1,23 @@
+<div class="card my-panels">
+  <div class="card-block my-panels ">
+    <div class="card-body">
+    <div class="row">
+    <div class="col-lg-2 text-right">
+      <img class="bc-logo logo-us" src="../favicon.ico" alt="Costco Logo" style="height:4vh;width:auto;object-fit: fill;margin-top: 2vh;"/>
+    </div>
+    <div class="col-lg-8">
+      <div class="person-name" style="margin-bottom: 10px;">{{ person.profile.firstName }} {{ person.profile.lastName }} <span class="person-id">{{ person.id }}</span></div>
+      <div class="email-phone">{{ person.peronalEmail.personalEmailAddress }}</div>
+      <div class="email-phone">{{ person.mobilePhoneNumber.phoneNumber | formatPhone }}</div>
+    </div>
+    <div class="col-lg-2 my-auto">
+  <!--    <button type="button" class="btn btn-default btn-style-guide" >View Profile </button> <br />
+      <button type="button" class="btn btn-default btn-transperant" >Quick Profile</button>
+-->
+      <div><a href="#" class="button-filled btn btn-primary btn-block p-2 mb-2">View Profile</a></div>
+      <div><a href="#" class="button-transperant btn btn-primary btn-block p-2">Quick View</a></div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>

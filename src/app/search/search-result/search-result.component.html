@@ -1,121 +1,54 @@
-<style>
-  .my-panels{
-    margin-top:30px!important;
-    margin-right: 20px;
-    margin-left: 20px;
-  }
-
-  .text-margins{
-    margin-left: 30px;
-  }
-  .fit-image{
-    width: 100%;
-    object-fit: cover;
-
-    }
-  .row-transperant{
-    background-color: transparent!important;
-    border-style: none;
-  }
-  .btn-transperant{
-    font-size: 18px;
-    background-color: transparent;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    border:1px solid #005dab;
-    color: #005dab;
-    border-radius: 2px;
-    margin-top: 10px;
-    margin-right: 20px;
-    font-weight: 400;
-  }
-  .btn-style-guide{
-    font-size: 18px;
-    background-color:  #3071a9;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    border:1px solid #005dab;
-    color: white;
-    font-size: 15PX;
-    border-radius: 2px;
-    margin-right: 20px;
-    font-weight: 400;
-  }
- .accordion.panel-group .panel {
-	border: 0;
-	margin-top: 0;
-	border-radius: 0;
-	box-shadow: none;
-	background-color: inherit;
-}
-  .h7-style-guide-light{
-    font-size: 16px;
-    color: #707070
-  }
-  .h7-style-guide-link{
-    font-size: 16px;
-    color: #0060a9;
-    cursor: pointer;
-  }
-  .h8-style-guide-link{
-    font-size: 14px;
-    color: #0060a9;
-    cursor: pointer;
-  }
-  .h8-style-guide{
-    font-size: 14px;
-    color: #333333;
-  }
-  .h8-style-guide-light{
-    font-size: 14px;
-    color: #707070
-  }
-
-  .accordion.panel-group .panel:last-child .panel-heading.collapsed {
-	border-bottom: 1px solid #ccc;
-}
-	.accordion.panel-group .panel .panel-heading {
-		cursor: pointer;
-		position: relative;
-		border-top: 1px solid #ccc;
-		border-radius: 0;
-		background-color: transparent;
-		padding: 15px 15px 15px 0;
-		padding: 0.9375rem 0.9375rem 0.9375rem 0;
-	}
-
-	.accordion.panel-group .panel .panel-heading a {
-		text-decoration: none;
-	}
-
-	.accordion.panel-group .panel .panel-heading .collapsed:after {
-		content: "Icon";
-	}
-	.accordion.panel-group .panel .panel-heading .panel-title {
-		font-size: 20px;
-		font-size: 1.25rem;
-		color: #333;
-	}
-
-	.accordion.panel-group .panel .panel-body {
-		position: relative;
-		border: 0;
-		padding: 10px 0;
-	}
-
-</style>
-
 <app-search-header></app-search-header>
-<div class="container-fluid">
-  <div class="row row-eq-height" style="min-height: 92vh;">
-    <div class="col-lg-3 text-center" style="background-color:white;">
 
+<div class="container-fluid">
+  <div class="row row-eq-height search-result-box">
+    <div class="col-lg-3 text-center " style="background-color:white;">
+<!--
       <img class="bc-logo logo-us" src="/assets/images/filter-results.png" alt="Costco Logo" style="object-fit: fill;width:100%;height:80vh;margin-top: 2vh;">
       <span class="badge badge-pill badge-primary text-margins" style="background-color: #005DAB;font-size: 14px;">Placeholder</span>
+-->
+      <div class="mt-4 ml-3" style="text-align: left;"><a class="filter-links" href="#">Back</a> </div>
+        <div class="row mt-4 ml-0" style="text-align: left;">
+          <div class="col-lg-8 " style="text-align: left;">
+            <label class="filter-text">Filters</label>
+          </div>
+          <div class="col-lg-4" style="text-align: right;vertical-align: bottom ;">
+            <a href="#" class="filter-links">Clear Filters</a>
+          </div>
+        </div>
+
+        <input class="form-control form-control-lg ml-2 mt-2" type="text" placeholder="Search">
 
 
+      <table class="table mt-4 ml-2">
+        <tbody class="filter-options">
+          <tr style="border-top: none;">
+            <td style="text-align: left;">Primary Information</td>
+            <td style="text-align: right;">+</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;">Secondary Information</td>
+            <td style="text-align: right;">+</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;">Type</td>
+            <td style="text-align: right;">+</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;">Status</td>
+            <td style="text-align: right;">+</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;">Blocks</td>
+            <td style="text-align: right;">+</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;">Member Since</td>
+            <td style="text-align: right;">+</td>
+          </tr>
+
+        </tbody>
+      </table>
  <!--    <form id="facetForm" autocomplete="off">
       <div id="filter-header">
         <span class="filter-title h4-style-guide">Filters - Coming soon ...</span>
@@ -128,7 +61,7 @@
    </form> -->
     </div>
 
-    <div class="col-lg-9" style="background-color:#eff7fb ;">
+    <div class="col-lg-9 " style="background-color:#eff7fb ;">
 <!--
       <div class="flex-row-reverse" style="margin-top: 4vh;margin-right: 30px;">
         <div class="d-flex justify-content-end">
@@ -136,51 +69,27 @@
         </div>
       </div>
 -->
-      <div class="row" style="margin-top: 4vh;margin-right: 30px;">
+      <div class="row mt-4 mr-3">
       <div class="col-lg-9"></div>
       <div class="col-lg-3">
         <div><a href="#" class="button-transperant btn btn-primary btn-block">Add New Member</a></div>
       </div>
     </div>
 
-      <div class="flex-row" style="margin-bottom: 2vh;">
+      <div class="flex-row mb-3">
         <div class="h4-style-guide text-margins">{{jsonArrayObject.value.length}} Results for </div>
       </div>
-      <div class="flex-row">
-         <span class="badge badge-pill badge-primary text-margins pt-2 pl-3" style="background-color: #005DAB;font-size: 14px;">kadgasdhas@ksfh.com
-          <button type="button" class="close btn-sm" aria-label="Dismiss" style="color: white;margin-left: 10px;font-weight: bold;">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          </span>
-      </div>
-      <div class="flex-row" style="margin-top: 6vh;">
+
+     <app-search-tag tag="kadgasdhas@ksfh.com"></app-search-tag>
+
+
+      <div class="flex-row mt-5">
         <h5 class="h5-style-guide text-margins" >Members ({{jsonArrayObject.value.length}})</h5>
       </div>
 
+      <!-- Create its own component -->
      <div *ngFor="let person of jsonArrayObject.value">
-        <div class="card my-panels">
-          <div class="card-block my-panels ">
-            <div class="card-body">
-            <div class="row">
-            <div class="col-lg-2 text-right">
-              <img class="bc-logo logo-us" src="../favicon.ico" alt="Costco Logo" style="height:4vh;width:auto;object-fit: fill;margin-top: 2vh;"/>
-            </div>
-            <div class="col-lg-8">
-              <div class="person-name" style="margin-bottom: 10px;">{{ person.profile.firstName }} {{ person.profile.lastName }} <span class="person-id">{{ person.id }}</span></div>
-              <div class="email-phone">{{ person.peronalEmail.personalEmailAddress }}</div>
-              <div class="email-phone">{{ person.mobilePhoneNumber.phoneNumber | formatPhone }}</div>
-            </div>
-            <div class="col-lg-2 my-auto">
-          <!--    <button type="button" class="btn btn-default btn-style-guide" >View Profile </button> <br />
-              <button type="button" class="btn btn-default btn-transperant" >Quick Profile</button>
--->
-              <div><a href="#" class="button-filled btn btn-primary btn-block p-2 mb-2">View Profile</a></div>
-              <div><a href="#" class="button-transperant btn btn-primary btn-block p-2">Quick View</a></div>
-            </div>
-          </div>
-        </div>
-          </div>
-        </div>
+        <app-person-card [person]="person"></app-person-card>
       </div>
     </div>
   </div>

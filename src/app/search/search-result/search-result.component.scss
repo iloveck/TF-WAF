@@ -1,19 +1,4 @@
 @import "../../../assets/styles/headings";
-.person-name{
-  font-size: 18px;
-  font-weight: bold;
-  color: #002242;
-}
-.person-id{
-  font-size: 14px;
-  color: #878787;
-}
-.email-phone{
-  font-size: 14px;
-  color: #002242;
-  font-stretch: semi-condensed;
-  font-weight: bold;
-}
 .button-filled{
   background-color: #005CB1;
   border-radius: 3px;
@@ -31,3 +16,54 @@
   border-style: solid;
   font-weight: bold;
 }
+.vertical-center {
+  display: inline-flex;
+  border: 1px solid #ddd;
+  min-height: 100px;
+  align-items: center;
+}
+.my-panels{
+  margin-top:30px!important;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.text-margins{
+  margin-left: 30px;
+}
+.row-transperant{
+  background-color: transparent!important;
+  border-style: none;
+}
+.fit-image{
+  width: 100%;
+  object-fit: cover;
+  }
+  .search-result-box{
+    min-height: 92vh;
+    .filter-row-background{
+      background-color: white;
+    }
+    .person-result-background{
+      background-color: white;
+    }
+  }
+
+  .filter-options{
+    font-size: 16px;
+    font-weight: 500;
+    color: #005DAB;
+    letter-spacing: 0.444444px;
+  }
+  .filter-links{
+    font-size: 14px;
+    font-weight: 500;
+    color: #005DAB;
+  }
+  .filter-text{
+    font-size: 30px;
+    font-weight: 500;
+    color: #002242;
+    line-height: 38px;
+    letter-spacing: 0.642857px;
+  }
+

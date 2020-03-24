@@ -1,6 +1,6 @@
 <app-search-header></app-search-header>
 
-<div id="menu_screen" class="container-fluid" style="background-color: #005dab;min-height: 92vh;">
+<div id="menu_screen" class="container-fluid set-page-style" >
   <div class="row">
     <div class="col-lg-3 col-md-3">
     </div>
@@ -13,7 +13,7 @@
     <div class="col-lg-3 col-md-3">
     </div>
     <!-- Adjust Div Height once weather widget is added -->
-    <div class="col-lg-9 col-md-9 row-transperant h1-style-guide search-heading-style justify-content-md-left" style="margin-top: 15vh;font-size: 42px;font-weight: bold;color:white">
+    <div class="col-lg-9 col-md-9 row-transperant h1-style-guide search-heading-style justify-content-md-left">
       <span *ngIf="hour >= 6 && hour < 12">Good Morning,<br/> Username! </span>
       <span *ngIf="hour >= 12 && hour < 18">Good Afternoon,<br/> Username!</span>
       <span *ngIf="hour >= 18 && hour < 21">Good Evening,<br/> Username!</span>
@@ -24,9 +24,9 @@
   <div class="row">
     <div class="col-lg-3 col-md-3">
     </div>
-    <div class="col-lg-9 col-md-9 row-transperant search-heading-style justify-content-md-left">
-      <input type="form-control" id="lg" role="combobox" aria-autocomplete="list" placeholder="Search by member information" style="border-radius: 3px;height: 08vh; margin-left: 0px; width: 50%;">
-      <button type="button" class="btn btn-primary btn-lg h4-style-guide search-button" >Search</button>
+    <div class="col-lg-9 col-md-9 row-transperant mt-5 justify-content-md-left">
+      <input type="form-control" id="lg" role="combobox" aria-autocomplete="list" placeholder="Search by member information" class="search-box">
+      <button type="button" class="btn btn-primary btn-lg h4-style-guide search-button mb-1">Search</button>
     </div>
   </div>
 </div>

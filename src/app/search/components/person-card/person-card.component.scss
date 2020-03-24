@@ -1,0 +1,43 @@
+.person-name{
+  font-size: 18px;
+  font-weight: bold;
+  color: #002242;
+}
+.person-id{
+  font-size: 14px;
+  color: #878787;
+}
+.email-phone{
+  font-size: 14px;
+  color: #002242;
+  font-stretch: semi-condensed;
+  font-weight: bold;
+}
+.button-filled{
+  background-color: #005CB1;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  font-style: bold;
+  font-weight: bold;
+}
+.button-transperant{
+  background-color:transparent;
+  border-radius: 3px;
+  color: #1970C9;
+  font-size: 14px;
+  border-color:#1970C9;
+  border-style: solid;
+  font-weight: bold;
+}
+.vertical-center {
+  display: inline-flex;
+  border: 1px solid #ddd;
+  min-height: 100px;
+  align-items: center;
+}
+.my-panels{
+  margin-top:30px!important;
+  margin-right: 20px;
+  margin-left: 20px;
+}
