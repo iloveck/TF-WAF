@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class SampleService extends BaseService {
 
   private apiUrl: any = {
-    getSearch: 'https://membershipsearchapp.azurewebsites.net/api/MemberSearchFunction?code=yHEVacJutWx9oaa1fWD/cNEoEaP8bVoCy7l3cDvKmYoRcLM6PettgQ==&search=conner'
+    getSearch: 'http://localhost:7071/api/Search/LAKE'
   };
   constructor(http: HttpClient ) { super(http);}
 

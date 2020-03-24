@@ -24,7 +24,7 @@ export class SampleComponent implements OnInit {
 
   getSearch(): void  {
     this.sampleService.getSearch().subscribe(
-      (data: any) => this.persons = data.value, // success path
+      (data: any) => this.persons = data, // success path
       error => this.error = error // error path
     );
 

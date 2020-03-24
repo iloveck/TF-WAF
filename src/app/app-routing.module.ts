@@ -6,8 +6,10 @@ import { SearchResultComponent } from './search/search-result/search-result.comp
 import { PageNotFoundComponent } from './page-not-found.component';
 
 const routes: Routes = [
+  { path: 'sample', component: SampleComponent },
   {path: '', redirectTo: 'search', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent }
+
 ];
 
 @NgModule({

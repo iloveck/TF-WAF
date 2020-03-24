@@ -77,18 +77,18 @@
     </div>
 
       <div class="flex-row mb-3">
-        <div class="h4-style-guide text-margins">{{jsonArrayObject.value.length}} Results for </div>
+        <div class="h4-style-guide text-margins">{{persons.length}} Results for </div>
       </div>
 
      <app-search-tag [tag]="searchTerm"></app-search-tag>
 
 
       <div class="flex-row mt-5">
-        <h5 class="h5-style-guide text-margins" >Members ({{jsonArrayObject.value.length}})</h5>
+        <h5 class="h5-style-guide text-margins" >Members ({{persons.length}})</h5>
       </div>
 
       <!-- Create its own component -->
-     <div *ngFor="let person of jsonArrayObject.value">
+     <div *ngFor="let person of persons">
         <app-person-card [person]="person"></app-person-card>
       </div>
     </div>
