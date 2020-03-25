@@ -3,10 +3,6 @@
 <div class="container-fluid">
   <div class="row row-eq-height search-result-box">
     <div class="col-lg-3 text-center " style="background-color:white;">
-<!--
-      <img class="bc-logo logo-us" src="/assets/images/filter-results.png" alt="Costco Logo" style="object-fit: fill;width:100%;height:80vh;margin-top: 2vh;">
-      <span class="badge badge-pill badge-primary text-margins" style="background-color: #005DAB;font-size: 14px;">Placeholder</span>
--->
       <div class="mt-4 ml-3" style="text-align: left;"><a [routerLink]="['/search']"  routerLinkActive="filter-links">Back</a> </div>
         <div class="row mt-4 ml-0" style="text-align: left;">
           <div class="col-lg-8 " style="text-align: left;">
@@ -18,7 +14,6 @@
         </div>
 
         <input class="form-control form-control-lg ml-2 mt-2" type="text" placeholder="Search">
-
 
       <table class="table mt-4 ml-2">
         <tbody class="filter-options">
@@ -49,36 +44,19 @@
 
         </tbody>
       </table>
- <!--    <form id="facetForm" autocomplete="off">
-      <div id="filter-header">
-        <span class="filter-title h4-style-guide">Filters - Coming soon ...</span>
-      </div>
-      <div class="accordion panel-group" id="accordion-filter" role="tablist" aria-multiselectable="true">
-         <div class="panel panel-default">
-          </div>
-      </div>
-
-   </form> -->
     </div>
 
     <div class="col-lg-9 " style="background-color:#eff7fb ;">
-<!--
-      <div class="flex-row-reverse" style="margin-top: 4vh;margin-right: 30px;">
-        <div class="d-flex justify-content-end">
-          <div><a href="#" class="button-transperant btn btn-primary btn-block p-30 mb-6">Add New Member</a></div>
-        </div>
-      </div>
--->
       <div class="row mt-4 mr-3">
       <div class="col-lg-9"></div>
       <div class="col-lg-3">
-        <div><a href="#" class="button-transperant btn btn-primary btn-block">Add New Member</a></div>
+        <div><a href="#" class="button-transparent btn btn-primary btn-block">Add New Member</a></div>
       </div>
     </div>
 
-      <div class="flex-row mb-3">
-        <div class="h4-style-guide text-margins">{{persons.length}} Results for </div>
-      </div>
+    <div class="flex-row mb-3">
+     <div class="h4-style-guide text-margins">{{persons.length}} Results for </div>
+    </div>
 
      <app-search-tag [tag]="searchTerm"></app-search-tag>
 
@@ -87,8 +65,7 @@
         <h5 class="h5-style-guide text-margins" >Members ({{persons.length}})</h5>
       </div>
 
-      <!-- Create its own component -->
-     <div *ngFor="let person of persons">
+      <div *ngFor="let person of persons">
         <app-person-card [person]="person"></app-person-card>
       </div>
     </div>

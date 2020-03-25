@@ -11,7 +11,7 @@ export class SearchComponent implements OnInit {
 
   today: number = Date.now();
   hour: number = (new Date()).getHours();
-  searchTerm = '';
+  searchTerm: string = '';
 
   constructor(private router: Router) { }
 
@@ -21,7 +21,6 @@ export class SearchComponent implements OnInit {
 
   onSearch(): void {
     this.router.navigateByUrl('/search-result/' + this.searchTerm);
-    //this.router.navigate(['/Search-result'], {queryParams: {term: this.searchTerm}});
   }
 
 }

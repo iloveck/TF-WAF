@@ -15,12 +15,12 @@ export class SearchResultComponent implements OnInit {
   searchTerm: string = ''
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.params['term']);
     this.searchTerm = this.route.snapshot.params['term'];
     this.onSearch();
   }
 
     onSearch(): void {
+
       this.searchService.getSearch(this.searchTerm).subscribe(
         (data: any) => this.persons = data, // success path
         error => console.log(error) // error path

@@ -21,7 +21,7 @@
   font-style: bold;
   font-weight: bold;
 }
-.button-transperant{
+.button-transparent{
   background-color:transparent;
   border-radius: 3px;
   color: #1970C9;
@@ -41,3 +41,10 @@
   margin-right: 20px;
   margin-left: 20px;
 }
+.person-image{
+  height:4vh;
+  width:auto;
+  object-fit: fill;
+  margin-top: 2vh;
+}
+
