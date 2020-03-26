@@ -10,7 +10,7 @@
     <div class="col-lg-3 col-md-3">
     </div>
     <!-- Adjust Div Height once weather widget is added -->
-    <div class="col-lg-9 col-md-9 row-transperant h1-style-guide search-heading-style justify-content-md-left">
+    <div class="col-lg-9 col-md-9 row-transperant h1-style-guide search-heading justify-content-md-left">
       <span *ngIf="hour >= 6 && hour < 12">Good Morning,<br/> Username! </span>
       <span *ngIf="hour >= 12 && hour < 18">Good Afternoon,<br/> Username!</span>
       <span *ngIf="hour >= 18 && hour < 21">Good Evening,<br/> Username!</span>
@@ -23,7 +23,7 @@
     </div>
     <div class="col-lg-9 col-md-9 row-transperant mt-5 justify-content-md-left">
       <input  [(ngModel)]="searchTerm" type="text" placeholder="Search by member information"  class="search-box">
-      <button type="button" class="btn btn-primary btn-lg h6-style-guide search-button mt-1" (click)="onSearch()">Search</button>
+      <button type="button" class="btn btn-primary btn-lg h6-style-guide btn-costco-dark-blue mt-1" (click)="onSearch()">Search</button>
     </div>
   </div>
 </div>

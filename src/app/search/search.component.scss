@@ -1,21 +1,12 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/headings";
-.search-button {
-  color: $white;
-  border: 0.0625rem solid $costco-dark-blue;
-  box-sizing: border-box;
-  margin-left: 15px;
-  margin-bottom: 1vh;
-  background-color: $costco-dark-blue;
-  border-radius: 0.1875rem;
-  height: 08vh!important;
-  width: 120px;
-}
+@import "../../assets/styles/buttons";
+
 .row-transperant{
   background-color: transparent!important;
   border-style: none;
 }
-.search-heading-style{
+.search-heading{
   color: white!important;
   min-height: 15vh;
   margin-top: 15vh;

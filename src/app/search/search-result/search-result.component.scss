@@ -1,4 +1,6 @@
 @import "../../../assets/styles/headings";
+@import "../../../assets/styles/buttons";
+
 .button-filled{
   background-color: #005CB1;
   border-radius: 3px;
@@ -7,15 +9,7 @@
   font-style: bold;
   font-weight: bold;
 }
-.button-transparent{
-  background-color:transparent;
-  border-radius: 3px;
-  color: #1970C9;
-  font-size: 14px;
-  border-color:#1970C9;
-  border-style: solid;
-  font-weight: bold;
-}
+
 .vertical-center {
   display: inline-flex;
   border: 1px solid #ddd;
@@ -26,9 +20,6 @@
   margin-top:30px!important;
   margin-right: 20px;
   margin-left: 20px;
-}
-.text-margins{
-  margin-left: 30px;
 }
 .row-transparent{
   background-color: transparent!important;
