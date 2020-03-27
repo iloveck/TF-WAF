@@ -1,0 +1,28 @@
+.btn-costco-dark-blue {
+  color: $white;
+  border: 0.0625rem solid $costco-dark-blue;
+  box-sizing: border-box;
+  margin-left: 15px;
+  margin-bottom: 1vh;
+  background-color: $costco-dark-blue;
+  border-radius: 0.1875rem;
+  height: 08vh!important;
+  width: 120px;
+}
+.btn-costco-blue{
+  background-color: #005CB1;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  font-style: bold;
+  font-weight: bold;
+}
+.btn-transparent{
+  background-color:transparent;
+  border-radius: 3px;
+  color: #1970C9;
+  font-size: 14px;
+  border-color:#1970C9;
+  border-style: solid;
+  font-weight: bold;
+}

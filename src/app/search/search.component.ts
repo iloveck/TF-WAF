@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-search',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  today: number = Date.now();
+  hour: number = (new Date()).getHours();
+  searchTerm: string = '';
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.hour = (new Date()).getHours();
+  }
+
+  onSearch(): void {
+    this.router.navigateByUrl('/search-result/' + this.searchTerm);
   }
 
 }
