@@ -12,6 +12,7 @@ export class FormatPhonePipe implements PipeTransform {
       var intrlCode = (phoneMatch[1] ? '+1 ' : '')
       return [intrlCode, '(', phoneMatch[2], ') ', phoneMatch[3], '-', phoneMatch[4]].join('')
     }
-    return null  }
+    return null
+  }
 
 }

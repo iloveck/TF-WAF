@@ -1,6 +1,6 @@
 import { PathLocationStrategy } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { LogService } from '@service/log-service';
+import { LogService } from '@service/log.service';
 //import { NotificationService } from '@service/notification.service';
 import * as StackTrace from 'stacktrace-js';
 

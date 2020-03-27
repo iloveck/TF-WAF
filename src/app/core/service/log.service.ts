@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Util } from '@common/util';
-import { BaseService } from '@service/base-service';
+import { HttpService } from '@service/http.service';
 
 @Injectable()
-export class LogService extends BaseService {
+export class LogService extends HttpService {
 
   private apiUrl: any = {
     error: '',

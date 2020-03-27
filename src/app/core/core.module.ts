@@ -5,7 +5,7 @@ import { CachingInterceptor } from '@httpinterceptor/cache-http-interceptor';
 import { TokenHttpInterceptor } from '@httpinterceptor/token-http-interceptor';
 import { DataLoader } from '@appinitialzer/data-loader';
 import { Logger } from '@exceptionhandling/logger';
-import { LogService } from '@service/log-service';
+import { LogService } from '@service/log.service';
 import { Util } from '@common/util';
 import { HttpInMemoryCache } from '@cache/http-in-memory-cache';
 import { InMemoryCache } from '@cache/in-memory-cache';

@@ -10,7 +10,7 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class SearchResultComponent implements OnInit {
 
-  persons: any[];
+  persons: any[]=[];
   constructor(private route: ActivatedRoute, private searchService: SearchService) { }
   searchTerm: string = ''
 

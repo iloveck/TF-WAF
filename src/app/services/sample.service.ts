@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { BaseService } from '@service/base-service';
+import { HttpService } from '@service/http.service';
 //import { Util } from '@common/util';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SampleService extends BaseService {
+export class SampleService extends HttpService {
 
   private apiUrl: any = {
     getSearch: 'http://localhost:7071/api/Search/LAKE'
