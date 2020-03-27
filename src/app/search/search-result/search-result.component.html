@@ -55,27 +55,16 @@
     </div>
 
     <div class="flex-row mb-3">
-     <div class="h4-style-guide ml-4" *ngIf="persons.length <= 4 ">{{persons.length}} Results for </div>
-     <div class="h4-style-guide ml-4" *ngIf="persons.length > 4 ">40+ Results for
-
-      <figure class="figure">
-        <img src="/assets/images/icon-warning.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-        <figcaption class="figure-caption">A caption for the above image.</figcaption>
-      </figure>
-
-<!--      <img src="/assets/images/icon-warning.png" width="25" height="25" class="mb-1" caption="please refine your search"> -->
+     <div class="h4 ml-4" *ngIf="persons.length <= 40">{{persons.length}} Results for </div>
+     <div class="h4 ml-4" *ngIf="persons.length > 40">40+ Results for
+        <img src="/assets/images/icon-warning.png" width="25" height="25" class="mb-1" caption="please refine your search">
      </div>
-
-
-
-
     </div>
 
      <app-search-tag [tag]="searchTerm"></app-search-tag>
 
-
       <div class="flex-row mt-5">
-        <h5 class="h5-style-guide ml-4" >Members ({{persons.length}})</h5>
+        <h5 class="h5 ml-4" >Members ({{persons.length}})</h5>
       </div>
 
       <div *ngFor="let person of persons">
