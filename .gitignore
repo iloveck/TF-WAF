@@ -8,6 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+.history/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -23,6 +24,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+dist/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -39,6 +41,9 @@ Generated\ Files/
 # NUNIT
 *.VisualState.xml
 TestResult.xml
+
+# Karma test Results
+coverage/
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
