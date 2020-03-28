@@ -71,4 +71,24 @@ stages:
           targetPath: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
           artifact: 'dist'
           publishLocation: 'pipeline'
-
+  - stage: Deploy
+    jobs: 
+    - deployment: Deploy_to_Dev
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd'))
+      environment: development
+      timeoutInMinutes: 10
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                artifactName: 'dist'
+                downloadPath: '$(System.DefaultWorkingDirectory)'
+            - task: AzureRmWebAppDeployment@4
+              inputs:
+                ConnectionType: 'AzureRM'
+                azureSubscription: 'WEBAKSPRD05142019'
+                appType: 'webApp'
+                WebAppName: 'webservertestpoc'
+                packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
