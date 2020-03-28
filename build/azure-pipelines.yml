@@ -31,6 +31,21 @@ stages:
         inputs:
           command: 'custom'
           customCommand: 'run build'
+      - task: Npm@1
+        inputs:
+          command: 'custom'
+          customCommand: 'run test'
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: 'get-childitem -recurse $(System.DefaultWorkingDirectory)'
+          pwsh: true
+      - task: PublishCodeCoverageResults@1
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/mglo-web/*.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/mglo-web'
+          failIfCoverageEmpty: false
       - task: ArchiveFiles@2
         condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd'))
         displayName: "Archive files"
@@ -44,9 +59,4 @@ stages:
           targetPath: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
           artifact: 'dist'
           publishLocation: 'pipeline'
-      - task: PublishCodeCoverageResults@1
-        inputs:
-          codeCoverageTool: 'Cobertura'
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/mglo-web/*.xml'
-          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/mglo-web'
-          failIfCoverageEmpty: false
+
