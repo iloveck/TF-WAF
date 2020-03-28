@@ -1,0 +1,52 @@
+name: $(BuildDefinitionName).$(Build.SourceBranchName)$(Rev:.r)
+
+# During initial development, the "dev" environment will be updated daily at noon
+# This is to balance keeping it updated with constant deployment instability.
+# Later this will become a Daily QA build with dev being continuously updated.
+#warning: UTC time
+schedules:
+- cron: "4 19 * * *"
+  displayName: Daily Dev build
+  branches:
+    include:
+    - develop
+  always: false
+
+trigger:
+- master
+- develop
+- feature/*
+- release/*
+
+stages:
+  - stage: Build
+    jobs:
+    - job: Build_app
+      steps:
+      - task: Npm@1
+        inputs:
+          command: 'install'
+      - script: 'sudo npm install -g @angular/cli@latest'
+      - task: Npm@1
+        inputs:
+          command: 'custom'
+          customCommand: 'run build'
+      - task: ArchiveFiles@2
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd'))
+        displayName: "Archive files"
+        inputs:
+          rootFolderOrFile: "$(System.DefaultWorkingDirectory)/dist/mglo-web"
+          includeRootFolder: false
+          archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
+      - task: PublishPipelineArtifact@1
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd'))
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
+          artifact: 'dist'
+          publishLocation: 'pipeline'
+      - task: PublishCodeCoverageResults@1
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/mglo-web/*.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/mglo-web'
+          failIfCoverageEmpty: false
