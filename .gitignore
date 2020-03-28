@@ -42,6 +42,9 @@ Generated\ Files/
 *.VisualState.xml
 TestResult.xml
 
+# JUNIT
+tests/
+
 # Karma test Results
 coverage/
 

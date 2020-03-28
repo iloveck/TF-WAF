@@ -36,11 +36,17 @@ stages:
         inputs:
           command: 'custom'
           customCommand: 'run test'
-      - task: PowerShell@2
+      - task: PublishTestResults@2
         inputs:
-          targetType: 'inline'
-          script: 'get-childitem -recurse $(System.DefaultWorkingDirectory)'
-          pwsh: true
+          testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
+          testResultsFiles: '**/TEST-*.xml'
+          searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
+          #mergeTestResults: false # Optional
+          failTaskOnFailedTests: false # Optional
+          #testRunTitle: # Optional
+          #buildPlatform: # Optional
+          #buildConfiguration: # Optional
+          #publishRunAttachments: true # Optional
       - task: PublishCodeCoverageResults@1
         inputs:
           codeCoverageTool: 'Cobertura'
