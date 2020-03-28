@@ -44,3 +44,9 @@ stages:
           targetPath: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
           artifact: 'dist'
           publishLocation: 'pipeline'
+      - task: PublishCodeCoverageResults@1
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/mglo-web/*.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/mglo-web'
+          failIfCoverageEmpty: false
