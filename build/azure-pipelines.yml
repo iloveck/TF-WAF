@@ -39,7 +39,7 @@ stages:
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
-          testResultsFiles: '**/TESTS-*.xml'
+          testResultsFiles: '$(System.DefaultWorkingDirectory)/tests/mglo-web/*.xml'
           searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
           #mergeTestResults: false # Optional
           failTaskOnFailedTests: false # Optional
@@ -47,6 +47,11 @@ stages:
           #buildPlatform: # Optional
           #buildConfiguration: # Optional
           #publishRunAttachments: true # Optional
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: 'get-childitem -recurse $(System.DefaultWorkingDirectory)'
+          pwsh: true
       - task: PublishCodeCoverageResults@1
         inputs:
           codeCoverageTool: 'Cobertura'
