@@ -32,6 +32,7 @@ stages:
           command: 'custom'
           customCommand: 'run build'
       - task: Npm@1
+        continueOnError: true
         inputs:
           command: 'custom'
           customCommand: 'run test'
