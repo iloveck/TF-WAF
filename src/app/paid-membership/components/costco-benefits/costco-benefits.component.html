@@ -1,0 +1,27 @@
+<div class="container">
+<div class="row">
+    <div style="text-align: center;" class="col">
+        <img class=top-bar-logo src={{imageSrc}}>
+    </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col-1s">
+            <a [routerLink]="['../hearabout']">    <button class="button-back"><i class="left"></i></button></a>
+        </div>
+        <div class="col-9">
+            <app-paid-membership-completion></app-paid-membership-completion>
+        </div>
+        <div class="col-1">
+            <a [routerLink]="['../completeprofile']">
+            <button class="button-continue"><span class="continue-text">Continue</span></button>
+        </a>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+</div>
