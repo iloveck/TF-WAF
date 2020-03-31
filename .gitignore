@@ -8,6 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+.history/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -40,6 +41,12 @@ Generated\ Files/
 # NUNIT
 *.VisualState.xml
 TestResult.xml
+
+# JUNIT
+tests/
+
+# Karma test Results
+coverage/
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
