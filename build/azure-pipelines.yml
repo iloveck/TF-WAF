@@ -4,7 +4,7 @@ variables:
   WebAppName: 'webservertestpoc'
   WebProjectName: 'mglo-web'
   NonProdAzureSubscription: 'WEBAKSPRD05142019'
-  DevBranch: 'refs/heads/feature/TASK-5519_initial_cicd'
+  DevBranch: 'refs/heads/develop'
   DistributionFolder: 'dist'
   TestsFolder: 'tests'
   CoverageFolder: 'coverage'
@@ -14,11 +14,11 @@ variables:
 # Later this will become a Daily QA build with dev being continuously updated.
 #warning: UTC time
 schedules:
-- cron: "30 2 * * *"
+- cron: "4 7 * * *"
   displayName: Daily Dev build
   branches:
     include:
-    - feature/TASK-5519_initial_cicd
+    - develop
   always: 'false'
 
 trigger:
