@@ -72,7 +72,7 @@ stages:
           archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
       - task: PublishPipelineArtifact@1
         displayName: 'publish deployment archive'
-        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch'],eq(variables['Build.Reason'], 'Schedule')) ))
+        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
         inputs:
           targetPath: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
           artifact: $(DistributionFolder)
@@ -80,7 +80,7 @@ stages:
   - stage: Deploy
     jobs:
     - deployment: Deploy_to_Dev
-      condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch'],eq(variables['Build.Reason'], 'Schedule')) ))
+      condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
       environment: development
       timeoutInMinutes: 10
       strategy:
