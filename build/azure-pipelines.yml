@@ -27,13 +27,14 @@ stages:
     - job: Build_app
       steps:
       - task: Npm@1
+        condition: or(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd'))
         displayName: 'npm install'
         inputs:
           command: 'install'
       - script: 'sudo npm install -g @angular/cli@latest'
         displayName: angularCli install
       - task: Npm@1
-        displayName: 'npm build'
+        displayName: 'npm build2'
         inputs:
           command: 'custom'
           customCommand: 'run build'
