@@ -1,7 +1,7 @@
 name: $(BuildDefinitionName).$(Build.SourceBranchName)$(Rev:.r)
 
 variables:
-  global_variable: value
+  force_deployment: false
 
 # During initial development, the "dev" environment will be updated daily at noon
 # This is to balance keeping it updated with constant deployment instability.
@@ -27,7 +27,7 @@ stages:
     - job: Build_app
       steps:
       - task: Npm@1
-        condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_testing_cond_logic'), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd')))
+        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd')))
         displayName: 'npm install'
         inputs:
           command: 'install'
