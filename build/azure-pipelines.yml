@@ -27,7 +27,7 @@ stages:
     - job: Build_app
       steps:
       - task: Npm@1
-        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd')))
+        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], 'refs/heads/feature/TASK-5519_initial_cicd1')))
         displayName: 'npm install'
         inputs:
           command: 'install'
