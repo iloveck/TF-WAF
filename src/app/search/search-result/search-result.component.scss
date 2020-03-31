@@ -45,7 +45,7 @@
   .bg-result-color{
     background-color: #eff7fb;
   }
-  .srch-warning .srch-warningtext {
+  .search-warning .search-warningtext {
     visibility: hidden!important;
     width: 150px;
     background-color: white;
@@ -60,11 +60,11 @@
     left: 130%;
     line-height: 2;
   }
-  .srch-warning {
+  .search-warning {
        position: relative;
        display: inline-block;
     }
-  .srch-warning .srch-warningtext::after {
+  .search-warning .search-warningtext::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -74,6 +74,6 @@
     border-style: solid;
     border-color: transparent white transparent transparent;
   }
-  .srch-warning:hover .srch-warningtext {
+  .search-warning:hover .search-warningtext {
     visibility: visible!important;
   }
