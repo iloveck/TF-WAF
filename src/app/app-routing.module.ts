@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SampleComponent } from './sample/sample.component';
 import { SearchComponent } from './search/search.component';
-import { MemberComponent } from './member/member.component';
-import { RewardsComponent } from './rewards/rewards.component';
-import { PaidMembershipComponent } from './paid-membership/paid-membership.component';
-
+import { SearchResultComponent } from './search/search-result/search-result.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: 'sample', component: SampleComponent},
+  { path: 'sample', component: SampleComponent },
+  {path: '', redirectTo: 'search', pathMatch: 'full'},
+  { path: '**', component: PageNotFoundComponent }
+
 ];
 
 @NgModule({

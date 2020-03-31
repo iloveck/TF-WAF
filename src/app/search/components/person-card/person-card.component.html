@@ -1,0 +1,21 @@
+<div class="card my-panels">
+  <div class="card-block my-panels ">
+    <div class="card-body">
+    <div class="row">
+    <div class="col-lg-2 text-right">
+      <!-- To be replaced with person image-->
+      <img class="bc-logo logo-us person-image rounded-circle" src="../favicon.ico" alt="Costco Logo"/>
+    </div>
+    <div class="col-lg-8">
+      <div class="person-name" style="margin-bottom: 10px;">{{ person.document.profile.firstName }} {{ person.document.profile.lastName }} <span class="person-id">34637866</span></div>
+      <div class="email-phone">{{ person.document.peronalEmail.personalEmailAddress }}</div>
+      <div class="email-phone">{{ person.document.mobilePhoneNumber.phoneNumber | formatPhone }}</div>
+    </div>
+    <div class="col-lg-2 my-auto">
+      <div><a href="#" class="btn-costco-blue btn btn-primary btn-block p-2 mb-2">View Profile</a></div>
+      <div><a href="#" class="btn-transparent btn btn-primary btn-block p-2">Quick View</a></div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>

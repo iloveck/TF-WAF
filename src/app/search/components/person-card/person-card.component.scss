@@ -1,0 +1,35 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/buttons";
+.person-name{
+  font-size: 18px;
+  font-weight: bold;
+  color: #002242;
+}
+.person-id{
+  font-size: 14px;
+  color: #878787;
+}
+.email-phone{
+  font-size: 14px;
+  color: #002242;
+  font-stretch: semi-condensed;
+  font-weight: bold;
+}
+.vertical-center {
+  display: inline-flex;
+  border: 1px solid #ddd;
+  min-height: 100px;
+  align-items: center;
+}
+.my-panels{
+  margin-top:30px!important;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.person-image{
+  height:4vh;
+  width:auto;
+  object-fit: fill;
+  margin-top: 2vh;
+}
+

@@ -1,0 +1,21 @@
+@import "../../../assets/styles/headings";
+.head-container{
+  background-color: white;
+  min-height: 7vh;
+  border:1px solid #cecece;
+}
+.head-text{
+  font-size: 16px;
+  color: #002242;
+  font-weight: bold;
+}
+.head-text-muted{
+  font-size: 13px;
+  color: #61768A;
+}
+.logo{
+  height:4vh;
+  width:auto;
+  object-fit: fill;
+  margin-top: 1vh;
+}

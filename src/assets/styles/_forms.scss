@@ -1,0 +1,19 @@
+@import "./variables";
+.form-group {
+  margin-bottom: 1.5rem;
+  label{
+    color: $white;
+    font-size: 0.875rem;
+    font-weight: normal;
+    line-height: 1.0625rem;
+  }
+
+  .form-control {
+    background: $white;
+    border: 0.0625rem solid #DBDBDB;
+    box-sizing: border-box;
+    height: 3.125rem;
+    box-shadow: 0rem 0.125rem 0.125rem rgba(32, 0, 0, 0.0609976);
+    border-radius: 0.1875rem;
+  }
+}

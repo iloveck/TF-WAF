@@ -1,0 +1,75 @@
+<app-search-header></app-search-header>
+
+<div class="container-fluid">
+  <div class="row row-eq-height search-result-box">
+    <div class="col-lg-3 text-center bg-white">
+      <div class="mt-4 ml-3 text-left"><a [routerLink]="['/search']"  routerLinkActive="filter-links">Back</a> </div>
+        <div class="row mt-4 ml-0">
+          <div class="col-lg-8 text-left">
+            <label class="filter-text">Filters</label>
+          </div>
+          <div class="col-lg-4 text-right">
+            <a href="#" class="filter-links">Clear Filters</a>
+          </div>
+        </div>
+
+        <input class="form-control form-control-lg ml-2 mt-2" type="text" placeholder="Search">
+
+      <table class="table mt-4 ml-2">
+        <tbody class="filter-options">
+          <tr>
+            <td class="text-left">Primary Information</td>
+            <td class="text-right">+</td>
+          </tr>
+          <tr>
+            <td class="text-left">Secondary Information</td>
+            <td class="text-right">+</td>
+          </tr>
+          <tr>
+            <td class="text-left">Type</td>
+            <td class="text-right">+</td>
+          </tr>
+          <tr>
+            <td class="text-left">Status</td>
+            <td class="text-right">+</td>
+          </tr>
+          <tr>
+            <td class="text-left">Blocks</td>
+            <td class="text-right">+</td>
+          </tr>
+          <tr>
+            <td class="text-left">Member Since</td>
+            <td class="text-right">+</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-9 bg-result-color">
+      <div class="row mt-4 mr-3">
+      <div class="col-lg-9"></div>
+      <div class="col-lg-3">
+        <div><a href="#" class="btn-transparent btn btn-primary btn-block">Add New Member</a></div>
+      </div>
+    </div>
+
+    <div class="flex-row mb-3">
+     <div class="h4 ml-4" *ngIf="persons.length <= 40">{{persons.length}} Results for </div>
+     <div class="h4 ml-4" *ngIf="persons.length > 40">40+ Results for
+        <img src="/assets/images/icon-warning.png" width="25" height="25" class="mb-1" caption="please refine your search">
+     </div>
+    </div>
+
+     <app-search-tag [tag]="searchTerm"></app-search-tag>
+
+      <div class="flex-row mt-5">
+        <h5 class="h5 ml-4" >Members ({{persons.length}})</h5>
+      </div>
+
+      <div *ngFor="let person of persons">
+        <app-person-card [person]="person"></app-person-card>
+      </div>
+    </div>
+  </div>
+</div>
