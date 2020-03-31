@@ -19,7 +19,14 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './coverage/mglo-web'),
       reports: ['html', 'lcovonly','cobertura', 'text-summary'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        emitWarning: false, // <- this is important to make karma fail
+        global: {
+          lines: 80,
+          branches: 80
+        }
+      }
     },
     junitReporter: {
       outputDir: 'tests/mglo-web', // results will be saved as $outputDir/$browserName.xml
