@@ -11,8 +11,9 @@ import { SearchService } from 'src/app/services/search.service';
 export class SearchResultComponent implements OnInit {
 
   persons: any[]=[];
+  searchTerm: string = '';
+  maxResultForWarning: number = 40;
   constructor(private route: ActivatedRoute, private searchService: SearchService) { }
-  searchTerm: string = ''
 
   ngOnInit(): void {
     this.searchTerm = this.route.snapshot.params['term'];

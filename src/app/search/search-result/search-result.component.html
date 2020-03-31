@@ -55,16 +55,21 @@
     </div>
 
     <div class="flex-row mb-3">
-     <div class="h4 ml-4" *ngIf="persons.length <= 40">{{persons.length}} Results for </div>
-     <div class="h4 ml-4" *ngIf="persons.length > 40">40+ Results for
-        <img src="/assets/images/icon-warning.png" width="25" height="25" class="mb-1" caption="please refine your search">
+      <div class="h4 ml-4" *ngIf="persons.length <= maxResultForWarning">{{persons.length}} Results for </div>
+      <div class="h4 ml-4" *ngIf="persons.length > maxResultForWarning">40+ Results for
+         <span class="search-warning">
+           <img src="/assets/images/icon-warning.png" width="25" height="25" class="mb-1">
+             <span class="search-warningtext pt-3 pb-3 pr-2 pl-2">
+               Refine your search for more efficient results
+             </span>
+         </span>
      </div>
     </div>
 
      <app-search-tag [tag]="searchTerm"></app-search-tag>
 
       <div class="flex-row mt-5">
-        <h5 class="h5 ml-4" >Members ({{persons.length}})</h5>
+        <h5 class="h5 ml-4" *ngIf="persons.length > 0" >Members ({{persons.length}})</h5>
       </div>
 
       <div *ngFor="let person of persons">
