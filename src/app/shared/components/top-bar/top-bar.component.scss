@@ -1,13 +1,26 @@
 .top-bar-logo{
-width: 153px;
-height: 54px;
-left: calc(50% - 153px/2 - 0.5px);
-background-color: white;
+    width: 153px;
+    height: 54px;
+    left: calc(50% - 153px/2 - 0.5px);
+    background-color: white;
+}
+.top-bar-container{
+    text-align: center;
 }
 .top-bar-text-color{
-color: #002242;
-font-family: Helvetica;
-text-align:left;
-top: 10px;; 
-vertical-align: middle;
+    color: #002242;
+    font-family: Helvetica;
+    text-align:left;
+    top: 10px;; 
+    vertical-align: middle;
+}
+.location-text{
+    font-size: 13px; 
+    top: 10px;
+}
+.language-text{
+    text-align: right;
+}
+.date-text{
+    text-align: left;
 }

@@ -1,48 +1,44 @@
 .line{
     width: 540px;
     height: 6px;
-
-background: #D8D8D8;
-mix-blend-mode: normal;
-opacity: 0.28;
-border-radius: 11px;
-border-top-width: 10px;
+    background: #D8D8D8;
+    mix-blend-mode: normal;
+    opacity: 0.28;
+    border-radius: 11px;
+    border-top-width: 10px;
     padding-top: 0px;
     margin-top: 25px;
     }
-    .text-indicator{
-        font-family: Helvetica;
-font-style: normal;
-font-weight: bold;
-font-size: 14px;
-line-height: 17px;
-margin-right: 40px;
-/* identical to box height */
-
-text-align: center;
-letter-spacing: 0.3px;
-
-color: #FFFFFF;
+.text-indicator{
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    margin-right: 40px;
+    text-align: center;
+    letter-spacing: 0.3px;
+    color: #FFFFFF;
     }
-    .circle-large{
-        border-radius: 505px;
-        background: #FFFFFF;
-        position: absolute;
-        left: 3.27%;
-        right: 93.67%;
-        top: 65.12%;
-        bottom: 0%;
-        width: 15px;
-        height: 15px;
-    }
-    .circle-small{
-        border-radius: 505px;
-        background: #FFFFFF;
-        position: absolute;
-        left: 3.27%;
-        right: 93.67%;
-        top: 25px;
-        bottom: 0%;
-        width: 6px;
-        height: 6px;
-    }
+.circle-large{
+    border-radius: 505px;
+    background: #FFFFFF;
+    position: absolute;
+    left: 3.27%;
+    right: 93.67%;
+    top: 65.12%;
+    bottom: 0%;
+    width: 15px;
+    height: 15px;
+}
+.circle-small{
+    border-radius: 505px;
+    background: #FFFFFF;
+    position: absolute;
+    left: 3.27%;
+    right: 93.67%;
+    top: 25px;
+    bottom: 0%;
+    width: 6px;
+    height: 6px;
+}

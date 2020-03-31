@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { MemberRoutingModule } from './member-routing.module';
 import { MemberComponent } from './member.component';
-import { CreateMemberComponent } from './components/create-member/create-member.component';
 
 
 @NgModule({
-  declarations: [MemberComponent, CreateMemberComponent],
+  declarations: [MemberComponent],
   imports: [
     CommonModule,
     MemberRoutingModule
