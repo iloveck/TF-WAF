@@ -9,18 +9,6 @@ variables:
   TestsFolder: 'tests'
   CoverageFolder: 'coverage'
 
-# During initial development, the "dev" environment will be updated daily at noon
-# This is to balance keeping it updated with constant deployment instability.
-# Later this will become a Daily QA build with dev being continuously updated.
-#warning: UTC time
-schedules:
-- cron: "4 7 * * *"
-  displayName: Daily Dev build
-  branches:
-    include:
-    - develop
-  always: 'false'
-
 trigger:
 - master
 - develop
@@ -45,7 +33,7 @@ stages:
           customCommand: 'run build'
       - task: Npm@1
         displayName: 'Npm Test'
-        continueOnError: false
+        continueOnError: true
         inputs:
           command: 'custom'
           customCommand: 'run test'
@@ -67,14 +55,14 @@ stages:
           failIfCoverageEmpty: true
       - task: ArchiveFiles@2
         displayName: 'Zip Deployment Files'
-        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
+        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], variables['DevBranch']) ))
         inputs:
           rootFolderOrFile: "$(System.DefaultWorkingDirectory)/$(DistributionFolder)/$(WebProjectName)"
           includeRootFolder: false
           archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
       - task: PublishPipelineArtifact@1
         displayName: 'Publish Deployment Archive'
-        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
+        condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], variables['DevBranch']) ))
         inputs:
           targetPath: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
           artifact: $(DistributionFolder)
@@ -82,7 +70,7 @@ stages:
   - stage: Deploy
     jobs:
     - deployment: Deploy_to_Dev
-      condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
+      condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], variables['DevBranch']) ))
       environment: development
       timeoutInMinutes: 10
       strategy:
