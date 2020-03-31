@@ -4,7 +4,7 @@ variables:
   WebAppName: 'webservertestpoc'
   WebProjectName: 'mglo-web'
   NonProdAzureSubscription: 'WEBAKSPRD05142019'
-  DevBranch: refs/heads/develop'
+  DevBranch: refs/heads/feature/TASK-5519_initial_cicd'
   DistributionFolder: 'dist'
   TestsFolder: 'tests'
   CoverageFolder: 'coverage'
@@ -14,11 +14,11 @@ variables:
 # Later this will become a Daily QA build with dev being continuously updated.
 #warning: UTC time
 schedules:
-- cron: "4 19 * * *"
+- cron: "19 2 * * *"
   displayName: Daily Dev build
   branches:
     include:
-    - develop
+    - feature/TASK-5519_initial_cicd
   always: 'false'
 
 trigger:
@@ -33,45 +33,45 @@ stages:
     - job: Build_app
       steps:
       - task: Npm@1
-        displayName: 'npm install'
+        displayName: 'Npm Install'
         inputs:
           command: 'install'
       - script: 'sudo npm install -g @angular/cli@latest'
         displayName: angularCli install
       - task: Npm@1
-        displayName: 'npm build2'
+        displayName: 'Npm Build'
         inputs:
           command: 'custom'
           customCommand: 'run build'
       - task: Npm@1
-        displayName: 'npm test'
+        displayName: 'Npm Test'
         continueOnError: true
         inputs:
           command: 'custom'
           customCommand: 'run test'
       - task: PublishTestResults@2
-        displayName: 'publish test results'
+        displayName: 'Publish Test Results'
         inputs:
           testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
           testResultsFiles: '$(System.DefaultWorkingDirectory)/$(TestsFolder)/$(WebProjectName)/*.xml'
           searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
           failTaskOnFailedTests: false # Optional
       - task: PublishCodeCoverageResults@1
-        displayName: 'publish code coverage'
+        displayName: 'Publish Code Coverage'
         inputs:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '$(System.DefaultWorkingDirectory)/$(CoverageFolder)/$(WebProjectName)/*.xml'
           reportDirectory: '$(System.DefaultWorkingDirectory)/$(CoverageFolder)/$(WebProjectName)'
           failIfCoverageEmpty: true
       - task: ArchiveFiles@2
-        displayName: 'zip deployment files'
+        displayName: 'Zip Deployment Files'
         condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
         inputs:
           rootFolderOrFile: "$(System.DefaultWorkingDirectory)/$(DistributionFolder)/$(WebProjectName)"
           includeRootFolder: false
           archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
       - task: PublishPipelineArtifact@1
-        displayName: 'publish deployment archive'
+        displayName: 'Publish Deployment Archive'
         condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
         inputs:
           targetPath: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
@@ -88,7 +88,7 @@ stages:
           deploy:
             steps:
             - task: DownloadPipelineArtifact@2
-              displayName: 'download deployment archive'
+              displayName: 'Download Deployment Archive'
               inputs:
                 artifactName: $(DistributionFolder)
                 downloadPath: '$(System.DefaultWorkingDirectory)'
