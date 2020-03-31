@@ -9,12 +9,14 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class CreateMemberComponent implements OnInit {
   person: any;
-  additionalAddressLine: boolean;
+  additionalAddressLine: number;
 
   constructor(private personService: PersonService) { }
 
   addAddressLine(): void {
-    this.additionalAddressLine = true;
+    if (this.additionalAddressLine < 2) {
+      this.additionalAddressLine++;
+    }
   }
 
   continue(): void {
@@ -25,8 +27,8 @@ export class CreateMemberComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.person = {};
-    this.additionalAddressLine = false;
+    this.person = {language: null, mailingAddressStateProvinceCode: null};
+    this.additionalAddressLine = 0;
   }
 
 }

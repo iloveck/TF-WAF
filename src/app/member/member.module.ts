@@ -10,8 +10,8 @@ import { MemberComponent } from './member.component';
   declarations: [MemberComponent],
   imports: [
     CommonModule,
-    FormsModule,
-    MemberRoutingModule
+    MemberRoutingModule,
+    FormsModule
   ]
 })
 export class MemberModule { }

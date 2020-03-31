@@ -1,132 +1,217 @@
 .container
-  .row
-    .col
-      h1 Member Information
-  .row
-    .col
-      .form-group
-        label(for='prefix') Prefix
-        select#exampleInputPassword1.form-control(type='', placeholder='' )
-          option(value="Ms") Ms
-          option(value="Miss") Miss
-          option(value="Mrs") Mrs
-          option(value="Mr") Mr
-    .col
-      .form-group
-        label(for='first-name') First Name
-        input#first-name.form-control(type='text', aria-describedby='firstName', placeholder='', [(ngModel)]="person.firstName")
-    .col
-      .form-group
-        label(for='middle-initial') Middle Initial
-        input#middle-initial.form-control(type='', placeholder='', [(ngModel)]="person.middleInitial")
-  .row
-    .col
-      .form-group
-        label(for='last-name') Last Name
-        input#last-name.form-control(type='', placeholder='', [(ngModel)]="person.lastName")
-    .col
-      .form-group
-        label(for='suffix') Suffix
-        select#suffix.form-control(type='', placeholder='')
-          option(value="null") test 1
-          option(value="null") test 2
-          option(value="null") test 3
-          option(value="null") test 4
-  .row
-    .col
-      .form-group
-        label(for='address1') Address
-        input#address1.form-control(type='', placeholder='', [(ngModel)]="person.mailingAddressLine1")
-  .row
-    .col
-      .form-group
-        div(*ngIf="!additionalAddressLine")
-          button.btn.btn-secondary.btn-block(type="button", (click)="addAddressLine()") Add Additional Address Line
-        div(*ngIf="additionalAddressLine")
-          label(for='address2') Address 2
-          input#address2.form-control(type='', placeholder='', [(ngModel)]="person.mailingAddressLine2")
-  .row
-    .col
-      .form-group
-        label(for='city') City
-        input#city.form-control(type='', placeholder='', [(ngModel)]="person.mailingAddressLocality")
-    .col
-      .form-group
-        label(for='state') State
-        select#state.form-control(type='', placeholder='',  [(ngModel)]="person.mailingAddressStateProvinceCode")
-          option(value="California") California
-          option(value="Colorado") Colorado
-          option(value="Idaho") Idaho
-          option(value="Oregon") Oregon
-          option(value="Utah") Utah
-          option(value="Washington") Washington
+  form(#personForm='ngForm')
 
-  .row
-    .col
-      .form-group
-        label(for='postal-code') Zip
-        input#postal-code.form-control(type='', placeholder='5 digits', [(ngModel)]="person.mailingAddressPostalCode")
-    .col
-      .form-group
-        label(for='exampleInputPassword1') Country
-        select#exampleInputPassword1.form-control(type='', placeholder='',  [(ngModel)]="person.mailingAddressCountryAlpha2Code")
-          option(value="US") United States
-          option(value="CA") Canada
-          option(value="MX") Mexico
-  .row
-    .col
-      .form-group
-        label(for='dob') Date of Birth
-        input#dob.form-control(type='', placeholder='MM-DD-YYYY', [(ngModel)]="person.birthdate")
-  .row
-    .col
-      .form-group
-        label(for='id-typ') ID Type
-        select#id-typ.form-control(type='', placeholder='')
-          option(value="null") test 1
-          option(value="null") test 2
-          option(value="null") test 3
-          option(value="null") test 4
-    .col
-      .form-group
-        label(for='id-number') ID Number
-        input#id-number.form-control(type='', placeholder='', [(ngModel)]="person.firstName")
-  .row
-    .col
-      .form-group
-        label(for='phone') Phone Number
-        input#phone.form-control(type='', placeholder='(___) ___-____', [(ngModel)]="person.mobilePhoneNumber")
-    .col
-      .form-group
-        label(for='phone-type') Phone Type
-        select#phone-type.form-control(type='', placeholder='')
-          option(value="Mobile") Mobile
-          option(value="Home") Home
-          option(value="Work") Work
-  .row
-    .col
-      .form-group
-        label(for='email') Email Address
-        input#email.form-control(type='', placeholder='', [(ngModel)]="person.personalEmailAddress")
-    .col
-      .form-group
-        label(for='email-type') Email Type
-        select#email-type.form-control(type='', placeholder='')
-          option(value="personal") Personal
-          option(value="work") Work
-  .row
-    .col
-      .form-group
-        label(for='exampleInputPassword1') Preferred Language
-        select#exampleInputPassword1.form-control(type='', placeholder='', [(ngModel)]="person.language" )
-          option(value="en") English
-          option(value="fr") French
-          option(value="sp") Spanish
-  .row
-    .col.col-sm
-    .col.col-sm
-    .col.col-sm
-    .col.col-sm
-    .col.col-sm
-      button.btn.btn-primary(type="button", (click)="continue()") Continue
+    .row
+      .col
+        h1 Member Information
+    .row
+      .col
+        label * Indicates required field
+    .row
+      .col
+        .form-group
+          label(for='first-name')
+            | First Name
+            span([hidden]='firstName.valid || firstName.pristine') &nbsp;is required
+            |*
+          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',  name='first-name', [(ngModel)]='person.firstName', #firstName="ngModel" )
+          .validation-outline(*ngIf="firstName.invalid && !firstName.pristine")
+          .validation-icon.valid(*ngIf="firstName.valid")
+          .validation-icon.invalid(*ngIf="firstName.invalid && !firstName.pristine")
+      .col-4
+        .form-group
+          label(for='middle-initial') Middle Initial (optional)
+          input#middleInitial.form-control(maxlength="1", placeholder='', #middleInitial='ngModel', name='middle-initial', [(ngModel)]='person.middleInitial')
+    .row
+      .col
+        .form-group
+          label(for='last-name')
+            | Last Name
+            span([hidden]='lastName.valid || lastName.pristine') &nbsp;is required
+            |*
+          input#lastName.form-control(required, minlength='1', maxlength='38', type='text', placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.lastName')
+          .validation-outline(*ngIf="lastName.invalid && !lastName.pristine")
+          .validation-icon.valid(*ngIf="lastName.valid")
+          .validation-icon.invalid(*ngIf="lastName.invalid && !lastName.pristine")
+      .col-4
+        .form-group
+          label(for='suffix') Suffix
+          select#suffix.form-control(type='', placeholder='')
+            option(value='null') test 1
+            option(value='null') test 2
+            option(value='null') test 3
+            option(value='null') test 4
+    .row
+      .col
+        .form-group
+          label(for='address1')
+            | Address
+            span([hidden]='address1.valid || address1.pristine') &nbsp;is required
+            |*
+          input#address1.form-control(required, type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.mailingAddressLine1')
+          .validation-outline(*ngIf="address1.invalid && !address1.pristine")
+          .validation-icon.valid(*ngIf="address1.valid")
+          .validation-icon.invalid(*ngIf="address1.invalid && !address1.pristine")
+    .row(*ngIf='additionalAddressLine >= 1')
+      .col
+        .form-group
+            label(for='address2') Address 2
+            input#address2.form-control(type='', placeholder='', #address2="ngModel", [(ngModel)]='person.mailingAddressLine2')
+    .row(*ngIf='additionalAddressLine >= 2')
+      .col
+        .form-group
+            label(for='address3') Address 3
+            input#address3.form-control(type='', placeholder='', #address3="ngModel", [(ngModel)]='person.mailingAddressLine3')
+    .row(*ngIf='additionalAddressLine < 2')
+      .col
+        .form-group
+            button.btn.btn-secondary.btn-block(type='button', (click)='addAddressLine()') Add Additional Address Line
+    .row
+      .col
+        .form-group
+          label(for='city')
+            | City
+            span([hidden]='city.valid || city.pristine') &nbsp;is required
+            |*
+          input#city.form-control(required, type='text', name="city", placeholder='', #city="ngModel", [(ngModel)]='person.mailingAddressLocality')
+          .validation-outline(*ngIf="city.invalid && !city.pristine")
+          .validation-icon.valid(*ngIf="city.valid")
+          .validation-icon.invalid(*ngIf="city.invalid && !city.pristine")
+      .col
+        .form-group
+          label(for='state')
+            | State
+            span([hidden]='state.valid || state.pristine') &nbsp;is required
+            |*
+          select#state.form-control(required, name="state",  #state="ngModel",  [(ngModel)]='person.mailingAddressStateProvinceCode')
+            option(value='California') California
+            option(value='Colorado') Colorado
+            option(value='Idaho') Idaho
+            option(value='Oregon') Oregon
+            option(value='Utah') Utah
+            option(value='Washington') Washington
+          .validation-outline(*ngIf="state.invalid && !state.pristine")
+          .validation-icon.valid(*ngIf="state.valid")
+          .validation-icon.invalid(*ngIf="state.invalid && !state.pristine")
+
+    .row
+      .col
+        .form-group
+          label(for='postalCode')
+            | Zip
+            span([hidden]='postal.valid || postal.pristine') &nbsp;is required
+            |*
+          input#postal.form-control(required, name="postalCode", placeholder='5 digits', #postal="ngModel",  [(ngModel)]='person.mailingAddressPostalCode')
+          .validation-outline(*ngIf="postal.invalid && !postal.pristine")
+          .validation-icon.valid(*ngIf="postal.valid")
+          .validation-icon.invalid(*ngIf="postal.invalid && !postal.pristine")
+      .col
+        .form-group
+          label(for='country')
+            | Country
+            span([hidden]='city.valid || city.pristine') &nbsp;is required
+            |*
+          select#country.form-control(required, #country="ngModel", type='', name="country", placeholder='',  [(ngModel)]='person.mailingAddressCountryAlpha2Code')
+            option(value='US') United States
+            option(value='CA') Canada
+            option(value='MX') Mexico
+          .validation-outline(*ngIf="country.invalid && !country.pristine")
+          .validation-icon.valid(*ngIf="country.valid")
+          .validation-icon.invalid(*ngIf="country.invalid && !country.pristine")
+    .row
+      .col-6
+        .form-group
+          label(for='dob')
+            | Date of Birth
+            span([hidden]='dob.valid || dob.pristine') &nbsp;is required
+            |*
+          input#dob.form-control(required, maxlength="24", name='dob', placeholder='MM-DD-YYYY', #dob="ngModel", [(ngModel)]='person.birthdate')
+          .validation-outline(*ngIf="dob.invalid && !dob.pristine")
+          .validation-icon.valid(*ngIf="dob.valid")
+          .validation-icon.invalid(*ngIf="dob.invalid && !dob.pristine")
+    .row
+      .col
+        .form-group
+          label(for='id-type')
+            | ID Type
+            span([hidden]='idType.valid || idType.pristine') &nbsp;is required
+            |*
+          select#idType.form-control(required, #idType="ngModel", [(ngModel)]="person.idType", placeholder='')
+            option(value='DRIVERSLICENSE') Driver's Liscense
+            option(value='PASSPORT') Passport
+            option(value='USSTATEID') US State ID
+            option(value='MILITARYID') Military ID
+          .validation-outline(*ngIf="idType.invalid && !idType.pristine")
+          .validation-icon.valid(*ngIf="idType.valid")
+          .validation-icon.invalid(*ngIf="idType.invalid && !idType.pristine")
+      .col
+        .form-group
+          label(for='id-number')
+            | ID Number
+            span([hidden]='idNumber.valid || idNumber.pristine') &nbsp;is required
+            |*
+          input#idNumber.form-control(name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.firstName')
+          .validation-outline(*ngIf="idNumber.invalid && !idNumber.pristine")
+          .validation-icon.valid(*ngIf="idNumber.valid")
+          .validation-icon.invalid(*ngIf="idNumber.invalid && !idNumber.pristine")
+    .row
+      .col
+        .form-group
+          label(for='phone')
+            | Phone Number
+            span([hidden]='phone.valid || phone.pristine') &nbsp;is required
+            |*
+          input#phone.form-control(required, pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}", name="phone", type='tel', placeholder='(___) ___-____', #phone="ngModel", [(ngModel)]='person.mobilePhoneNumber')
+          .validation-outline(*ngIf="phone.invalid && !phone.pristine")
+          .validation-icon.valid(*ngIf="phone.valid")
+          .validation-icon.invalid(*ngIf="phone.invalid && !phone.pristine")
+      .col
+        .form-group
+          label(for='phone-type')
+            | Phone Type
+            span([hidden]='phoneType.valid || phoneType.pristine') &nbsp;is required
+            |*
+          select#phoneType.form-control(required, #phoneType="ngModel", [(ngModel)]="person.phoneType", type='', placeholder='', name="phone-type")
+            option(value='MOBILEPHONE') Mobile
+            option(value='HOMEPHONE') Home
+            option(value='BUSINESSPHONE') Business
+          .validation-outline(*ngIf="phoneType.invalid && !phoneType.pristine")
+          .validation-icon.valid(*ngIf="phoneType.valid")
+          .validation-icon.invalid(*ngIf="phoneType.invalid && !phoneType.pristine")
+    .row
+      .col
+        .form-group
+          label(for='email')
+            | Email Address (optional)
+          input#email.form-control(pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})",  name="email", type='email', placeholder='', #email="ngModel", [(ngModel)]='person.personalEmailAddress')
+          .validation-outline(*ngIf="email.invalid && !email.pristine")
+          .validation-icon.valid(*ngIf="email.valid")
+          .validation-icon.invalid(*ngIf="email.invalid && !email.pristine")
+      .col
+        .form-group
+          label(for='email-type') Email Type (optional)
+          select#emailType.form-control(required, #emailType="ngModel", [(ngModel)]="person.emailType", type='email', placeholder='')
+            option(value='personal') Personal
+            option(value='work') Work
+          .validation-outline(*ngIf="emailType.invalid && !emailType.pristine")
+          .validation-icon.valid(*ngIf="emailType.valid")
+          .validation-icon.invalid(*ngIf="emailType.invalid && !emailType.pristine")
+    .row
+      .col-6
+        .form-group
+          label(for='language')
+            | Preferred Language
+            span([hidden]='language.valid || language.pristine') &nbsp;is required
+            |*
+          select#language.form-control(#language="ngModel", name="language", type='', placeholder='', [(ngModel)]='person.language' )
+            option(value='en') English
+            option(value='fr') French
+            option(value='sp') Spanish
+          .validation-outline(*ngIf="language.invalid && !language.pristine")
+          .validation-icon.valid(*ngIf="language.valid")
+          .validation-icon.invalid(*ngIf="language.invalid && !language.pristine")
+    .row
+      .col-9
+      .col.col-sm
+        button.btn.btn-primary(type='button', (click)='continue()') Continue
 
