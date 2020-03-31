@@ -13,7 +13,7 @@ schedules:
   branches:
     include:
     - develop
-  always: false
+  always: 'false'
 
 trigger:
 - master
