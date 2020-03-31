@@ -1,7 +1,7 @@
 name: $(BuildDefinitionName).$(Build.SourceBranchName)$(Rev:.r)
 
 variables:
-  force_deployment: false
+  force_deployment1:
 
 # During initial development, the "dev" environment will be updated daily at noon
 # This is to balance keeping it updated with constant deployment instability.
