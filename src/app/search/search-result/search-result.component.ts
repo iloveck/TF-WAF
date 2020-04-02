@@ -12,6 +12,7 @@ export class SearchResultComponent implements OnInit {
 
   persons: any[]=[];
   searchTerm: string = '';
+  totalSearchResults: number = 0
   maxResultForWarning: number = 40;
   constructor(private route: ActivatedRoute, private searchService: SearchService) { }
 
@@ -22,7 +23,11 @@ export class SearchResultComponent implements OnInit {
 
     onSearch(): void {
       this.searchService.getSearch(this.searchTerm).subscribe(
-        (data: any) => this.persons = data, // success path
+        // success path
+        (data: any) => {
+          this.persons = data.results;
+          this.totalSearchResults = data.totalCount;
+        },
         error => console.log(error) // error path
       );
 

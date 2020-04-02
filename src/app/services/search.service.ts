@@ -2,21 +2,26 @@ import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { HttpService } from '@service/http.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService extends HttpService {
 
+  // Moving further key needs to come from configuration
+  apiKey: string = "efgh5678";
+
   private apiUrl: any = {
-    getSearch: 'http://localhost:7071/api/Search/'
+    getSearch: 'searchperson/'
   };
+
   constructor(http: HttpClient ) { super(http); }
 
   getSearch(searchTerm: string): Observable<any> {
 
     return super.get({
-      url: this.apiUrl.getSearch + searchTerm, options: {
+      url: environment.searchBaseURL + this.apiUrl.getSearch + searchTerm + "?code=" + this.apiKey, options: {
         responseType: 'json'
       }
       });
