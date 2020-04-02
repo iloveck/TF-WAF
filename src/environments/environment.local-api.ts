@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: false,
+  searchBaseURL: 'http://localhost:7071/api/v1/'
 };
