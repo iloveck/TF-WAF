@@ -13,14 +13,14 @@
             | First Name
             span([hidden]='firstName.valid || firstName.pristine') &nbsp;is required
             |*
-          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',[(ngModel)]='person.profile.firstName', name='firstName', #firstName="ngModel" )
+          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',[(ngModel)]='person.profile[0].firstName', name='firstName', #firstName="ngModel" )
           .validation-outline(*ngIf="firstName.invalid && !firstName.pristine")
           .validation-icon.valid(*ngIf="firstName.valid")
           .validation-icon.invalid(*ngIf="firstName.invalid && !firstName.pristine")
       .col-3
         .form-group
           label(for='middle-initial') Middle Initial (optional)
-          input#middleInitial.form-control(maxlength="1", placeholder='', #middleInitial='ngModel', name='middle-initial', [(ngModel)]='person.profile.middleInitial')
+          input#middleInitial.form-control(maxlength="1", placeholder='', #middleInitial='ngModel', name='middle-initial', [(ngModel)]='person.profile[0].middleInitial')
     .row
       .col
         .form-group
@@ -28,14 +28,14 @@
             | Last Name
             span([hidden]='lastName.valid || lastName.pristine') &nbsp;is required
             |*
-          input#lastName.form-control(required, minlength='1', maxlength='38', type='text', placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.profile.lastName')
+          input#lastName.form-control(required, minlength='1', maxlength='38', type='text', placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.profile[0].lastName')
           .validation-outline(*ngIf="lastName.invalid && !lastName.pristine")
           .validation-icon.valid(*ngIf="lastName.valid")
           .validation-icon.invalid(*ngIf="lastName.invalid && !lastName.pristine")
       .col-3
         .form-group
           label(for='suffix') Suffix
-          select#suffix.form-control(#suffix='ngModel', [(ngModel)]='person.profile.generationSuffix', type='', placeholder='')
+          select#suffix.form-control(#suffix='ngModel', [(ngModel)]='person.profile[0].generationSuffix', type='', placeholder='')
             option(value='null') None
             option(value='JR') JR
             option(value='SR') SR
@@ -49,7 +49,7 @@
             | Address
             span([hidden]='address1.valid || address1.pristine') &nbsp;is required
             |*
-          input#address1.form-control(required, type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.address.line1')
+          input#address1.form-control(required, type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.address[0].line1')
           .validation-outline(*ngIf="address1.invalid && !address1.pristine")
           .validation-icon.valid(*ngIf="address1.valid")
           .validation-icon.invalid(*ngIf="address1.invalid && !address1.pristine")
@@ -57,12 +57,12 @@
       .col
         .form-group
             label(for='address2') Address 2
-            input#address2.form-control(type='', placeholder='', #address2="ngModel", [(ngModel)]='person.address.line2')
+            input#address2.form-control(type='', placeholder='', #address2="ngModel", [(ngModel)]='person.address[0].line2')
     .row(*ngIf='additionalAddressLine >= 2')
       .col
         .form-group
             label(for='address3') Address 3
-            input#address3.form-control(type='', placeholder='', #address3="ngModel", [(ngModel)]='person.address.line3')
+            input#address3.form-control(type='', placeholder='', #address3="ngModel", [(ngModel)]='person.address[0].line3')
     .row(*ngIf='additionalAddressLine < 2')
       .col
         .form-group
@@ -74,7 +74,7 @@
             | City
             span([hidden]='city.valid || city.pristine') &nbsp;is required
             |*
-          input#city.form-control(required, type='text', name="city", placeholder='', #city="ngModel", [(ngModel)]='person.address.city')
+          input#city.form-control(required, type='text', name="city", placeholder='', #city="ngModel", [(ngModel)]='person.address[0].city')
           .validation-outline(*ngIf="city.invalid && !city.pristine")
           .validation-icon.valid(*ngIf="city.valid")
           .validation-icon.invalid(*ngIf="city.invalid && !city.pristine")
@@ -84,7 +84,7 @@
             | State
             span([hidden]='state.valid || state.pristine') &nbsp;is required
             |*
-          select#state.form-control(required, name="state",  #state="ngModel",  [(ngModel)]='person.address.stateProvinceCode')
+          select#state.form-control(required, name="state",  #state="ngModel",  [(ngModel)]='person.address[0].stateProvinceCode')
             option([value]="state.code", *ngFor="let state of meta.countries[0].states") {{state.code}}
 
           .validation-outline(*ngIf="state.invalid && !state.pristine")
@@ -98,7 +98,7 @@
             | Zip
             span([hidden]='postal.valid || postal.pristine') &nbsp;is required
             |*
-          input#postal.form-control(required, minlength='5', maxlength='5', name="postalCode", placeholder='5 digits', #postal="ngModel",  [(ngModel)]='person.address.postalCode')
+          input#postal.form-control(required, minlength='5', maxlength='5', name="postalCode", placeholder='5 digits', #postal="ngModel",  [(ngModel)]='person.address[0].postalCode')
           .validation-outline(*ngIf="postal.invalid && !postal.pristine")
           .validation-icon.valid(*ngIf="postal.valid")
           .validation-icon.invalid(*ngIf="postal.invalid && !postal.pristine")
@@ -108,7 +108,7 @@
             | Country
             span([hidden]='country.valid || country.pristine') &nbsp;is required
             |*
-          select#country.form-control(required, #country="ngModel", type='', name="country", placeholder='',  [(ngModel)]='person.address.countryCode')
+          select#country.form-control(required, #country="ngModel", type='', name="country", placeholder='',  [(ngModel)]='person.address[0].countryCode')
             option([value]="country.alpha3Code", *ngFor="let country of meta.countries") {{country.alpha3Code}}
           .validation-outline(*ngIf="country.invalid && !country.pristine")
           .validation-icon.valid(*ngIf="country.valid")
@@ -120,7 +120,7 @@
             | Date of Birth
             span([hidden]='dob.valid || dob.pristine') &nbsp;is required
             |*
-          input#dob.form-control(required, minlength="10", maxlength="10", name='dob', placeholder='MM-DD-YYYY', #dob="ngModel", [(ngModel)]='person.birthdate')
+          input#dob.form-control(required, minlength="10", maxlength="10", name='dob', placeholder='MM-DD-YYYY', #dob="ngModel", [(ngModel)]='person.profile[0].birthdate')
           .validation-outline(*ngIf="dob.invalid && !dob.pristine")
           .validation-icon.valid(*ngIf="dob.valid")
           .validation-icon.invalid(*ngIf="dob.invalid && !dob.pristine")
@@ -131,7 +131,7 @@
             | ID Type
             span([hidden]='idType.valid || idType.pristine') &nbsp;is required
             |*
-          select#idType.form-control(required, #idType="ngModel", [(ngModel)]="person.identity.idTypeCode", name="idType", placeholder='')
+          select#idType.form-control(required, #idType="ngModel", [(ngModel)]="person.identity[0].idTypeCode", name="idType", placeholder='')
             option([value]="idType.code", *ngFor="let idType of meta.idTypes") {{idType.code}}
           .validation-outline(*ngIf="idType.invalid && !idType.pristine")
           .validation-icon.valid(*ngIf="idType.valid")
@@ -142,7 +142,7 @@
             | ID Number
             span([hidden]='idNumber.valid || idNumber.pristine') &nbsp;is required
             |*
-          input#idNumber.form-control(required, name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.identity.idNumber')
+          input#idNumber.form-control(required, name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.identity[0].idNumber')
           .validation-outline(*ngIf="idNumber.invalid && !idNumber.pristine")
           .validation-icon.valid(*ngIf="idNumber.valid")
           .validation-icon.invalid(*ngIf="idNumber.invalid && !idNumber.pristine")
@@ -153,7 +153,7 @@
             | State / Province
             span([hidden]='identityState.valid || identityState.pristine') &nbsp;is required
             |*
-          select#identityState.form-control(required, name="identityState",  #identityState="ngModel",  [(ngModel)]='person.identity.stateProvinceCode')
+          select#identityState.form-control(required, name="identityState",  #identityState="ngModel",  [(ngModel)]='person.identity[0].stateProvinceCode')
             option([value]="state.code", *ngFor="let state of meta.countries[0].states") {{state.code}}
           .validation-outline(*ngIf="identityState.invalid && !identityState.pristine")
           .validation-icon.valid(*ngIf="identityState.valid")
@@ -164,7 +164,7 @@
             | Country
             span([hidden]='identityCountry.valid || identityCountry.pristine') &nbsp;is required
             |*
-          select#country.form-control(required, #identityCountry="ngModel", type='', name="identityCountry", placeholder='',  [(ngModel)]='person.identity.countryCode')
+          select#country.form-control(required, #identityCountry="ngModel", type='', name="identityCountry", placeholder='',  [(ngModel)]='person.identity[0].countryCode')
             option([value]="country.alpha3Code", *ngFor="let country of meta.countries") {{country.alpha3Code}}
           .validation-outline(*ngIf="identityCountry.invalid && !identityCountry.pristine")
           .validation-icon.valid(*ngIf="identityCountry.valid")
@@ -186,7 +186,7 @@
             | Phone Type
             span([hidden]='phoneType.valid || phoneType.pristine') &nbsp;is required
             |*
-          select#phoneType.form-control(required,  #phoneType="ngModel", [(ngModel)]="person.phoneType", type='', placeholder='', name="phone-type")
+          select#phoneType.form-control(required,  #phoneType="ngModel", [(ngModel)]="person.phone[0].phoneType", type='', placeholder='', name="phone-type")
             option([value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
           .validation-outline(*ngIf="phoneType.invalid && !phoneType.pristine")
           .validation-icon.valid(*ngIf="phoneType.valid")
@@ -232,7 +232,7 @@
             | Preferred Language
             span([hidden]='language.valid || language.pristine') &nbsp;is required
             |*
-          select#language.form-control(required, #language="ngModel", name="language", type='', placeholder='', [(ngModel)]='person.profile.languageCode' )
+          select#language.form-control(required, #language="ngModel", name="language", type='', placeholder='', [(ngModel)]='person.profile[0].languageCode' )
             option([value]="language.code", *ngFor="let language of meta.countries[0].languages") {{language.locale[0].value}}
           .validation-outline(*ngIf="language.invalid && !language.pristine")
           .validation-icon.valid(*ngIf="language.valid && !language.pristine")
