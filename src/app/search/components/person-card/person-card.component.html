@@ -2,14 +2,14 @@
   <div class="card-block my-panels ">
     <div class="card-body">
     <div class="row">
-    <div class="col-lg-2 text-right">
+    <div class="col-lg-1 text-center">
       <!-- To be replaced with person image-->
-      <img class="bc-logo logo-us person-image rounded-circle" src="../favicon.ico" alt="Person Image"/>
+      <img class="bc-logo logo-us person-image rounded-circle" src="/assets/images/profile-picture.png" alt="Person Image"/>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-9">
       <div class="person-name" style="margin-bottom: 10px;">{{ person.profile.firstName }} {{ person.profile.lastName }} <span class="person-id">34637866</span></div>
-      <div class="email-phone">{{ person.peronalEmail.personalEmailAddress }}</div>
-      <div class="email-phone">{{ person.mobilePhoneNumber.phoneNumber | formatPhone }}</div>
+      <div class="email-phone" *ngIf="person.peronalEmail != null">{{ person.peronalEmail.personalEmailAddress }}</div>
+      <div class="email-phone" *ngIf="person.mobilePhoneNumber != null">{{ person.mobilePhoneNumber.phoneNumber | formatPhone }}</div>
       <div class="email-phone" *ngIf="person.license != null"><i>DL # </i>{{ person.license.idNumber }}</div>
       <div class="email-phone" *ngIf="person.passport != null"><i>PP # </i> {{ person.passport.idNumber }}</div>
     </div>

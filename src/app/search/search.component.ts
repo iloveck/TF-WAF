@@ -22,5 +22,4 @@ export class SearchComponent implements OnInit {
   onSearch(): void {
     this.router.navigateByUrl('/search-result/' + this.searchTerm);
   }
-
 }

@@ -18,10 +18,10 @@ export class SearchService extends HttpService {
 
   constructor(http: HttpClient ) { super(http); }
 
-  getSearch(searchTerm: string): Observable<any> {
+  getSearch(searchTerm: string, pageNumber:number): Observable<any> {
 
     return super.get({
-      url: environment.searchBaseURL + this.apiUrl.getSearch + searchTerm + "?code=" + this.apiKey, options: {
+      url: environment.searchBaseURL + this.apiUrl.getSearch + searchTerm + "/" + pageNumber + "/" + "?code=" + this.apiKey, options: {
         responseType: 'json'
         }
       });

@@ -56,8 +56,10 @@
       </div>
 
       <div class="flex-row mb-3">
-        <div class="h4 ml-4" *ngIf="persons.length <= maxResultForWarning">{{persons.length}} Results for </div>
-        <div class="h4 ml-4" *ngIf="persons.length > maxResultForWarning">40+ Results for
+        <div class="h4 ml-4 text-grey" *ngIf="totalSearchResults < 2">{{ totalSearchResults }} result for </div>
+        <div class="h4 ml-4 text-grey" *ngIf="totalSearchResults <= maxResultForWarning
+                                              && totalSearchResults > 1">{{ totalSearchResults }} results for </div>
+        <div class="h4 ml-4 text-grey" *ngIf="totalSearchResults > maxResultForWarning">40+ results for
           <span class="search-warning">
             <img src="/assets/images/icon-warning.png" width="25" height="25" class="mb-1">
               <span class="search-warningtext pt-3 pb-3 pr-2 pl-2">
@@ -70,14 +72,14 @@
       <app-search-tag [tag]="searchTerm"></app-search-tag>
 
       <div class="flex-row mt-5">
-        <h5 class="h5 ml-4" *ngIf="persons.length > 0" >Members ({{persons.length}})</h5>
+        <h5 class="h5 ml-4" *ngIf="persons.length > 0" >Members ({{ totalSearchResults }})</h5>
       </div>
 
       <div *ngFor="let person of persons" class="pb-3">
         <app-person-card [person]="person"></app-person-card>
       </div>
 
-      <div class="row mt-1 mr-3 pb-4" *ngIf="remainingResults > -100">
+      <div class="row mt-1 mr-3 pb-4" *ngIf="remainingResults > 0">
         <div class="col-lg-5"></div>
         <div class="col-lg-2">
           <div><a class="btn-transparent btn btn-primary btn-block" (click)="LoadMore()">Load More</a></div>
