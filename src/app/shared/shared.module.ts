@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { FormatPhonePipe } from './pipes/format-phone.pipe';
+import { MembershipCompletionComponent } from './components/membership-completion/membership-completion.component';
 
 
 
@@ -11,7 +12,8 @@ import { FormatPhonePipe } from './pipes/format-phone.pipe';
   declarations: [
     PageNotFoundComponent,
     TopBarComponent,
-    FormatPhonePipe
+    FormatPhonePipe,
+    MembershipCompletionComponent
   ],
   imports: [
     CommonModule
@@ -19,7 +21,8 @@ import { FormatPhonePipe } from './pipes/format-phone.pipe';
   exports: [
     PageNotFoundComponent,
     TopBarComponent,
-    FormatPhonePipe
+    FormatPhonePipe,
+    MembershipCompletionComponent
   ]
 })
 export class SharedModule { }

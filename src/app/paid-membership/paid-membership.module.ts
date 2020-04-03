@@ -6,7 +6,6 @@ import { AwarenesscodesComponent } from './components/awarenesscodes/awarenessco
 import { HearaboutComponent } from './components/hearabout/hearabout.component';
 import { CompleteprofileComponent } from './components/completeprofile/completeprofile.component';
 import { CostcoBenefitsComponent } from './components/costco-benefits/costco-benefits.component';
-import { MembershipCompletionComponent } from './components/membership-completion/membership-completion.component';
 import { SharedModule } from '../shared/shared.module';
 
 import {AwarenessCodeService} from './paid-membership-awareness-code-service';
@@ -18,7 +17,7 @@ import {AwarenessCodeService} from './paid-membership-awareness-code-service';
     HearaboutComponent,
     CompleteprofileComponent,
     CostcoBenefitsComponent,
-    MembershipCompletionComponent],
+    ],
   imports: [
     CommonModule,
     SharedModule,

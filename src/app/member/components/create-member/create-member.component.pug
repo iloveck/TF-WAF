@@ -1,6 +1,5 @@
 .container
   form(#personForm='ngForm')
-
     .row
       .col
         h1 Member Information
@@ -14,14 +13,14 @@
             | First Name
             span([hidden]='firstName.valid || firstName.pristine') &nbsp;is required
             |*
-          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',  name='first-name', [(ngModel)]='person.firstName', #firstName="ngModel" )
+          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',[(ngModel)]='person.profile.firstName', name='firstName', #firstName="ngModel" )
           .validation-outline(*ngIf="firstName.invalid && !firstName.pristine")
           .validation-icon.valid(*ngIf="firstName.valid")
           .validation-icon.invalid(*ngIf="firstName.invalid && !firstName.pristine")
-      .col-4
+      .col-3
         .form-group
           label(for='middle-initial') Middle Initial (optional)
-          input#middleInitial.form-control(maxlength="1", placeholder='', #middleInitial='ngModel', name='middle-initial', [(ngModel)]='person.middleInitial')
+          input#middleInitial.form-control(maxlength="1", placeholder='', #middleInitial='ngModel', name='middle-initial', [(ngModel)]='person.profile.middleInitial')
     .row
       .col
         .form-group
@@ -29,18 +28,20 @@
             | Last Name
             span([hidden]='lastName.valid || lastName.pristine') &nbsp;is required
             |*
-          input#lastName.form-control(required, minlength='1', maxlength='38', type='text', placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.lastName')
+          input#lastName.form-control(required, minlength='1', maxlength='38', type='text', placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.profile.lastName')
           .validation-outline(*ngIf="lastName.invalid && !lastName.pristine")
           .validation-icon.valid(*ngIf="lastName.valid")
           .validation-icon.invalid(*ngIf="lastName.invalid && !lastName.pristine")
-      .col-4
+      .col-3
         .form-group
           label(for='suffix') Suffix
-          select#suffix.form-control(type='', placeholder='')
-            option(value='null') test 1
-            option(value='null') test 2
-            option(value='null') test 3
-            option(value='null') test 4
+          select#suffix.form-control(#suffix='ngModel', [(ngModel)]='person.profile.generationSuffix', type='', placeholder='')
+            option(value='null') None
+            option(value='JR') JR
+            option(value='SR') SR
+            option(value='II') II
+            option(value='III') III
+            option(value='IV') IV
     .row
       .col
         .form-group
@@ -48,7 +49,7 @@
             | Address
             span([hidden]='address1.valid || address1.pristine') &nbsp;is required
             |*
-          input#address1.form-control(required, type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.mailingAddressLine1')
+          input#address1.form-control(required, type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.address.line1')
           .validation-outline(*ngIf="address1.invalid && !address1.pristine")
           .validation-icon.valid(*ngIf="address1.valid")
           .validation-icon.invalid(*ngIf="address1.invalid && !address1.pristine")
@@ -56,12 +57,12 @@
       .col
         .form-group
             label(for='address2') Address 2
-            input#address2.form-control(type='', placeholder='', #address2="ngModel", [(ngModel)]='person.mailingAddressLine2')
+            input#address2.form-control(type='', placeholder='', #address2="ngModel", [(ngModel)]='person.address.line2')
     .row(*ngIf='additionalAddressLine >= 2')
       .col
         .form-group
             label(for='address3') Address 3
-            input#address3.form-control(type='', placeholder='', #address3="ngModel", [(ngModel)]='person.mailingAddressLine3')
+            input#address3.form-control(type='', placeholder='', #address3="ngModel", [(ngModel)]='person.address.line3')
     .row(*ngIf='additionalAddressLine < 2')
       .col
         .form-group
@@ -73,7 +74,7 @@
             | City
             span([hidden]='city.valid || city.pristine') &nbsp;is required
             |*
-          input#city.form-control(required, type='text', name="city", placeholder='', #city="ngModel", [(ngModel)]='person.mailingAddressLocality')
+          input#city.form-control(required, type='text', name="city", placeholder='', #city="ngModel", [(ngModel)]='person.address.city')
           .validation-outline(*ngIf="city.invalid && !city.pristine")
           .validation-icon.valid(*ngIf="city.valid")
           .validation-icon.invalid(*ngIf="city.invalid && !city.pristine")
@@ -83,13 +84,9 @@
             | State
             span([hidden]='state.valid || state.pristine') &nbsp;is required
             |*
-          select#state.form-control(required, name="state",  #state="ngModel",  [(ngModel)]='person.mailingAddressStateProvinceCode')
-            option(value='California') California
-            option(value='Colorado') Colorado
-            option(value='Idaho') Idaho
-            option(value='Oregon') Oregon
-            option(value='Utah') Utah
-            option(value='Washington') Washington
+          select#state.form-control(required, name="state",  #state="ngModel",  [(ngModel)]='person.address.stateProvinceCode')
+            option([value]="state.code", *ngFor="let state of meta.countries[0].states") {{state.code}}
+
           .validation-outline(*ngIf="state.invalid && !state.pristine")
           .validation-icon.valid(*ngIf="state.valid")
           .validation-icon.invalid(*ngIf="state.invalid && !state.pristine")
@@ -101,7 +98,7 @@
             | Zip
             span([hidden]='postal.valid || postal.pristine') &nbsp;is required
             |*
-          input#postal.form-control(required, name="postalCode", placeholder='5 digits', #postal="ngModel",  [(ngModel)]='person.mailingAddressPostalCode')
+          input#postal.form-control(required, minlength='5', maxlength='5', name="postalCode", placeholder='5 digits', #postal="ngModel",  [(ngModel)]='person.address.postalCode')
           .validation-outline(*ngIf="postal.invalid && !postal.pristine")
           .validation-icon.valid(*ngIf="postal.valid")
           .validation-icon.invalid(*ngIf="postal.invalid && !postal.pristine")
@@ -109,12 +106,10 @@
         .form-group
           label(for='country')
             | Country
-            span([hidden]='city.valid || city.pristine') &nbsp;is required
+            span([hidden]='country.valid || country.pristine') &nbsp;is required
             |*
-          select#country.form-control(required, #country="ngModel", type='', name="country", placeholder='',  [(ngModel)]='person.mailingAddressCountryAlpha2Code')
-            option(value='US') United States
-            option(value='CA') Canada
-            option(value='MX') Mexico
+          select#country.form-control(required, #country="ngModel", type='', name="country", placeholder='',  [(ngModel)]='person.address.countryCode')
+            option([value]="country.alpha3Code", *ngFor="let country of meta.countries") {{country.alpha3Code}}
           .validation-outline(*ngIf="country.invalid && !country.pristine")
           .validation-icon.valid(*ngIf="country.valid")
           .validation-icon.invalid(*ngIf="country.invalid && !country.pristine")
@@ -125,7 +120,7 @@
             | Date of Birth
             span([hidden]='dob.valid || dob.pristine') &nbsp;is required
             |*
-          input#dob.form-control(required, maxlength="24", name='dob', placeholder='MM-DD-YYYY', #dob="ngModel", [(ngModel)]='person.birthdate')
+          input#dob.form-control(required, minlength="10", maxlength="10", name='dob', placeholder='MM-DD-YYYY', #dob="ngModel", [(ngModel)]='person.birthdate')
           .validation-outline(*ngIf="dob.invalid && !dob.pristine")
           .validation-icon.valid(*ngIf="dob.valid")
           .validation-icon.invalid(*ngIf="dob.invalid && !dob.pristine")
@@ -136,11 +131,8 @@
             | ID Type
             span([hidden]='idType.valid || idType.pristine') &nbsp;is required
             |*
-          select#idType.form-control(required, #idType="ngModel", [(ngModel)]="person.idType", placeholder='')
-            option(value='DRIVERSLICENSE') Driver's Liscense
-            option(value='PASSPORT') Passport
-            option(value='USSTATEID') US State ID
-            option(value='MILITARYID') Military ID
+          select#idType.form-control(required, #idType="ngModel", [(ngModel)]="person.identity.idTypeCode", name="idType", placeholder='')
+            option([value]="idType.code", *ngFor="let idType of meta.idTypes") {{idType.code}}
           .validation-outline(*ngIf="idType.invalid && !idType.pristine")
           .validation-icon.valid(*ngIf="idType.valid")
           .validation-icon.invalid(*ngIf="idType.invalid && !idType.pristine")
@@ -150,10 +142,33 @@
             | ID Number
             span([hidden]='idNumber.valid || idNumber.pristine') &nbsp;is required
             |*
-          input#idNumber.form-control(name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.firstName')
+          input#idNumber.form-control(required, name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.identity.idNumber')
           .validation-outline(*ngIf="idNumber.invalid && !idNumber.pristine")
           .validation-icon.valid(*ngIf="idNumber.valid")
           .validation-icon.invalid(*ngIf="idNumber.invalid && !idNumber.pristine")
+    .row
+      .col
+        .form-group
+          label(for='identityState')
+            | State / Province
+            span([hidden]='identityState.valid || identityState.pristine') &nbsp;is required
+            |*
+          select#identityState.form-control(required, name="identityState",  #identityState="ngModel",  [(ngModel)]='person.identity.stateProvinceCode')
+            option([value]="state.code", *ngFor="let state of meta.countries[0].states") {{state.code}}
+          .validation-outline(*ngIf="identityState.invalid && !identityState.pristine")
+          .validation-icon.valid(*ngIf="identityState.valid")
+          .validation-icon.invalid(*ngIf="identityState.invalid && !identityState.pristine")
+      .col
+        .form-group
+          label(for='identityCountry')
+            | Country
+            span([hidden]='identityCountry.valid || identityCountry.pristine') &nbsp;is required
+            |*
+          select#country.form-control(required, #identityCountry="ngModel", type='', name="identityCountry", placeholder='',  [(ngModel)]='person.identity.countryCode')
+            option([value]="country.alpha3Code", *ngFor="let country of meta.countries") {{country.alpha3Code}}
+          .validation-outline(*ngIf="identityCountry.invalid && !identityCountry.pristine")
+          .validation-icon.valid(*ngIf="identityCountry.valid")
+          .validation-icon.invalid(*ngIf="identityCountry.invalid && !identityCountry.pristine")
     .row
       .col
         .form-group
@@ -161,7 +176,7 @@
             | Phone Number
             span([hidden]='phone.valid || phone.pristine') &nbsp;is required
             |*
-          input#phone.form-control(required, pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}", name="phone", type='tel', placeholder='(___) ___-____', #phone="ngModel", [(ngModel)]='person.mobilePhoneNumber')
+          input#phone.form-control(required, maxlength="14", minlength="14", name="phone", type='tel', placeholder='(___) ___-____', #phone="ngModel", [ngModel]='person.phone[0].phoneNumber | formatPhone', (ngModelChange)="person.phone[0].phoneNumber=$event")
           .validation-outline(*ngIf="phone.invalid && !phone.pristine")
           .validation-icon.valid(*ngIf="phone.valid")
           .validation-icon.invalid(*ngIf="phone.invalid && !phone.pristine")
@@ -171,10 +186,8 @@
             | Phone Type
             span([hidden]='phoneType.valid || phoneType.pristine') &nbsp;is required
             |*
-          select#phoneType.form-control(required, #phoneType="ngModel", [(ngModel)]="person.phoneType", type='', placeholder='', name="phone-type")
-            option(value='MOBILEPHONE') Mobile
-            option(value='HOMEPHONE') Home
-            option(value='BUSINESSPHONE') Business
+          select#phoneType.form-control(required,  #phoneType="ngModel", [(ngModel)]="person.phoneType", type='', placeholder='', name="phone-type")
+            option([value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
           .validation-outline(*ngIf="phoneType.invalid && !phoneType.pristine")
           .validation-icon.valid(*ngIf="phoneType.valid")
           .validation-icon.invalid(*ngIf="phoneType.invalid && !phoneType.pristine")
@@ -183,19 +196,35 @@
         .form-group
           label(for='email')
             | Email Address (optional)
-          input#email.form-control(pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})",  name="email", type='email', placeholder='', #email="ngModel", [(ngModel)]='person.personalEmailAddress')
+          input#email.form-control(pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})",  name="email", type='email', placeholder='', #email="ngModel", [(ngModel)]='person.email[0].emailAddress')
           .validation-outline(*ngIf="email.invalid && !email.pristine")
-          .validation-icon.valid(*ngIf="email.valid")
+          .validation-icon.valid(*ngIf="email.valid && !email.pristine")
           .validation-icon.invalid(*ngIf="email.invalid && !email.pristine")
       .col
         .form-group
           label(for='email-type') Email Type (optional)
-          select#emailType.form-control(required, #emailType="ngModel", [(ngModel)]="person.emailType", type='email', placeholder='')
-            option(value='personal') Personal
-            option(value='work') Work
+          select.form-control#emailType(name="emailType", #emailType="ngModel", [(ngModel)]="person.email[0].emailTypeCode", type='email', placeholder='')
+            option([value]="emailType.code", *ngFor="let emailType of meta.emailTypes") {{emailType.code}}
           .validation-outline(*ngIf="emailType.invalid && !emailType.pristine")
-          .validation-icon.valid(*ngIf="emailType.valid")
+          .validation-icon.valid(*ngIf="emailType.valid && !emailType.pristine")
           .validation-icon.invalid(*ngIf="emailType.invalid && !emailType.pristine")
+    .row
+      .col
+        .form-group
+          label(for='email2')
+            | Email Address 2 (optional)
+          input#email2.form-control(pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})",  name="email2", type='email', placeholder='', #email2="ngModel", [(ngModel)]='person.email[1].emailAddress')
+          .validation-outline(*ngIf="email2.invalid && !email2.pristine")
+          .validation-icon.valid(*ngIf="email2.valid && !email2.pristine")
+          .validation-icon.invalid(*ngIf="email2.invalid && !email2.pristine")
+      .col
+        .form-group
+          label(for='emailType2') Email Type (optional)
+          select.form-control#emailType2( name="emailType2", #emailType2="ngModel", [(ngModel)]="person.email[1].emailTypeCode", type='email', placeholder='')
+            option([value]="emailType.code", *ngFor="let emailType of meta.emailTypes") {{emailType.code}}
+          .validation-outline(*ngIf="emailType2.invalid && !emailType2.pristine")
+          .validation-icon.valid(*ngIf="emailType2.valid && !emailType2.pristine")
+          .validation-icon.invalid(*ngIf="emailType2.invalid && !emailType2.pristine")
     .row
       .col-6
         .form-group
@@ -203,15 +232,13 @@
             | Preferred Language
             span([hidden]='language.valid || language.pristine') &nbsp;is required
             |*
-          select#language.form-control(#language="ngModel", name="language", type='', placeholder='', [(ngModel)]='person.language' )
-            option(value='en') English
-            option(value='fr') French
-            option(value='sp') Spanish
+          select#language.form-control(required, #language="ngModel", name="language", type='', placeholder='', [(ngModel)]='person.profile.languageCode' )
+            option([value]="language.code", *ngFor="let language of meta.countries[0].languages") {{language.locale[0].value}}
           .validation-outline(*ngIf="language.invalid && !language.pristine")
-          .validation-icon.valid(*ngIf="language.valid")
+          .validation-icon.valid(*ngIf="language.valid && !language.pristine")
           .validation-icon.invalid(*ngIf="language.invalid && !language.pristine")
     .row
       .col-9
       .col.col-sm
-        button.btn.btn-primary(type='button', (click)='continue()') Continue
+        button.btn.btn-primary(type='button', [disabled]="personForm.invalid", (click)='continue()') Continue
 

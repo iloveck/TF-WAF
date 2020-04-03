@@ -11,6 +11,6 @@ export class PersonService {
 
   createPerson(body): Observable<any> {
     console.log(body);
-    return this.httpService.post('/createpartner', body, {});
+    return this.httpService.post('/person', body, {});
   }
 }
