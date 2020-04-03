@@ -27,8 +27,11 @@
   margin-left: 20px;
 }
 .person-image{
-  height:71 px;
-  width:71px;
+  height: 71px;
+  width: 71px;
   object-fit: fill;
+}
+.col-fixed-width{
+  flex: 0 0 100px;
 }
 

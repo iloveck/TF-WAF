@@ -9,8 +9,8 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnInit {
 
+export class SearchResultComponent implements OnInit {
   persons: any[]=[];
   searchTerm: string = '';
   totalSearchResults: number = 0;
@@ -62,7 +62,6 @@ export class SearchResultComponent implements OnInit {
       error => console.log(error)
     );
   }
-
 }
 
 

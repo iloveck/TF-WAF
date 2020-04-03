@@ -3,13 +3,13 @@
 
 <div class="container-fluid">
   <div class="row row-eq-height search-result-box">
-    <div class="col-lg-3 text-center bg-white">
+    <div class="col-sm-3 text-center bg-white">
       <div class="mt-4 ml-3 text-left"><a [routerLink]="['/search']"  routerLinkActive="filter-links">Back</a> </div>
         <div class="row mt-4 ml-0">
-          <div class="col-lg-8 text-left">
+          <div class="col-sm-8 text-left">
             <label class="filter-text">Filters</label>
           </div>
-          <div class="col-lg-4 text-right">
+          <div class="col-sm-4 text-right">
             <a href="#" class="filter-links">Clear Filters</a>
           </div>
         </div>
@@ -47,10 +47,10 @@
       </table>
     </div>
 
-    <div class="col-lg-9 bg-result-color overflow-auto">
+    <div class="col-sm-9 bg-result-color overflow-auto">
       <div class="row mt-4 mr-3">
-        <div class="col-lg-9"></div>
-        <div class="col-lg-3">
+        <div class="col"></div>
+        <div class="col-fixed-width mt-2">
           <div><a href="#" class="btn-transparent btn btn-primary btn-block">Add New Member</a></div>
         </div>
       </div>
@@ -75,16 +75,17 @@
         <h5 class="h5 ml-4" *ngIf="persons.length > 0" >Members ({{ totalSearchResults }})</h5>
       </div>
 
-      <div *ngFor="let person of persons" class="pb-3">
+      <div *ngFor="let person of persons" class="pb-2">
         <app-person-card [person]="person"></app-person-card>
       </div>
 
-      <div class="row mt-1 mr-3 pb-4" *ngIf="remainingResults > 0">
-        <div class="col-lg-5"></div>
-        <div class="col-lg-2">
-          <div><a class="btn-transparent btn btn-primary btn-block" (click)="LoadMore()">Load More</a></div>
+
+      <div class="row mt-4 mr-3 pb-5" *ngIf="remainingResults > 0">
+        <div class="col"></div>
+        <div class="col-fixed-width">
+          <div><a class="btn-transparent btn btn-primary btn-block" (click)="LoadMore()">Load More Results</a></div>
         </div>
-        <div class="col-lg-5"></div>
+        <div class="col"></div>
       </div>
 
     </div>
