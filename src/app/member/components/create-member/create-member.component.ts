@@ -32,7 +32,7 @@ export class CreateMemberComponent implements OnInit {
   ngOnInit(): void {
     this.meta = this.tempData.getData();
     this.person = {
-      profile: [{}],
+      profile: {},
       phone: [{}, {}],
       email: [{}, {}],
       address: [{}],
