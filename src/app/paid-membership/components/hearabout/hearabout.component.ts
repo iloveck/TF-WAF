@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AwarenessCodeService } from "../../paid-membership-awareness-code-service";
+import { AwarenessCodes } from '../awarenesscodes/awarenesscodes.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-paid-membership-hearabout',
@@ -8,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 
 export class HearaboutComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private awUpdate: AwarenessCodeService, private route: ActivatedRoute) { }
+  awarenessSelection: AwarenessCodes;
+  personId: number;
+  
   ngOnInit(): void {
+  this.awUpdate.awarenessCodeSelected.subscribe(awarenessSelection => this.awarenessSelection = awarenessSelection);
+  this.route.params.subscribe(params => {
+    this.personId = +params['personId']; //TO DO: Sync with E. S. to get the ID here
+ });
+  }
+  onCodeSelected(codeSelected: string){
+console.log("Got the calue of this "+this.awarenessSelection);
   }
 
 }

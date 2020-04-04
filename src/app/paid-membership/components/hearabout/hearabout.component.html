@@ -8,7 +8,7 @@
     </div>
 </div>
 <br>
-<app-paid-membership-awarenesscodes></app-paid-membership-awarenesscodes>
+<app-paid-membership-awarenesscodes (codeSelected)="onCodeSelected($event)"></app-paid-membership-awarenesscodes>
 <br>
 
 <div class="container profile-padding">
@@ -23,7 +23,7 @@
             <app-paid-membership-completion></app-paid-membership-completion>
         </div>
         <div class="col-1">
-            <a [routerLink]="['../costco-benefits']">
+            <a [routerLink]="['../costco-benefits']" [state]="{ awarenessSelection: awarenessSelection}">
                 
              <button class="button-continue"><span class="continue-text">Continue</span></button>
             </a>

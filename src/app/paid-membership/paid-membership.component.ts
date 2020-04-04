@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 declare function require(path: string);
 @Component({
   selector: 'app-paid-membership',
