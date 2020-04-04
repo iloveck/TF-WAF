@@ -2,16 +2,26 @@
   <div class="card-block my-panels ">
     <div class="card-body">
     <div class="row">
-    <div class="col-lg-2 text-right">
+    <div class="text-right col-fixed-width">
       <!-- To be replaced with person image-->
-      <img class="bc-logo logo-us person-image rounded-circle" src="../favicon.ico" alt="Costco Logo"/>
+      <img class="img-fluid person-image px-n3" src="/assets/images/profile-picture.png" alt="Person Image"/>
     </div>
-    <div class="col-lg-8">
-      <div class="person-name" style="margin-bottom: 10px;">{{ person.document.profile.firstName }} {{ person.document.profile.lastName }} <span class="person-id">34637866</span></div>
-      <div class="email-phone">{{ person.document.peronalEmail.personalEmailAddress }}</div>
-      <div class="email-phone">{{ person.document.mobilePhoneNumber.phoneNumber | formatPhone }}</div>
+    <div class="col text-left">
+      <div class="person-name" style="margin-bottom: 10px;">{{ person.profile.firstName }} {{ person.profile.lastName }} <span class="person-id">34637866</span></div>
+      <div class="email-phone" *ngIf="person.peronalEmail != null">{{ person.peronalEmail.personalEmailAddress }}</div>
+      <div class="email-phone" *ngIf="person.mobilePhoneNumber != null">
+        <span class="email-phone"  *ngIf="person.mobilePhoneNumber != null">
+          {{ person.mobilePhoneNumber.phoneNumber | formatPhone }}
+        </span>
+        <span class="email-phone"  *ngIf="person.homePhoneNumber != null">
+          {{ person.homePhoneNumber.phoneNumber | formatPhone }}
+        </span>
+
+      </div>
+      <div class="email-phone" *ngIf="person.license != null"><i>DL # </i>{{ person.license.idNumber }}</div>
+      <div class="email-phone" *ngIf="person.passport != null"><i>PP # </i> {{ person.passport.idNumber }}</div>
     </div>
-    <div class="col-lg-2 my-auto">
+    <div class="col-sm-2 my-auto">
       <div><a href="#" class="btn-costco-blue btn btn-primary btn-block p-2 mb-2">View Profile</a></div>
       <div><a href="#" class="btn-transparent btn btn-primary btn-block p-2">Quick View</a></div>
     </div>

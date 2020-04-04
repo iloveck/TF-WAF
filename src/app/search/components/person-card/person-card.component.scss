@@ -2,7 +2,7 @@
 @import "../../../../assets/styles/buttons";
 .person-name{
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   color: #002242;
 }
 .person-id{
@@ -13,7 +13,7 @@
   font-size: 14px;
   color: #002242;
   font-stretch: semi-condensed;
-  font-weight: bold;
+  font-weight: 500;
 }
 .vertical-center {
   display: inline-flex;
@@ -27,9 +27,11 @@
   margin-left: 20px;
 }
 .person-image{
-  height:4vh;
-  width:auto;
+  height: 71px;
+  width: 71px;
   object-fit: fill;
-  margin-top: 2vh;
+}
+.col-fixed-width{
+  flex: 0 0 100px;
 }
 
