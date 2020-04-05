@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AwarenesscodesComponent } from '../awarenesscodes/awarenesscodes.component';
 import {AwarenessCodeService} from '../../paid-membership-awareness-code-service';
-import { AwarenessCodes } from '../awarenesscodes/awarenesscodes.model';
-import {MembershipAccount} from './costco-benefits.create.membership.model'
+import { AwarenessCodes } from './../../../shared/models/awarenesscodes.model';
+import {MembershipAccount} from './../../../shared/models/create.membership.model'
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from './../../../../environments/environment';
@@ -14,7 +14,7 @@ declare function require(path: string);
   styleUrls: ['./costco-benefits.component.scss']
 })
 export class CostcoBenefitsComponent implements OnInit {
-  imageSrc = require('src/assets/images/Costco Benefits.svg');
+  
   constructor(private awUpdate: AwarenessCodeService, private httpClient: HttpClient, private router: Router) { }
   //TO DO: Confirm with Adam on what parameters to be passed and substitute Awarenesscodes and id from params
   createAccountModel: MembershipAccount = {

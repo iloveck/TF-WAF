@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AwarenessCodes } from './components/awarenesscodes/awarenesscodes.model';
+import { AwarenessCodes } from './../shared/models/awarenesscodes.model';
 
 @Injectable()
 export class AwarenessCodeService {
@@ -17,9 +17,7 @@ export class AwarenessCodeService {
   constructor() {   }
 
   changeAwarenessCode(awCode: AwarenessCodes) {
-    console.log("I am in change awareness code service");
     this.awarenessCodeService.next(awCode);
-    console.log("New awareness code is "+ awCode);
   }
 
 }

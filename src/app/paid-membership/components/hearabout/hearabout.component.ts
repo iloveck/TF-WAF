@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AwarenessCodeService } from "../../paid-membership-awareness-code-service";
-import { AwarenessCodes } from '../awarenesscodes/awarenesscodes.model';
+import { AwarenessCodes } from './../../../shared/models/awarenesscodes.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -22,7 +22,6 @@ export class HearaboutComponent implements OnInit {
  });
   }
   onCodeSelected(codeSelected: string){
-console.log("Got the calue of this "+this.awarenessSelection);
   }
 
 }

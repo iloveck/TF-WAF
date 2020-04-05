@@ -1,6 +1,6 @@
 import { Component, OnInit, SystemJsNgModuleLoader, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {AwarenessCodes} from './awarenesscodes.model';
+import {AwarenessCodes} from './../../../shared/models/awarenesscodes.model';
 import { AwarenessCodeService } from "../../paid-membership-awareness-code-service";
 import {environment} from './../../../../environments/environment'
 
@@ -24,9 +24,7 @@ export class AwarenesscodesComponent implements OnInit {
  fetchAwarenessData(){
   var awarenessCodesUrl = environment.awarenessCodesUrl;
   this.httpClient.get<AwarenessCodes[]>(awarenessCodesUrl).subscribe(codes => {
-   console.log(codes[1]);
    this.codeButtons = codes;
-   console.log(this.codeButtons);
  });
  
  }
@@ -35,7 +33,6 @@ export class AwarenesscodesComponent implements OnInit {
     this.selected = selection.awarenessCode;
     this.codeSelection = selection;
    this.codeSelected.emit(this.selected);
-   console.log("selection is now invoking service " + this.selected);
    this.awUpdate.changeAwarenessCode(this.codeSelection);
     
   }
