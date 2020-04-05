@@ -1,8 +1,13 @@
 .container
   form(#personForm='ngForm')
+
     .row
       .col
         h1 Member Information
+    .row(*ngIf="personForm.invalid && !personForm.pristine")
+      .col
+        .alert.alert-danger
+          |Please correct the errors below to continue.
     .row
       .col
         label * Indicates required field
@@ -109,7 +114,7 @@
             span([hidden]='country.valid || country.pristine') &nbsp;is required
             |*
           select#country.form-control(required, #country="ngModel", type='', name="country", placeholder='',  [(ngModel)]='person.address[0].countryCode')
-            option([value]="country.alpha3Code", *ngFor="let country of meta.countries") {{country.alpha3Code}}
+            option([value]="country.alpha2Code", *ngFor="let country of meta.countries") {{country.alpha3Code}}
           .validation-outline(*ngIf="country.invalid && !country.pristine")
           .validation-icon.valid(*ngIf="country.valid")
           .validation-icon.invalid(*ngIf="country.invalid && !country.pristine")
@@ -191,6 +196,27 @@
           .validation-outline(*ngIf="phoneType.invalid && !phoneType.pristine")
           .validation-icon.valid(*ngIf="phoneType.valid")
           .validation-icon.invalid(*ngIf="phoneType.invalid && !phoneType.pristine")
+    .row
+      .col
+        .form-group
+          label(for='phone2')
+            | Phone Number 2 (optional)
+            span([hidden]='phone2.valid || phone2.pristine') &nbsp;is required
+          input#phone2.form-control(maxlength="10", minlength="10", name="phone2", type='tel', placeholder='', #phone2="ngModel", [ngModel]='person.phone[1].phoneNumber', (ngModelChange)="person.phone[1].phoneNumber=$event")
+          .validation-outline(*ngIf="phone2.invalid && !phone2.pristine")
+          .validation-icon.valid(*ngIf="phone2.valid && !phone2.pristine")
+          .validation-icon.invalid(*ngIf="phone2.invalid && !phone2.pristine")
+      .col
+        .form-group
+          label(for='phone-type2')
+            | Phone Type
+            span([hidden]='phoneType2.valid || phoneType2.pristine') &nbsp;is required
+            |*
+          select#phoneType2.form-control(required,  #phoneType2="ngModel", [(ngModel)]="person.phone[1].phoneType", type='', placeholder='', name="phone-type2")
+            option([value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
+          .validation-outline(*ngIf="phoneType2.invalid && !phoneType2.pristine")
+          .validation-icon.valid(*ngIf="phoneType2.valid")
+          .validation-icon.invalid(*ngIf="phoneType2.invalid && !phoneType2.pristine")
     .row
       .col
         .form-group
