@@ -20,7 +20,7 @@ export class CreateMemberComponent implements OnInit {
       languageCode: '',
       generationSuffix: ''
     },
-    [{ phoneNumber: '', phoneType: '' }, { phoneNumber: '', phoneType: '' }],
+    [{ phoneNumber: '', phoneTypeCode: '' }, { phoneNumber: '', phoneTypeCode: '' }],
     [{ emailAddress: '', emailTypeCode: '' }, { emailAddress: '', emailTypeCode: '' }],
     [
       {

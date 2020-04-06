@@ -11,11 +11,11 @@ export class Person {
     public phone: [
       {
         phoneNumber: string;
-        phoneType: string;
+        phoneTypeCode: string;
       },
       {
         phoneNumber: string;
-        phoneType: string;
+        phoneTypeCode: string;
       }
     ],
     public email: [

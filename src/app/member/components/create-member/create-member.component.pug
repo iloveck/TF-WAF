@@ -182,19 +182,19 @@
             span([hidden]='phone.valid || phone.pristine') &nbsp;is required
             |*
           input#phone.form-control(required, maxlength="10", minlength="10", name="phone", type='tel', placeholder='', #phone="ngModel", [ngModel]='person.phone[0].phoneNumber', (ngModelChange)="person.phone[0].phoneNumber=$event")
-          .validation-outline(*ngIf="phone.invalid && !phone.pristine")
+          .validation-outline(*ngIf="phone.invalid && person.phone[0].phoneNumber")
           .validation-icon.valid(*ngIf="phone.valid")
-          .validation-icon.invalid(*ngIf="phone.invalid && !phone.pristine")
+          .validation-icon.invalid(*ngIf="phone.invalid && person.phone[1].phoneNumber")
       .col
         .form-group
           label(for='phone-type')
             | Phone Type
             span([hidden]='phoneType.valid || phoneType.pristine') &nbsp;is required
             |*
-          select#phoneType.form-control([required]="person.phone[0].phoneNumber",  #phoneType="ngModel", [(ngModel)]="person.phone[0].phoneType", type='', placeholder='', name="phone-type")
+          select#phoneType.form-control([required]="person.phone[0].phoneNumber !==''",  #phoneType="ngModel", [(ngModel)]="person.phone[0].phoneTypeCode", type='', placeholder='', name="phone-type")
             option([value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
-          .validation-outline(*ngIf="phoneType.invalid && !phoneType.pristine")
-          .validation-icon.valid(*ngIf="phoneType.valid")
+          .validation-outline(*ngIf="phoneType.invalid && person.phone[0].phoneNumber")
+          .validation-icon.valid(*ngIf="phoneType.valid && !phoneType.pristine")
           .validation-icon.invalid(*ngIf="phoneType.invalid && person.phone[0].phoneNumber")
     .row
       .col
@@ -203,19 +203,19 @@
             | Phone Number 2 (optional)
             span([hidden]='phone2.valid || phone2.pristine') &nbsp;is required
           input#phone2.form-control(maxlength="10", minlength="10", name="phone2", type='tel', placeholder='', #phone2="ngModel", [ngModel]='person.phone[1].phoneNumber', (ngModelChange)="person.phone[1].phoneNumber=$event")
-          .validation-outline(*ngIf="phone2.invalid && !phone2.pristine")
-          .validation-icon.valid(*ngIf="phone2.valid && !phone2.pristine")
-          .validation-icon.invalid(*ngIf="phone2.invalid && !phone2.pristine")
+          .validation-outline(*ngIf="phone2.invalid && person.phone[1].phoneNumber")
+          .validation-icon.valid(*ngIf="phone2.valid && !phone2.pristine && person.phone[1].phoneNumber")
+          .validation-icon.invalid(*ngIf="phone2.invalid && person.phone[1].phoneNumber")
       .col
         .form-group
           label(for='phone-type2')
             | Phone Type
             span([hidden]='phoneType2.valid || phoneType2.pristine') &nbsp;is required
             |*
-          select#phoneType2.form-control([required]="person.phone[1].phoneNumber",  #phoneType2="ngModel", [(ngModel)]="person.phone[1].phoneType", type='', placeholder='', name="phone-type2")
+          select#phoneType2.form-control([required]="person.phone[1].phoneNumber !== ''",  #phoneType2="ngModel", [(ngModel)]="person.phone[1].phoneTypeCode", type='', placeholder='', name="phone-type2")
             option([value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
-          .validation-outline(*ngIf="phoneType2.invalid && !phoneType2.pristine")
-          .validation-icon.valid(*ngIf="phoneType2.valid")
+          .validation-outline(*ngIf="phoneType2.invalid && person.phone[1].phoneNumber")
+          .validation-icon.valid(*ngIf="phoneType2.valid && !phoneType2.pristine")
           .validation-icon.invalid(*ngIf="phoneType2.invalid && person.phone[1].phoneNumber")
     .row
       .col
@@ -223,15 +223,15 @@
           label(for='email')
             | Email Address (optional)
           input#email.form-control(pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})",  name="email", type='email', placeholder='', #email="ngModel", [(ngModel)]='person.email[0].emailAddress')
-          .validation-outline(*ngIf="email.invalid && !email.pristine")
-          .validation-icon.valid(*ngIf="email.valid && !email.pristine")
+          .validation-outline(*ngIf="email.invalid && person.email[0].emailAddress")
+          .validation-icon.valid(*ngIf="email.valid && !email.pristine && person.email[0].emailAddress")
           .validation-icon.invalid(*ngIf="email.invalid && person.email[0].emailAddress")
       .col
         .form-group
           label(for='email-type') Email Type (optional)
-          select.form-control#emailType([required]="person.email[0].emailAddress", name="emailType", #emailType="ngModel", [(ngModel)]="person.email[0].emailTypeCode", type='email', placeholder='')
+          select.form-control#emailType([required]="person.email[0].emailAddress !==''", name="emailType", #emailType="ngModel", [(ngModel)]="person.email[0].emailTypeCode", type='email', placeholder='')
             option([value]="emailType.code", *ngFor="let emailType of meta.emailTypes") {{emailType.code}}
-          .validation-outline(*ngIf="emailType.invalid && !emailType.pristine")
+          .validation-outline(*ngIf="emailType.invalid && person.email[0].emailAddress")
           .validation-icon.valid(*ngIf="emailType.valid && !emailType.pristine")
           .validation-icon.invalid(*ngIf="emailType.invalid && person.email[0].emailAddress")
     .row
@@ -239,16 +239,16 @@
         .form-group
           label(for='email2')
             | Email Address 2 (optional)
-          input#email2.form-control(pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})",  name="email2", type='email', placeholder='', #email2="ngModel", [(ngModel)]='person.email[1].emailAddress')
-          .validation-outline(*ngIf="email2.invalid && !email2.pristine")
-          .validation-icon.valid(*ngIf="email2.valid && !email2.pristine")
+          input#email2.form-control( pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})",  name="email2", type='email', placeholder='', #email2="ngModel", [(ngModel)]='person.email[1].emailAddress')
+          .validation-outline(*ngIf="email2.invalid && person.email[1].emailAddress")
+          .validation-icon.valid(*ngIf="email2.valid && !email2.pristine && person.email[1].emailAddress")
           .validation-icon.invalid(*ngIf="email2.invalid && person.email[1].emailAddress")
       .col
         .form-group
           label(for='emailType2') Email Type (optional)
-          select.form-control#emailType2([required]="person.email[1].emailAddress", name="emailType2", #emailType2="ngModel", [(ngModel)]="person.email[1].emailTypeCode", type='email', placeholder='')
+          select.form-control#emailType2([required]="person.email[1].emailAddress !== ''", name="emailType2", #emailType2="ngModel", [(ngModel)]="person.email[1].emailTypeCode", type='email', placeholder='')
             option([value]="emailType.code", *ngFor="let emailType of meta.emailTypes") {{emailType.code}}
-          .validation-outline(*ngIf="emailType2.invalid && !emailType2.pristine")
+          .validation-outline(*ngIf="emailType2.invalid && person.email[1].emailAddress")
           .validation-icon.valid(*ngIf="emailType2.valid && !emailType2.pristine")
           .validation-icon.invalid(*ngIf="emailType2.invalid && person.email[1].emailAddress")
     .row
