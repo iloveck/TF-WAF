@@ -5,14 +5,12 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  apiUrl = 'https://mglo-member-api-dev.azurewebsites.net/api/v1'
-
-  get(url: string, id: string) {
-    return this.http.get(this.apiUrl + url);
+  get(apiUrl: string, url: string, id: string) {
+    return this.http.get(apiUrl + url);
   }
 
-  post(url: string, body: any, headers: any) {
-    return this.http.post(this.apiUrl + url, body, headers);
+  post(apiUrl: string, body: any, headers: any) {
+    return this.http.post(apiUrl, body, headers);
   }
 
   constructor(private http: HttpClient) { }
