@@ -13,6 +13,8 @@ import { SearchModule } from './search/search.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
 
 
 registerLocaleData(localeFr, 'fr-FR');
@@ -30,8 +32,10 @@ registerLocaleData(localeFr, 'fr-FR');
     RewardsModule,
     SearchModule,
     SampleModule,
+    SharedModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,122 +1,144 @@
 <div class="container">
-    <div class="row complete-profile-header">
-        <div class="col">
-            <h1>Complete Your Profile</h1>
-        </div>
+  <div class="row complete-profile-header">
+    <div class="col">
+      <h1>Complete Your Profile</h1>
     </div>
-    <div class="row">
-        <div class="col-2">
-
-        </div>
-        <div class="col-6">
-            <div class="form-group"><label for="phone-number">Phone Number</label><input class="form-control"
-                    id="phone-number" type="text" aria-describedby="phoneNumber" placeholder="" /></div>
-        </div>
-        <div class="col-2">
-            <div class="form-group"><label for="phone-type">Name</label><select class="form-control" id="phone-type"
-                    type="" placeholder="">
-                    <option>Mobile</option>
-                    <option>Home</option>
-                    <option>Work</option>
-                </select></div>
-        </div>
-        <div class="col-2">
-
-        </div>
-
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="phone-number">Phone Number</label
+        ><input
+          class="form-control"
+          id="phone-number"
+          type="text"
+          aria-describedby="phoneNumber"
+          placeholder=""
+        />
+      </div>
     </div>
-
-    <div class="row">
-        <div class="col-2">
-
-        </div>
-        <div class="col">
-            <div class="form-group"><input class="checkbox" id="promotion-check" type="checkbox" placeholder="" /><span
-                    class="checkbox-text"> I want to receive exclusive promotions and member benefits from Costco via
-                    SMS</span></div>
-
-        </div>
-
-
+    <div class="col-2">
+      <div class="form-group">
+        <label for="phone-type">Name</label
+        ><select class="form-control" id="phone-type" type="" placeholder="">
+          <option>Mobile</option>
+          <option>Home</option>
+          <option>Work</option>
+        </select>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-2">
+    <div class="col-2"></div>
+  </div>
 
-        </div>
-        <div class="col">
-            <div class="form-group"><label for="email-address">Email Address</label><input class="form-control"
-                    id="email-address" type="" placeholder="" /></div>
-        </div>
-        <div class="col-2">
-
-        </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+      <div class="form-group">
+        <input
+          class="checkbox"
+          id="promotion-check"
+          type="checkbox"
+          placeholder=""
+        /><span class="checkbox-text">
+          I want to receive exclusive promotions and member benefits from Costco
+          via SMS</span
+        >
+      </div>
     </div>
-
-    <div class="row">
-        <div class="col-2">
-
-        </div>
-        <div class="col">
-            <div class="form-group"><input class="checkbox" id="promotion-check" type="checkbox" placeholder="" />
-                <span class="checkbox-text"> I want to receive exclusive promotions and member benefits from Costco via
-                    email.</span></div>
-        </div>
-
-        <div class="col-2">
-
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+      <div class="form-group">
+        <label for="email-address">Email Address</label
+        ><input
+          class="form-control"
+          id="email-address"
+          type=""
+          placeholder=""
+        />
+      </div>
     </div>
-    <br>
+    <div class="col-2"></div>
+  </div>
 
-    <div class="row">
-        <div class="col-2">
-
-        </div>
-        <div class="col">
-            <div class="form-group"><input class="checkbox" id="promotion-check" type="checkbox" placeholder="" /><span
-                    class="checkbox-text"> I want to receive Costco's savings book and other exclusive member
-                    information or communication via email.</span>
-            </div>
-        </div>
-
-        <div class="col-2">
-
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col-2">
-
-        </div>
-        <div class="col">
-            <div class="form-group"><input class="checkbox" id="promotion-check" type="checkbox" placeholder="" />
-                <span class="checkbox-text"> I want to receive information about additional or exclusive benefits for
-                    Costco members from third-party vendors of Costco.</span>
-            </div>
-        </div>
-
-        <div class="col-2">
-
-        </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+      <div class="form-group">
+        <input
+          class="checkbox"
+          id="promotion-check"
+          type="checkbox"
+          placeholder=""
+        />
+        <span class="checkbox-text">
+          I want to receive exclusive promotions and member benefits from Costco
+          via email.</span
+        >
+      </div>
     </div>
 
+    <div class="col-2"></div>
+  </div>
+  <br />
+
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+      <div class="form-group">
+        <input
+          class="checkbox"
+          id="promotion-check"
+          type="checkbox"
+          placeholder=""
+        /><span class="checkbox-text">
+          I want to receive Costco's savings book and other exclusive member
+          information or communication via email.</span
+        >
+      </div>
+    </div>
+
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+      <div class="form-group">
+        <input
+          class="checkbox"
+          id="promotion-check"
+          type="checkbox"
+          placeholder=""
+        />
+        <span class="checkbox-text">
+          I want to receive information about additional or exclusive benefits
+          for Costco members from third-party vendors of Costco.</span
+        >
+      </div>
+    </div>
+
+    <div class="col-2"></div>
+  </div>
 </div>
-<br>
+<br />
 <div class="container">
-    <div class="row">
-        <div class="col">
-
-        </div>
-        <div class="col-1s">
-            <a [routerLink]="['../costco-benefits']">      <button class="button-back"><i class="left"></i></button></a>
-        </div>
-        <div class="col-9">
-            <app-paid-membership-completion></app-paid-membership-completion>
-        </div>
-        <div class="col-1">
-            <button class="button-continue"><span class="continue-text">Continue</span></button>
-        </div>
-        <div class="col-1">
-        </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-1s">
+      <a [routerLink]="['../costco-benefits']">
+        <button class="button-back"><i class="left"></i></button
+      ></a>
     </div>
+    <div class="col-9">
+      <app-membership-completion></app-membership-completion>
+    </div>
+    <div class="col-1">
+      <button class="button-continue">
+        <span class="continue-text">Continue</span>
+      </button>
+    </div>
+    <div class="col-1"></div>
+  </div>
 </div>
