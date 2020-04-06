@@ -57,7 +57,7 @@ addAddressLine(): void {
 continue(): void {
     console.log(this.person);
     this.personService.createPerson(this.person).subscribe(result => {
-      this.router.navigate(['/paid-membership/hearabout', '1616509740']);
+      this.router.navigate(['/paid-membership/hearabout', result.id]);
     });
   }
 
