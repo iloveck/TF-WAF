@@ -3,6 +3,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PersonService } from 'src/app/services/person.service';
 import { TempData } from './tempdata';
 import { Person } from 'src/app/shared/models/person.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-create-member',
@@ -44,7 +46,7 @@ export class CreateMemberComponent implements OnInit {
   additionalAddressLine: number;
   meta: any;
 
-constructor(private personService: PersonService, private tempData: TempData) { }
+constructor(private router: Router, private personService: PersonService, private tempData: TempData) { }
 
 addAddressLine(): void {
     if (this.additionalAddressLine < 2) {
@@ -55,7 +57,7 @@ addAddressLine(): void {
 continue(): void {
     console.log(this.person);
     this.personService.createPerson(this.person).subscribe(result => {
-      console.log(result);
+      this.router.navigate(['/paid-membership/hearabout', '9999999']);
     });
   }
 
