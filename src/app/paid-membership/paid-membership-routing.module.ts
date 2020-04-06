@@ -4,7 +4,6 @@ import { PaidMembershipComponent } from './paid-membership.component';
 import { HearaboutComponent } from './components/hearabout/hearabout.component';
 import { CompleteprofileComponent } from './components/completeprofile/completeprofile.component';
 import { CostcoBenefitsComponent } from './components/costco-benefits/costco-benefits.component';
-import { MembershipCompletionComponent } from './components/membership-completion/membership-completion.component';
 
 
 const routes: Routes = [
@@ -12,10 +11,9 @@ const routes: Routes = [
   children: [
     {path: 'hearabout/:id', component: HearaboutComponent},
     {path: 'completeprofile', component: CompleteprofileComponent},
-    {path: 'costco-benefits', component: CostcoBenefitsComponent},
-    {path: 'membership-completion', component: MembershipCompletionComponent}
+    {path: 'costco-benefits', component: CostcoBenefitsComponent}
 ]
-  }]
+  }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

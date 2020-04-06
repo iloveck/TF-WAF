@@ -15,5 +15,12 @@
     height: 3.125rem;
     box-shadow: 0rem 0.125rem 0.125rem rgba(32, 0, 0, 0.0609976);
     border-radius: 0.1875rem;
+    -webkit-appearance: none;
+  }
+
+  select.form-control{
+    background-image: url('src/assets/images/select-chevron.svg');
+    background-position: right 16px top 50%;
+    background-repeat: no-repeat;
   }
 }

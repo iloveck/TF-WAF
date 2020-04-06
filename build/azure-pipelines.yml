@@ -52,7 +52,7 @@ stages:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '$(System.DefaultWorkingDirectory)/$(CoverageFolder)/$(WebProjectName)/*.xml'
           reportDirectory: '$(System.DefaultWorkingDirectory)/$(CoverageFolder)/$(WebProjectName)'
-          failIfCoverageEmpty: true
+          failIfCoverageEmpty: false
       - task: ArchiveFiles@2
         displayName: 'Zip Deployment Files'
         condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], variables['DevBranch']) ))
