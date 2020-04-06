@@ -7,14 +7,14 @@
       <div class="mt-4 ml-3 text-left"><a [routerLink]="['/search']"  routerLinkActive="filter-links">Back</a> </div>
         <div class="row mt-4 ml-0">
           <div class="col-sm-8 text-left">
-            <label class="filter-text">Filters</label>
+            <label class="filter-text">Filters - Coming soon ..</label>
           </div>
           <div class="col-sm-4 text-right">
-            <a href="#" class="filter-links">Clear Filters</a>
+          <!--  <a href="#" class="filter-links">Clear Filters</a> -->
           </div>
         </div>
 
-        <input class="form-control form-control-lg ml-2 mt-2" type="text" placeholder="Search">
+<!--        <input class="form-control form-control-lg ml-2 mt-2" type="text" placeholder="Search">
 
       <table class="table mt-4 ml-2">
         <tbody class="filter-options">
@@ -44,7 +44,7 @@
           </tr>
 
         </tbody>
-      </table>
+      </table> -->
     </div>
 
     <div class="col-sm-9 bg-result-color overflow-auto">
@@ -87,6 +87,8 @@
         </div>
         <div class="col"></div>
       </div>
+
+      <div class="pb-5" *ngIf="remainingResults < 0"></div>
 
     </div>
   </div>
