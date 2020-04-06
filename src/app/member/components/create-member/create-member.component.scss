@@ -33,9 +33,9 @@
   width: 24px;
   height: 24px;
   &.valid{
-    background-image: url("src/assets/images/validation-green.svg");
+    background-image: url("../../../../assets/images/validation-green.svg");
   }
   &.invalid{
-    background-image: url("src/assets/images/validation-red.svg");
+    background-image: url("../../../../assets/images/validation-red.svg");
   }
 }

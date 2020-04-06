@@ -72,10 +72,6 @@ export class TempData {
             { code: 'EN', locale: [{ name: 'en_US', value: 'English' }] },
             { code: 'ES', locale: [{ name: 'en_US', value: 'Spanish' }] },
             { code: 'FR', locale: [{ name: 'en_US', value: 'French' }] },
-            { code: 'IS', locale: [{ name: 'en_US', value: 'Icelandic' }] },
-            { code: 'KO', locale: [{ name: 'en_US', value: 'Korean' }] },
-            { code: 'JP', locale: [{ name: 'en_US', value: 'Japanese' }] },
-            { code: 'ZH', locale: [{ name: 'en_US', value: 'Chinese' }] }
           ]
         },
         { alpha2Code: 'PR', alpha3Code: 'PRI' },
