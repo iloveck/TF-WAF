@@ -7,10 +7,10 @@ describe('FormatPhonePipe', () => {
   });
   it('Format phone number without country code', () => {
     const pipe = new FormatPhonePipe();
-    expect(pipe.transform("9999999999")).toBe("(999) 999-9999");
+    expect(pipe.transform('9999999999')).toBe('(999) 999-9999');
   });
   it('Format phone number with country code', () => {
     const pipe = new FormatPhonePipe();
-    expect(pipe.transform("19999999999")).toBe("+1 (999) 999-9999");
+    expect(pipe.transform('19999999999')).toBe('+1 (999) 999-9999');
   });
 });
