@@ -53,7 +53,9 @@ export class CreateMemberComponent implements OnInit {
     private router: Router,
     private personService: PersonService,
     private tempData: TempData
-  ) {}
+  ) {
+    document.body.style.overflowY = 'inherit';
+  }
 
   addAddressLine(): void {
     if (this.additionalAddressLine < 2) {
