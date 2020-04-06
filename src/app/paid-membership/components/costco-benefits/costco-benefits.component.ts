@@ -24,8 +24,8 @@ export class CostcoBenefitsComponent implements OnInit {
     signupLocation: '110',
     createdByChannel: 'WAREHOUSE',
     createdByUser: 'U100000',
-    primaryPersonId: '1000006945',
-    householdPersonId: '1000006945'
+    primaryPersonId: '1616509740',
+    householdPersonId: '1616509740'
   };
   awarenessSelection: AwarenessCodes;
   ngOnInit(): void {
@@ -37,13 +37,16 @@ export class CostcoBenefitsComponent implements OnInit {
   }
   createAccount(){
     this.createAccountModel.awarenessCode = this.awarenessSelection.awarenessCode;
-
+    this.createAccountModel.primaryPersonId = this.awarenessSelection.personid; 
     var createMembershipUrl = environment.createMembershipUrl;
     this.httpClient.post(createMembershipUrl, this.createAccountModel, {observe: 'response'}).subscribe(resp => {
-      if(resp.status == 200)
+     
+      if(resp.status == 201)
        { 
          this.router.navigate(['../paid-membership/completeprofile']);// TODO: Navigate based on result of request
        }
+    }, err => {
+      console.log(err);
     });
   }
 

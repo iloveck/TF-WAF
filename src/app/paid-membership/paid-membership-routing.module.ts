@@ -10,7 +10,7 @@ import { MembershipCompletionComponent } from './components/membership-completio
 const routes: Routes = [
   {path: 'paid-membership', component: PaidMembershipComponent,
   children: [
-    {path: 'hearabout', component: HearaboutComponent},
+    {path: 'hearabout/:id', component: HearaboutComponent},
     {path: 'completeprofile', component: CompleteprofileComponent},
     {path: 'costco-benefits', component: CostcoBenefitsComponent},
     {path: 'membership-completion', component: MembershipCompletionComponent}
