@@ -18,7 +18,7 @@ export class HearaboutComponent implements OnInit {
   ngOnInit(): void {
   this.awUpdate.awarenessCodeSelected.subscribe(awarenessSelection => this.awarenessSelection = awarenessSelection);
   this.route.params.subscribe(params => {
-    this.personId = params['id']; //TO DO: Sync with E. S. to get the ID here
+    this.personId = params['id'];
     this.awUpdate.setPersonId(this.personId)
  });
  
