@@ -64,7 +64,6 @@ export class CreateMemberComponent implements OnInit {
   }
 
   continue(): void {
-    console.log(this.person);
     this.personService.createPerson(this.person).subscribe((result) => {
       this.router.navigate(['/paid-membership/hearabout', result.id]);
     });
@@ -73,6 +72,5 @@ export class CreateMemberComponent implements OnInit {
   ngOnInit(): void {
     this.meta = this.tempData.getData();
     this.additionalAddressLine = 0;
-    console.log(this.person);
   }
 }
