@@ -21,13 +21,31 @@ export class SearchResultComponent implements OnInit {
   maxResultForWarning: number = 40;
   pageSize: number = 20
 
-  constructor(private route: ActivatedRoute, private searchService: SearchService) {
-    document.body.style.overflowY = 'hidden'
+  constructor(private searchService: SearchService, private router: Router) {
+    document.body.style.overflowY = 'hidden';
+    if (window.history.state.term != undefined)
+    {
+      sessionStorage.setItem("searchTerm", window.history.state.term);
+    }
+    if (sessionStorage.getItem("searchTerm") != null)
+    {
+      this.searchTerm = sessionStorage.getItem("searchTerm");
+    }
   }
 
   ngOnInit(): void {
-    this.searchTerm = this.route.snapshot.params['term'];
-    this.onSearch();
+    if ( this.searchTerm != null && this.searchTerm != '' )
+    {
+      this.onSearch();
+    }
+    else
+    {
+      this.router.navigateByUrl('/search')
+    }
+  }
+
+  ngOnDestroy(): void {
+    sessionStorage.removeItem("searchTerm");
   }
 
   onSearch(): void {

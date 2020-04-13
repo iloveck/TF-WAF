@@ -16,10 +16,11 @@ export class SearchComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    console.log("Search " + sessionStorage.getItem("searchTerm"));
     this.hour = (new Date()).getHours();
   }
 
   onSearch(): void {
-    this.router.navigateByUrl('/search-result/' + this.searchTerm);
+    this.router.navigateByUrl('/search-result', { state: { term: this.searchTerm } });
   }
 }
