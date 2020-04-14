@@ -18,14 +18,14 @@
             | First Name
             span([hidden]='firstName.valid || firstName.pristine') &nbsp;is required
             |*
-          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',[(ngModel)]='person.profile.firstName', name='firstName', #firstName="ngModel" )
+          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',[(ngModel)]='person.profile.firstName', name='firstName',  pattern="^(?!\\s*$).+", #firstName="ngModel" )
           .validation-outline(*ngIf="firstName.invalid && !firstName.pristine")
           .validation-icon.valid(*ngIf="firstName.valid")
           .validation-icon.invalid(*ngIf="firstName.invalid && !firstName.pristine")
       .col-3
         .form-group
           label(for='middle-initial') Middle Initial (optional)
-          input#middleInitial.form-control(maxlength="1", placeholder='', #middleInitial='ngModel', name='middle-initial', [(ngModel)]='person.profile.middleInitial')
+          input#middleInitial.form-control(maxlength="1",  placeholder='', #middleInitial='ngModel',  pattern="^(?!\\s*$).+", name='middle-initial', [(ngModel)]='person.profile.middleInitial')
     .row
       .col
         .form-group
@@ -33,7 +33,7 @@
             | Last Name
             span([hidden]='lastName.valid || lastName.pristine') &nbsp;is required
             |*
-          input#lastName.form-control(required, minlength='1', maxlength='38', type='text', placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.profile.lastName')
+          input#lastName.form-control(required, minlength='1',  maxlength='38', type='text',  pattern="^(?!\\s*$).+", placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.profile.lastName')
           .validation-outline(*ngIf="lastName.invalid && !lastName.pristine")
           .validation-icon.valid(*ngIf="lastName.valid")
           .validation-icon.invalid(*ngIf="lastName.invalid && !lastName.pristine")
@@ -54,7 +54,7 @@
             | Address
             span([hidden]='address1.valid || address1.pristine') &nbsp;is required
             |*
-          input#address1.form-control(required, type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.address[0].line1')
+          input#address1.form-control(required,  pattern="^(?!\\s*$).+", type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.address[0].line1')
           .validation-outline(*ngIf="address1.invalid && !address1.pristine")
           .validation-icon.valid(*ngIf="address1.valid")
           .validation-icon.invalid(*ngIf="address1.invalid && !address1.pristine")
