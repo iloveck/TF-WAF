@@ -15,6 +15,9 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { NgxMaskModule, IConfig, MaskPipe } from 'ngx-mask';
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
+
 
 
 registerLocaleData(localeFr, 'fr-FR');
@@ -35,9 +38,11 @@ registerLocaleData(localeFr, 'fr-FR');
     SharedModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot(options)
+
   ],
-  providers: [],
+  providers: [MaskPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
