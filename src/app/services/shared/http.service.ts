@@ -5,8 +5,8 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  get(apiUrl: string, url: string, id: string) {
-    return this.http.get(apiUrl + url);
+  get(apiUrl: string) {
+    return this.http.get(apiUrl);
   }
 
   post(apiUrl: string, body: any, headers: any) {

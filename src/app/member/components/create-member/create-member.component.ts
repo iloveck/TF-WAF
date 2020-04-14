@@ -4,6 +4,7 @@ import { PersonService } from 'src/app/services/person.service';
 import { TempData } from './tempdata';
 import { Person } from 'src/app/shared/models/person.model';
 import { Router } from '@angular/router';
+import { LookupsService } from 'src/app/services/lookups.service';
 
 @Component({
   selector: 'app-create-member',
@@ -52,7 +53,8 @@ export class CreateMemberComponent implements OnInit {
   constructor(
     private router: Router,
     private personService: PersonService,
-    private tempData: TempData
+    private tempData: TempData,
+    private lookups: LookupsService
   ) {
     document.body.style.overflowY = 'inherit';
   }
@@ -77,7 +79,7 @@ export class CreateMemberComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.meta = this.tempData.getData();
+    this.meta = this.lookups.get();
     this.additionalAddressLine = 0;
   }
 }
