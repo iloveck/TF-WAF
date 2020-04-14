@@ -63,7 +63,14 @@ export class CreateMemberComponent implements OnInit {
     }
   }
 
+  private stripPhone(phone): string {
+    return phone.replace(/[^a-zA-Z0-9]/g, '');
+  }
+
   continue(): void {
+    this.person.phone[0].phoneNumber = this.stripPhone(this.person.phone[0].phoneNumber);
+    this.person.phone[1].phoneNumber = this.stripPhone(this.person.phone[1].phoneNumber);
+
     this.personService.createPerson(this.person).subscribe((result) => {
       this.router.navigate(['/paid-membership/hearabout', result.id]);
     });

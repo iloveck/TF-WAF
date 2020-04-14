@@ -18,14 +18,14 @@
             | First Name
             span([hidden]='firstName.valid || firstName.pristine') &nbsp;is required
             |*
-          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',[(ngModel)]='person.profile.firstName', name='firstName', #firstName="ngModel" )
+          input#firstName.form-control(required, minlength='1', maxlength='16', aria-describedby='firstName', placeholder='', type='text',[(ngModel)]='person.profile.firstName', name='firstName',  pattern="^(?!\\s*$).+", #firstName="ngModel" )
           .validation-outline(*ngIf="firstName.invalid && !firstName.pristine")
           .validation-icon.valid(*ngIf="firstName.valid")
           .validation-icon.invalid(*ngIf="firstName.invalid && !firstName.pristine")
       .col-3
         .form-group
           label(for='middle-initial') Middle Initial (optional)
-          input#middleInitial.form-control(maxlength="1", placeholder='', #middleInitial='ngModel', name='middle-initial', [(ngModel)]='person.profile.middleInitial')
+          input#middleInitial.form-control(maxlength="1",  placeholder='', #middleInitial='ngModel',  pattern="^(?!\\s*$).+", name='middle-initial', [(ngModel)]='person.profile.middleInitial')
     .row
       .col
         .form-group
@@ -33,13 +33,13 @@
             | Last Name
             span([hidden]='lastName.valid || lastName.pristine') &nbsp;is required
             |*
-          input#lastName.form-control(required, minlength='1', maxlength='38', type='text', placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.profile.lastName')
+          input#lastName.form-control(required, minlength='1',  maxlength='38', type='text',  pattern="^(?!\\s*$).+", placeholder='', #lastName='ngModel', name='last-name', [(ngModel)]='person.profile.lastName')
           .validation-outline(*ngIf="lastName.invalid && !lastName.pristine")
           .validation-icon.valid(*ngIf="lastName.valid")
           .validation-icon.invalid(*ngIf="lastName.invalid && !lastName.pristine")
       .col-3
         .form-group
-          label(for='suffix') Suffix
+          label(for='suffix') Suffix (optional)
           select#suffix.form-control(#suffix='ngModel', [(ngModel)]='person.profile.generationSuffix', type='', placeholder='')
             option(value='null') None
             option(value='JR') JR
@@ -54,7 +54,7 @@
             | Address
             span([hidden]='address1.valid || address1.pristine') &nbsp;is required
             |*
-          input#address1.form-control(required, type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.address[0].line1')
+          input#address1.form-control(required,  pattern="^(?!\\s*$).+", type='', placeholder='', #address1='ngModel', name='address1', [(ngModel)]='person.address[0].line1')
           .validation-outline(*ngIf="address1.invalid && !address1.pristine")
           .validation-icon.valid(*ngIf="address1.valid")
           .validation-icon.invalid(*ngIf="address1.invalid && !address1.pristine")
@@ -79,7 +79,7 @@
             | City
             span([hidden]='city.valid || city.pristine') &nbsp;is required
             |*
-          input#city.form-control(required, type='text', name="city", placeholder='', #city="ngModel", [(ngModel)]='person.address[0].city')
+          input#city.form-control(required, maxlength="40", minlength="1", type='text', name="city", placeholder='', #city="ngModel", [(ngModel)]='person.address[0].city')
           .validation-outline(*ngIf="city.invalid && !city.pristine")
           .validation-icon.valid(*ngIf="city.valid")
           .validation-icon.invalid(*ngIf="city.invalid && !city.pristine")
@@ -122,21 +122,17 @@
       .col-6
         .form-group
           label(for='dob')
-            | Date of Birth
-            span([hidden]='dob.valid || dob.pristine') &nbsp;is required
-            |*
-          input#dob.form-control(required, minlength="10", maxlength="10", name='dob', placeholder='MM-DD-YYYY', #dob="ngModel", [(ngModel)]='person.profile.birthdate')
+            | Date of Birth (optional)
+          input#dob.form-control(required, type="date", max="2002-04-14", min="1860-04-14",  name='dob', #dob="ngModel",  [(ngModel)]='person.profile.birthdate')
           .validation-outline(*ngIf="dob.invalid && !dob.pristine")
-          .validation-icon.valid(*ngIf="dob.valid")
+          .validation-icon.valid(*ngIf="dob.valid && !dob.pristine")
           .validation-icon.invalid(*ngIf="dob.invalid && !dob.pristine")
     .row
       .col
         .form-group
           label(for='id-type')
-            | ID Type
-            span([hidden]='idType.valid || idType.pristine') &nbsp;is required
-            |*
-          select#idType.form-control(required, #idType="ngModel", [(ngModel)]="person.identity[0].idTypeCode", name="idType", placeholder='')
+            | ID Type (optional)
+          select#idType.form-control( #idType="ngModel", [(ngModel)]="person.identity[0].idTypeCode", name="idType", placeholder='')
             option([value]="idType.code", *ngFor="let idType of meta.idTypes") {{idType.code}}
           .validation-outline(*ngIf="idType.invalid && !idType.pristine")
           .validation-icon.valid(*ngIf="idType.valid")
@@ -144,10 +140,8 @@
       .col
         .form-group
           label(for='id-number')
-            | ID Number
-            span([hidden]='idNumber.valid || idNumber.pristine') &nbsp;is required
-            |*
-          input#idNumber.form-control(required, name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.identity[0].idNumber')
+            | ID Number (optional)
+          input#idNumber.form-control(maxlength="20", name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.identity[0].idNumber')
           .validation-outline(*ngIf="idNumber.invalid && !idNumber.pristine")
           .validation-icon.valid(*ngIf="idNumber.valid")
           .validation-icon.invalid(*ngIf="idNumber.invalid && !idNumber.pristine")
@@ -178,10 +172,9 @@
       .col
         .form-group
           label(for='phone')
-            | Phone Number
-            span([hidden]='phone.valid || phone.pristine') &nbsp;is required
-            |*
-          input#phone.form-control(required, maxlength="10", minlength="10", name="phone", type='tel', placeholder='', #phone="ngModel", [ngModel]='person.phone[0].phoneNumber', (ngModelChange)="person.phone[0].phoneNumber=$event")
+            | Phone Number*
+            span([hidden]='phone.valid || phone.pristine') &nbsp;- Enter a valid 10-digit phone number
+          input#phone.form-control(required, maxlength="14", minlength="14", name="phone", type='tel', #phone="ngModel", [ngModel]="person.phone[0].phoneNumber | mask: '(000) 000-0000'", (ngModelChange)="person.phone[0].phoneNumber=$event")
           .validation-outline(*ngIf="phone.invalid && person.phone[0].phoneNumber")
           .validation-icon.valid(*ngIf="phone.valid")
           .validation-icon.invalid(*ngIf="phone.invalid && person.phone[1].phoneNumber")
@@ -201,8 +194,8 @@
         .form-group
           label(for='phone2')
             | Phone Number 2 (optional)
-            span([hidden]='phone2.valid || phone2.pristine') &nbsp;is required
-          input#phone2.form-control(maxlength="10", minlength="10", name="phone2", type='tel', placeholder='', #phone2="ngModel", [ngModel]='person.phone[1].phoneNumber', (ngModelChange)="person.phone[1].phoneNumber=$event")
+            span([hidden]='phone2.valid || phone2.pristine') &nbsp;- Enter a valid 10-digit phone number
+          input#phone2.form-control(maxlength="14", minlength="14", name="phone2", type='tel', #phone2="ngModel", [ngModel]="person.phone[1].phoneNumber | mask: '(000) 000-0000'", (ngModelChange)="person.phone[1].phoneNumber=$event")
           .validation-outline(*ngIf="phone2.invalid && person.phone[1].phoneNumber")
           .validation-icon.valid(*ngIf="phone2.valid && !phone2.pristine && person.phone[1].phoneNumber")
           .validation-icon.invalid(*ngIf="phone2.invalid && person.phone[1].phoneNumber")
@@ -267,4 +260,5 @@
       .col-9
       .col.col-sm
         button.btn.btn-primary(type='button', [disabled]="personForm.invalid", (click)='continue()') Continue
+        // button.btn.btn-primary(type='button',  (click)='continue()') Continue b
 
