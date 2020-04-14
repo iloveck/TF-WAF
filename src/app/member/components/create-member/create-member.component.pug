@@ -177,7 +177,7 @@
           input#phone.form-control(required, maxlength="14", minlength="14", name="phone", type='tel', #phone="ngModel", [ngModel]="person.phone[0].phoneNumber | mask: '(000) 000-0000'", (ngModelChange)="person.phone[0].phoneNumber=$event")
           .validation-outline(*ngIf="phone.invalid && person.phone[0].phoneNumber")
           .validation-icon.valid(*ngIf="phone.valid")
-          .validation-icon.invalid(*ngIf="phone.invalid && person.phone[1].phoneNumber")
+          .validation-icon.invalid(*ngIf="phone.invalid && person.phone[0].phoneNumber")
       .col
         .form-group
           label(for='phone-type')
@@ -185,7 +185,7 @@
             span([hidden]='phoneType.valid || phoneType.pristine') &nbsp;is required
             |*
           select#phoneType.form-control([required]="person.phone[0].phoneNumber !==''",  #phoneType="ngModel", [(ngModel)]="person.phone[0].phoneTypeCode", type='', placeholder='', name="phone-type")
-            option([value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
+            option([disabled]="phoneType.code === person.phone[1].phoneTypeCode", [value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
           .validation-outline(*ngIf="phoneType.invalid && person.phone[0].phoneNumber")
           .validation-icon.valid(*ngIf="phoneType.valid && !phoneType.pristine")
           .validation-icon.invalid(*ngIf="phoneType.invalid && person.phone[0].phoneNumber")
@@ -206,7 +206,7 @@
             span([hidden]='phoneType2.valid || phoneType2.pristine') &nbsp;is required
             |*
           select#phoneType2.form-control([required]="person.phone[1].phoneNumber !== ''",  #phoneType2="ngModel", [(ngModel)]="person.phone[1].phoneTypeCode", type='', placeholder='', name="phone-type2")
-            option([value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
+            option([disabled]="phoneType.code === person.phone[0].phoneTypeCode", [value]="phoneType.code", *ngFor="let phoneType of meta.phoneTypes") {{phoneType.code}}
           .validation-outline(*ngIf="phoneType2.invalid && person.phone[1].phoneNumber")
           .validation-icon.valid(*ngIf="phoneType2.valid && !phoneType2.pristine")
           .validation-icon.invalid(*ngIf="phoneType2.invalid && person.phone[1].phoneNumber")
