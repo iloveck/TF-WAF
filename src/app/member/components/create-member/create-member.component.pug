@@ -39,7 +39,7 @@
           .validation-icon.invalid(*ngIf="lastName.invalid && !lastName.pristine")
       .col-3
         .form-group
-          label(for='suffix') Suffix
+          label(for='suffix') Suffix (optional)
           select#suffix.form-control(#suffix='ngModel', [(ngModel)]='person.profile.generationSuffix', type='', placeholder='')
             option(value='null') None
             option(value='JR') JR
@@ -122,9 +122,7 @@
       .col-6
         .form-group
           label(for='dob')
-            | Date of Birth
-            span([hidden]='dob.valid || dob.pristine') &nbsp;is required
-            |*
+            | Date of Birth (optional)
           input#dob.form-control(required, type="date", max="2002-04-14", min="1860-04-14",  name='dob', #dob="ngModel",  [(ngModel)]='person.profile.birthdate')
           .validation-outline(*ngIf="dob.invalid && !dob.pristine")
           .validation-icon.valid(*ngIf="dob.valid && !dob.pristine")
@@ -133,10 +131,8 @@
       .col
         .form-group
           label(for='id-type')
-            | ID Type
-            span([hidden]='idType.valid || idType.pristine') &nbsp;is required
-            |*
-          select#idType.form-control(required, #idType="ngModel", [(ngModel)]="person.identity[0].idTypeCode", name="idType", placeholder='')
+            | ID Type (optional)
+          select#idType.form-control( #idType="ngModel", [(ngModel)]="person.identity[0].idTypeCode", name="idType", placeholder='')
             option([value]="idType.code", *ngFor="let idType of meta.idTypes") {{idType.code}}
           .validation-outline(*ngIf="idType.invalid && !idType.pristine")
           .validation-icon.valid(*ngIf="idType.valid")
@@ -144,10 +140,8 @@
       .col
         .form-group
           label(for='id-number')
-            | ID Number
-            span([hidden]='idNumber.valid || idNumber.pristine') &nbsp;is required
-            |*
-          input#idNumber.form-control(required, mimlength="1", maxlength="20", name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.identity[0].idNumber')
+            | ID Number (optional)
+          input#idNumber.form-control(maxlength="20", name="idNumber", type='', placeholder='', #idNumber="ngModel", [(ngModel)]='person.identity[0].idNumber')
           .validation-outline(*ngIf="idNumber.invalid && !idNumber.pristine")
           .validation-icon.valid(*ngIf="idNumber.valid")
           .validation-icon.invalid(*ngIf="idNumber.invalid && !idNumber.pristine")
@@ -266,5 +260,5 @@
       .col-9
       .col.col-sm
         button.btn.btn-primary(type='button', [disabled]="personForm.invalid", (click)='continue()') Continue
-        button.btn.btn-primary(type='button',  (click)='continue()') Continue b
+        // button.btn.btn-primary(type='button',  (click)='continue()') Continue b
 
