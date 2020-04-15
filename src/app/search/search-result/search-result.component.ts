@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormatPhonePipe } from '../../shared/pipes/format-phone.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
@@ -13,16 +13,16 @@ import { TempData } from './../../member/components/create-member/tempdata';
   providers: [TempData]
 })
 
-export class SearchResultComponent implements OnInit {
-  persons: any[]=[];
-  searchTerm: string = '';
-  totalSearchResults: number = 0;
-  remainingResults: number = 0;
-  pageNumber:number = 1;
+export class SearchResultComponent implements OnInit, OnDestroy {
+  persons: any[] = [];
+  searchTerm  = '';
+  totalSearchResults = 0;
+  remainingResults = 0;
+  pageNumber = 1;
   meta: any;
   // To be moved to app settings
-  maxResultForWarning: number = 40;
-  pageSize: number = 20
+  maxResultForWarning = 40;
+  pageSize = 20;
 
   searchCriterion = new SearchCriterion(
     '',
@@ -39,28 +39,22 @@ export class SearchResultComponent implements OnInit {
   constructor(private searchService: SearchService, private router: Router, private tempData: TempData) {
     document.body.style.overflowY = 'hidden';
 
-    if (window.history.state !== null && window.history.state.term !== undefined)
-    {
+    if (window.history.state !== null && window.history.state.term !== undefined) {
       sessionStorage.setItem('searchTerm', window.history.state.term);
     }
-    if (sessionStorage.getItem('searchTerm') !== null)
-    {
+    if (sessionStorage.getItem('searchTerm') !== null) {
       this.searchTerm = sessionStorage.getItem('searchTerm');
       this.searchCriterion.searchText = sessionStorage.getItem('searchTerm');
-
     }
   }
 
   ngOnInit(): void {
 
     this.meta = this.tempData.getData();
-    if ( this.searchTerm !== null && this.searchTerm !== '' )
-    {
+    if ( this.searchTerm !== null && this.searchTerm !== '' ) {
       this.onSearch();
-    }
-    else
-    {
-      this.router.navigateByUrl('/search')
+    } else {
+      this.router.navigateByUrl('/search');
     }
   }
 
@@ -89,8 +83,7 @@ export class SearchResultComponent implements OnInit {
     this.searchService.getSearch(this.searchCriterion).subscribe(
 
       // success path
-      (data: any) =>
-      {
+      (data: any) => {
         this.persons = this.persons.concat(data.results);
         this.searchCriterion.pageNumber = this.searchCriterion.pageNumber + 1;
         this.remainingResults = this.remainingResults - 20;

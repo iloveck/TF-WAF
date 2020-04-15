@@ -12,76 +12,76 @@ import { FormatPhonePipe } from 'src/app/shared/pipes/format-phone.pipe';
 import { FormsModule } from '@angular/forms';
 
 const MockSearchService = {
-  getSearch(searchTerm: string, pageNumber:number) {
+  getSearch(searchTerm: string, pageNumber: number) {
     const searchResult = {
-      'totalCount': 4,
-      'results': [
+      totalCount: 4,
+      results: [
         {
-          'profile': {
-            'firstName': 'UNIT',
-            'lastName': 'TEST'
+          profile: {
+            firstName: 'UNIT',
+            lastName: 'TEST'
           },
-          'mph': {
-            'phoneNumber': '5613579125'
+          mph: {
+            phoneNumber: '5613579125'
           },
-          'pea': {
-            'emailAddress': 'test@testing.com'
+          pea: {
+            emailAddress: 'test@testing.com'
           },
-          'pas': {
-            'idNumber': 'L1B2M3N59'
+          pas: {
+            idNumber: 'L1B2M3N59'
           },
-          'id': '661208351'
+          id: '661208351'
         },
         {
-          'profile': {
-            'firstName': 'UNIT',
-            'lastName': 'TEST'
+          profile: {
+            firstName: 'UNIT',
+            lastName: 'TEST'
           },
-          'mph': {
-            'phoneNumber': '5613579125'
+          mph: {
+            phoneNumber: '5613579125'
           },
-          'pea': {
-            'emailAddress': 'test@testing.com'
+          pea: {
+            emailAddress: 'test@testing.com'
           },
-          'pas': {
-            'idNumber': '123456789'
+          pas: {
+            idNumber: '123456789'
           },
-          'id': '815333542'
+          id: '815333542'
         },
         {
-          'profile': {
-            'firstName': 'UNIT',
-            'lastName': 'TEST'
+          profile: {
+            firstName: 'UNIT',
+            lastName: 'TEST'
           },
-          'mph': {
-            'phoneNumber': '5613579125'
+          mph: {
+            phoneNumber: '5613579125'
           },
-          'pea': {
-            'emailAddress': 'test@testing.com'
+          pea: {
+            emailAddress: 'test@testing.com'
           },
-          'dl': {
-            'idNumber': 'NAGS01234567'
+          dl: {
+            idNumber: 'NAGS01234567'
           },
-          'id': '1712440323'
+          id: '1712440323'
         },
         {
-          'profile': {
-            'firstName': 'UNIT',
-            'lastName': 'TEST'
+          profile: {
+            firstName: 'UNIT',
+            lastName: 'TEST'
           },
-          'mph': {
-            'phoneNumber': '5613579125'
+          mph: {
+            phoneNumber: '5613579125'
           },
-          'pea': {
-            'emailAddress': 'test@testing.com'
+          pea: {
+            emailAddress: 'test@testing.com'
           },
-          'dl': {
-            'idNumber': '123456789'
+          dl: {
+            idNumber: '123456789'
           },
-          'id': '1636502358'
+          id: '1636502358'
         }
       ]
-    }
+    };
     return of( searchResult );
   }
 };
@@ -101,7 +101,6 @@ describe('SearchResultComponent', () => {
   }));
 
   beforeEach(() => {
-    //sessionStorage.setItem('searchTerm', 'main');
     fixture = TestBed.createComponent(SearchResultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -2,7 +2,7 @@ export class SearchCriterion {
   constructor(
     public searchText: string,
     public pageNumber: number,
-    public searchFilter:  {
+    public searchFilter: {
       country: string,
       state: string,
       firstName: string,
