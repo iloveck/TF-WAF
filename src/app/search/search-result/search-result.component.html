@@ -1,137 +1,96 @@
-
 <app-search-header></app-search-header>
 
 <div class="container-fluid">
   <div class="row row-eq-height search-result-box">
     <div class="col-sm-3 text-left bg-white">
-      <div class="mt-4"><a [routerLink]="['/search']"  routerLinkActive="filter-links">Back</a> </div>
-        <div class="row mt-5">
-          <div class="col">
-            <label class="filter-text">Filters</label>
+      <div class="mt-4"><a [routerLink]="['/search']" routerLinkActive="filter-links">Back</a> </div>
+      <div class="row mt-5">
+        <div class="col">
+          <label class="filter-text">Filters</label>
+        </div>
+        <div class="col text-right mt-2">
+          <label><a href="#" class="filter-links">Clear Filters</a> </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <select class="form-control" id="country" required="required" name="country" #state="ngModel"
+              [(ngModel)]="searchCriteria.searchFilter.country" (blur)="onSearch()">
+              <option [value]="country.alpha3Code" *ngFor="let country of meta.countries"
+                data-thumnail="/assets/images/USA.png">
+                {{ country.alpha3Code }}</option>
+            </select>
           </div>
-          <div class="col text-right mt-2">
-            <label><a href="#" class="filter-links">Clear Filters</a> </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="country">State</label>
+            <select class="form-control" id="country" required="required" name="country" #state="ngModel"
+              [(ngModel)]="searchCriteria.searchFilter.state" (blur)="onSearch()">
+              <option [value]="state.code" *ngFor="let state of meta.countries[0].states">{{ state.code }}</option>
+            </select>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="country">Country</label>
-              <select
-                class="form-control"
-                id="country"
-                required="required"
-                name="country"
-                #state="ngModel"
-                [(ngModel)]="searchCriteria.searchFilter.country"
-                (blur)="onSearch()"
-                ><option
-                  [value]="country.alpha3Code"
-                  *ngFor="let country of meta.countries"
-                  data-thumnail="/assets/images/USA.png">
-                  {{ country.alpha3Code }}</option></select>
-            </div>
-           </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="country" >State</label>
-              <select
-                class="form-control"
-                id="country"
-                required="required"
-                name="country"
-                #state="ngModel"
-                [(ngModel)]="searchCriteria.searchFilter.state"
-                (blur)="onSearch()"
-                ><option
-                  [value]="state.code"
-                  *ngFor="let state of meta.countries[0].states"
-                  >{{ state.code }}</option
-                ></select>
-            </div>
-           </div>
-        </div>
+      </div>
 
 
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <div class="input-group">
-              <input
-                class="form-control border-right-0"
-                id="firstName"
-                type=""
-                placeholder=""
-                #name="ngModel"
-                name="firstName"
-                [(ngModel)]="searchCriteria.searchFilter.firstName"
-                (blur)="onSearch()"
-              />
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <div class="input-group">
+              <input class="form-control border-right-0" id="firstName" type="" placeholder="" #name="ngModel"
+                name="firstName" [(ngModel)]="searchCriteria.searchFilter.firstName" (blur)="onSearch()" />
               <span class="input-group-append bg-white border-left-0">
                 <span class="input-group-text bg-transparent">
-                  <img class="clear-image" src="/assets/images/ClearFieldIcon.png" alt="Clear selection"/>
+                  <img class="clear-image" src="/assets/images/ClearFieldIcon.png" alt="Clear selection" />
                 </span>
-            </span>
-            </div>
+              </span>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <div class="input-group">
-              <input
-                class="form-control border-right-0"
-                id="lastName"
-                type=""
-                placeholder=""
-                #name="ngModel"
-                name="lastName"
-                [(ngModel)]="searchCriteria.searchFilter.lastName"
-                (blur)="onSearch()"
-              />
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <div class="input-group">
+              <input class="form-control border-right-0" id="lastName" type="" placeholder="" #name="ngModel"
+                name="lastName" [(ngModel)]="searchCriteria.searchFilter.lastName" (blur)="onSearch()" />
               <span class="input-group-append bg-white border-left-0">
                 <span class="input-group-text bg-transparent">
-                  <img class="clear-image" src="/assets/images/ClearFieldIcon.png" alt="Clear selection"/>
+                  <img class="clear-image" src="/assets/images/ClearFieldIcon.png" alt="Clear selection" />
                 </span>
-            </span>
-            </div>
+              </span>
             </div>
           </div>
         </div>
+      </div>
 
 
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="address">Address</label>
-              <div class="input-group">
-              <input
-                class="form-control border-right-0"
-                id="address"
-                type=""
-                placeholder=""
-                #name="ngModel"
-                name="address"
-                [(ngModel)]="searchCriteria.searchFilter.address"
-                (blur)="onSearch()"
-              />
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <div class="input-group">
+              <input class="form-control border-right-0" id="address" type="" placeholder="" #name="ngModel"
+                name="address" [(ngModel)]="searchCriteria.searchFilter.address" (blur)="onSearch()" />
               <span class="input-group-append bg-white border-left-0">
                 <span class="input-group-text bg-transparent">
-                  <img class="clear-image" src="/assets/images/ClearFieldIcon.png" alt="Clear selection"/>
+                  <img class="clear-image" src="/assets/images/ClearFieldIcon.png" alt="Clear selection" />
                 </span>
-            </span>
-            </div>
+              </span>
             </div>
           </div>
         </div>
+      </div>
     </div>
 
     <div class="col-sm-9 bg-result-color overflow-auto">
@@ -149,17 +108,17 @@
         <div class="h4 card-margin text-grey" *ngIf="totalSearchResults > maxResultForWarning">40+ results for
           <span class="search-warning">
             <img src="/assets/images/icon-warning.png" width="25" height="25" class="mb-1">
-              <span class="search-warningtext pt-3 pb-3 pr-2 pl-2">
-                Refine your search for more efficient results
-              </span>
+            <span class="search-warningtext pt-3 pb-3 pr-2 pl-2">
+              Refine your search for more efficient results
+            </span>
           </span>
-      </div>
+        </div>
       </div>
 
       <app-search-tag [tag]="searchTerm"></app-search-tag>
 
       <div class="flex-row mt-5">
-        <h5 class="h5 card-margin" *ngIf="persons.length > 0" >Members ({{ totalSearchResults }})</h5>
+        <h5 class="h5 card-margin" *ngIf="persons.length > 0">Members ({{ totalSearchResults }})</h5>
       </div>
 
       <div *ngFor="let person of persons" class="pb-2">
