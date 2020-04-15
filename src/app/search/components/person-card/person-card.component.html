@@ -1,5 +1,5 @@
-<div class="card my-panels">
-  <div class="card-block my-panels ">
+<div class="card card-spacing">
+  <div class="card-block my-panels">
     <div class="card-body">
     <div class="row">
     <div class="text-right col-fixed-width">
@@ -8,20 +8,23 @@
     </div>
     <div class="col text-left">
       <div class="person-name word-wrap" style="margin-bottom: 10px;">{{ person.profile.firstName }} {{ person.profile.lastName }} <span class="person-id">34637866</span></div>
-      <div class="email-phone word-wrap" *ngIf="person.peronalEmail != null">{{ person.peronalEmail.personalEmailAddress }}</div>
-      <div class="email-phone word-wrap" *ngIf="person.mobilePhoneNumber != null">
-        <span class="email-phone"  *ngIf="person.mobilePhoneNumber != null">
-          {{ person.mobilePhoneNumber.phoneNumber | formatPhone }}
+      <div class="email-phone word-wrap" *ngIf="person.pea != null">{{ person.pea.emailAddress }}</div>
+      <div class="email-phone word-wrap">
+        <span class="email-phone"  *ngIf="person.mph != null">
+          {{ person.mph.phoneNumber | formatPhone }}
         </span>
-        <span class="email-phone"  *ngIf="person.homePhoneNumber != null">
-          {{ person.homePhoneNumber.phoneNumber | formatPhone }}
+        <span class="email-phone"  *ngIf="person.hph != null">
+          {{ person.hph.phoneNumber | formatPhone }}
         </span>
 
       </div>
-      <div class="email-phone word-wrap" *ngIf="person.license != null"><i>DL # </i>{{ person.license.idNumber }}</div>
-      <div class="email-phone word-wrap" *ngIf="person.passport != null"><i>PP # </i> {{ person.passport.idNumber }}</div>
+      <div class="email-phone word-wrap" *ngIf="person.dl != null"><i>DL # </i>{{ person.dl.idNumber }}</div>
+      <div class="email-phone word-wrap" *ngIf="person.pas != null"><i>PP # </i> {{ person.pas.idNumber }}</div>
+      <div class="email-phone word-wrap" *ngIf="person.mid != null"><i>DL # </i>{{ person.mid.idNumber }}</div>
+      <div class="email-phone word-wrap" *ngIf="person.sid != null"><i>PP # </i> {{ person.sid.idNumber }}</div>
+
     </div>
-    <div class="btn-fixed-width my-auto">
+    <div class="btn-fixed-width">
       <div><a href="#" class="btn-costco-blue btn btn-primary btn-block p-2 mb-2">View Profile</a></div>
       <div><a href="#" class="btn-transparent btn btn-primary btn-block p-2">Quick View</a></div>
     </div>

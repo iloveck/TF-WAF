@@ -49,6 +49,9 @@
     background-color: #eff7fb;
     height: 93vh;
   }
+  .card-margin {
+    margin-left: 33px;
+  }
   .search-warning .search-warningtext {
     visibility: hidden!important;
     width: 150px;
@@ -83,4 +86,24 @@
   }
   .col-fixed-width{
     flex: 0 0 200px;
+  }
+  .clear-image{
+    height: 22px;
+    width: 22px;
+    object-fit: fill;
+  }
+  .country-image{
+    height: 12px;
+    width: 24px;
+    object-fit: fill;
+  }
+  .text-left {
+    padding-left: 40px;
+    padding-right: 40px;
+    label {
+      color: #5F5F5F;
+    }
+  }
+  select {
+    color: #002242;
   }

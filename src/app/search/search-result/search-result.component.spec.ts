@@ -9,11 +9,79 @@ import { SearchTagComponent } from '../components/search-tag/search-tag.componen
 import { Observable, of } from 'rxjs';
 import { SearchService } from 'src/app/services/search.service';
 import { FormatPhonePipe } from 'src/app/shared/pipes/format-phone.pipe';
+import { FormsModule } from '@angular/forms';
 
 const MockSearchService = {
   getSearch(searchTerm: string, pageNumber:number) {
-    const searchResult = {"totalCount":1,"results":[{"profile":{"firstName":"Test1","lastName":"Test2"},"homePhoneNumber":{"phoneNumber":"1234567890"},"mobilePhoneNumber":{"phoneNumber":"1234567890"},"peronalEmail":{"personalEmailAddress":"Test1@msn.com"},"license":{"idNumber":"123456789"},"passport":{"idNumber":"123456789"},"id":"FB5A5FE931A647C6BF1CE7587BC66249"}]};
-
+    const searchResult = {
+      'totalCount': 4,
+      'results': [
+        {
+          'profile': {
+            'firstName': 'UNIT',
+            'lastName': 'TEST'
+          },
+          'mph': {
+            'phoneNumber': '5613579125'
+          },
+          'pea': {
+            'emailAddress': 'test@testing.com'
+          },
+          'pas': {
+            'idNumber': 'L1B2M3N59'
+          },
+          'id': '661208351'
+        },
+        {
+          'profile': {
+            'firstName': 'UNIT',
+            'lastName': 'TEST'
+          },
+          'mph': {
+            'phoneNumber': '5613579125'
+          },
+          'pea': {
+            'emailAddress': 'test@testing.com'
+          },
+          'pas': {
+            'idNumber': '123456789'
+          },
+          'id': '815333542'
+        },
+        {
+          'profile': {
+            'firstName': 'UNIT',
+            'lastName': 'TEST'
+          },
+          'mph': {
+            'phoneNumber': '5613579125'
+          },
+          'pea': {
+            'emailAddress': 'test@testing.com'
+          },
+          'dl': {
+            'idNumber': 'NAGS01234567'
+          },
+          'id': '1712440323'
+        },
+        {
+          'profile': {
+            'firstName': 'UNIT',
+            'lastName': 'TEST'
+          },
+          'mph': {
+            'phoneNumber': '5613579125'
+          },
+          'pea': {
+            'emailAddress': 'test@testing.com'
+          },
+          'dl': {
+            'idNumber': '123456789'
+          },
+          'id': '1636502358'
+        }
+      ]
+    }
     return of( searchResult );
   }
 };
@@ -24,7 +92,7 @@ describe('SearchResultComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule],
+      imports: [ RouterTestingModule, HttpClientModule, FormsModule ],
       declarations: [ SearchResultComponent, PersonCardComponent, SearchHeaderComponent, SearchTagComponent, FormatPhonePipe ],
       providers: [{ provide: SearchService, useValue: MockSearchService }]
 
@@ -33,7 +101,7 @@ describe('SearchResultComponent', () => {
   }));
 
   beforeEach(() => {
-    window.history.pushState({ term: 'main'}, '', '');
+    //sessionStorage.setItem('searchTerm', 'main');
     fixture = TestBed.createComponent(SearchResultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -43,7 +111,11 @@ describe('SearchResultComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should load more', () => {
+    window.history.pushState({ term: 'test'}, '', '');
+    expect(component).toBeTruthy();
+  });
+  it('should load more', () => {
     component.LoadMore();
-    expect(component.persons.length).toBe(2);
+    expect(component.persons.length).toBe(8);
   });
 });
