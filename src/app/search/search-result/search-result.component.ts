@@ -3,7 +3,7 @@ import { FormatPhonePipe } from '../../shared/pipes/format-phone.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { SearchCriterion } from 'src/app/shared/models/search-criterion';
+import { SearchCriteria } from 'src/app/shared/models/search-criteria';
 import { TempData } from './../../member/components/create-member/tempdata';
 
 @Component({
@@ -24,7 +24,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   maxResultForWarning = 40;
   pageSize = 20;
 
-  searchCriterion = new SearchCriterion(
+  searchCriteria = new SearchCriteria(
     '',
     1,
     {
@@ -44,7 +44,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     }
     if (sessionStorage.getItem('searchTerm') !== null) {
       this.searchTerm = sessionStorage.getItem('searchTerm');
-      this.searchCriterion.searchText = sessionStorage.getItem('searchTerm');
+      this.searchCriteria.searchText = sessionStorage.getItem('searchTerm');
     }
   }
 
@@ -63,14 +63,15 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   onSearch(): void {
-    this.searchService.getSearch(this.searchCriterion).subscribe(
+    this.searchService.getSearch(this.searchCriteria).subscribe(
 
       // success path
       (data: any) => {
+        this.searchCriteria.pageNumber = 1;
         this.persons = data.results;
         this.totalSearchResults = data.totalCount;
         this.remainingResults = this.totalSearchResults - 20;
-        this.searchCriterion.pageNumber = this.searchCriterion.pageNumber + 1;
+        this.searchCriteria.pageNumber = this.searchCriteria.pageNumber + 1;
       },
 
       // error path
@@ -80,12 +81,12 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   LoadMore(): void {
-    this.searchService.getSearch(this.searchCriterion).subscribe(
+    this.searchService.getSearch(this.searchCriteria).subscribe(
 
       // success path
       (data: any) => {
         this.persons = this.persons.concat(data.results);
-        this.searchCriterion.pageNumber = this.searchCriterion.pageNumber + 1;
+        this.searchCriteria.pageNumber = this.searchCriteria.pageNumber + 1;
         this.remainingResults = this.remainingResults - 20;
       },
 

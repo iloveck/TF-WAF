@@ -1,8 +1,8 @@
-import { SearchCriterion } from './search-criterion';
+import { SearchCriteria } from './search-criteria';
 
 describe('SearchFilter', () => {
   it('should create an instance', () => {
-    expect(new SearchCriterion('',
+    expect(new SearchCriteria('',
     1,
     {
       country: 'USA',

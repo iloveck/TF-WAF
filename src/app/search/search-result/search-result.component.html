@@ -24,7 +24,7 @@
                 required="required"
                 name="country"
                 #state="ngModel"
-                [(ngModel)]="searchCriterion.searchFilter.country"
+                [(ngModel)]="searchCriteria.searchFilter.country"
                 (blur)="onSearch()"
                 ><option
                   [value]="country.alpha3Code"
@@ -45,7 +45,7 @@
                 required="required"
                 name="country"
                 #state="ngModel"
-                [(ngModel)]="searchCriterion.searchFilter.state"
+                [(ngModel)]="searchCriteria.searchFilter.state"
                 (blur)="onSearch()"
                 ><option
                   [value]="state.code"
@@ -69,7 +69,7 @@
                 placeholder=""
                 #name="ngModel"
                 name="firstName"
-                [(ngModel)]="searchCriterion.searchFilter.firstName"
+                [(ngModel)]="searchCriteria.searchFilter.firstName"
                 (blur)="onSearch()"
               />
               <span class="input-group-append bg-white border-left-0">
@@ -94,7 +94,7 @@
                 placeholder=""
                 #name="ngModel"
                 name="lastName"
-                [(ngModel)]="searchCriterion.searchFilter.lastName"
+                [(ngModel)]="searchCriteria.searchFilter.lastName"
                 (blur)="onSearch()"
               />
               <span class="input-group-append bg-white border-left-0">
@@ -120,7 +120,7 @@
                 placeholder=""
                 #name="ngModel"
                 name="address"
-                [(ngModel)]="searchCriterion.searchFilter.address"
+                [(ngModel)]="searchCriteria.searchFilter.address"
                 (blur)="onSearch()"
               />
               <span class="input-group-append bg-white border-left-0">

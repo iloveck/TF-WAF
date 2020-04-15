@@ -1,4 +1,4 @@
-export class SearchCriterion {
+export class SearchCriteria {
   constructor(
     public searchText: string,
     public pageNumber: number,
