@@ -70,7 +70,7 @@ export class CreateMemberComponent implements OnInit {
   getProvinces(countryCode): void {
     this.meta.countries.forEach(element => {
       if (element.alpha2Code === countryCode) {
-        this.provinces = element.states[0][this.currentLanguage];
+        this.provinces = element.states[this.currentLanguage];
         if (element.alpha2Code !== 'US') {
           this.person.address[0].stateProvinceCode = null;
         }
