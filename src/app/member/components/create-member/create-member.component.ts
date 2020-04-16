@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵCompiler_compileModuleAsync__POST_R3__ } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonService } from 'src/app/services/person.service';
 import { TempData } from './tempdata';
@@ -19,15 +19,15 @@ export class CreateMemberComponent implements OnInit {
       middleInitial: '',
       lastName: '',
       birthdate: '',
-      languageCode: '',
+      languageCode: 'EN',
       generationSuffix: '',
     },
     [
-      { phoneNumber: '', phoneTypeCode: '' },
+      { phoneNumber: '', phoneTypeCode: 'MOBILEPHONE' },
       { phoneNumber: '', phoneTypeCode: '' },
     ],
     [
-      { emailAddress: '', emailTypeCode: '' },
+      { emailAddress: '', emailTypeCode: 'PERSONALEMAIL' },
       { emailAddress: '', emailTypeCode: '' },
     ],
     [
@@ -36,12 +36,12 @@ export class CreateMemberComponent implements OnInit {
         line2: '',
         line3: '',
         city: '',
-        stateProvinceCode: '',
+        stateProvinceCode: 'WA',
         postalCode: '',
-        countryCode: '',
+        countryCode: 'US',
       },
     ],
-    [{ idNumber: '', idTypeCode: '', stateProvinceCode: '', countryCode: '' }],
+    [{ idNumber: '', idTypeCode: '', stateProvinceCode: 'WA', countryCode: 'US' }],
     true,
     'Desktop',
     'u5666',
@@ -49,6 +49,8 @@ export class CreateMemberComponent implements OnInit {
   );
   additionalAddressLine: number;
   meta: any;
+  provinces: [];
+  currentLanguage = 'en_US';
 
   constructor(
     private router: Router,
@@ -65,6 +67,17 @@ export class CreateMemberComponent implements OnInit {
     }
   }
 
+  getProvinces(countryCode): void {
+    this.meta.countries.forEach(element => {
+      if (element.alpha2Code === countryCode) {
+        this.provinces = element.states[0][this.currentLanguage];
+        if (element.alpha2Code !== 'US') {
+          this.person.address[0].stateProvinceCode = null;
+        }
+      }
+    });
+  }
+
   private stripPhone(phone): string {
     return phone.replace(/[^a-zA-Z0-9]/g, '');
   }
@@ -79,7 +92,12 @@ export class CreateMemberComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.meta = this.lookups.get();
+    this.lookups.get().subscribe((res) => {
+      this.meta = res;
+      console.log(this.meta);
+    });
+   // this.meta = this.tempData.getData();
+    this.getProvinces(this.person.address[0].countryCode);
     this.additionalAddressLine = 0;
   }
 }
