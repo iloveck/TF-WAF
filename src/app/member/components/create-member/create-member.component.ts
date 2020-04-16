@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵCompiler_compileModuleAsync__POST_R3__ } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonService } from 'src/app/services/person.service';
 import { TempData } from './tempdata';
 import { Person } from 'src/app/shared/models/person.model';
 import { Router } from '@angular/router';
+import { LookupsService } from 'src/app/services/lookups.service';
 
 @Component({
   selector: 'app-create-member',
@@ -18,15 +19,15 @@ export class CreateMemberComponent implements OnInit {
       middleInitial: '',
       lastName: '',
       birthdate: '',
-      languageCode: '',
+      languageCode: 'EN',
       generationSuffix: '',
     },
     [
-      { phoneNumber: '', phoneTypeCode: '' },
+      { phoneNumber: '', phoneTypeCode: 'MOBILEPHONE' },
       { phoneNumber: '', phoneTypeCode: '' },
     ],
     [
-      { emailAddress: '', emailTypeCode: '' },
+      { emailAddress: '', emailTypeCode: 'PERSONALEMAIL' },
       { emailAddress: '', emailTypeCode: '' },
     ],
     [
@@ -35,12 +36,12 @@ export class CreateMemberComponent implements OnInit {
         line2: '',
         line3: '',
         city: '',
-        stateProvinceCode: '',
+        stateProvinceCode: 'WA',
         postalCode: '',
-        countryCode: '',
+        countryCode: 'US',
       },
     ],
-    [{ idNumber: '', idTypeCode: '', stateProvinceCode: '', countryCode: '' }],
+    [{ idNumber: '', idTypeCode: '', stateProvinceCode: 'WA', countryCode: 'US' }],
     true,
     'Desktop',
     'u5666',
@@ -48,11 +49,14 @@ export class CreateMemberComponent implements OnInit {
   );
   additionalAddressLine: number;
   meta: any;
+  provinces: [];
+  currentLanguage = 'en_US';
 
   constructor(
     private router: Router,
     private personService: PersonService,
-    private tempData: TempData
+    private tempData: TempData,
+    private lookups: LookupsService
   ) {
     document.body.style.overflowY = 'inherit';
   }
@@ -61,6 +65,17 @@ export class CreateMemberComponent implements OnInit {
     if (this.additionalAddressLine < 2) {
       this.additionalAddressLine++;
     }
+  }
+
+  getProvinces(countryCode): void {
+    this.meta.countries.forEach(element => {
+      if (element.alpha2Code === countryCode) {
+        this.provinces = element.states[this.currentLanguage];
+        if (element.alpha2Code !== 'US') {
+          this.person.address[0].stateProvinceCode = null;
+        }
+      }
+    });
   }
 
   private stripPhone(phone): string {
@@ -77,7 +92,11 @@ export class CreateMemberComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.meta = this.tempData.getData();
+    this.lookups.get().subscribe((res) => {
+      this.meta = res;
+      this.getProvinces(this.person.address[0].countryCode);
+    });
+    // for local data if needed this.meta = this.tempData.getData();
     this.additionalAddressLine = 0;
   }
 }
