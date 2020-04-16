@@ -94,10 +94,9 @@ export class CreateMemberComponent implements OnInit {
   ngOnInit(): void {
     this.lookups.get().subscribe((res) => {
       this.meta = res;
-      console.log(this.meta);
+      this.getProvinces(this.person.address[0].countryCode);
     });
    // this.meta = this.tempData.getData();
-    this.getProvinces(this.person.address[0].countryCode);
     this.additionalAddressLine = 0;
   }
 }
