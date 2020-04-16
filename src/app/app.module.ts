@@ -29,7 +29,7 @@ registerLocaleData(localeFr, 'fr-FR');
   imports: [
     NgbModule,
     HttpClientModule,
-    CoreModule,
+    CoreModule.forRoot(),
     MemberModule,
     PaidMembershipModule,
     RewardsModule,
