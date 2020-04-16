@@ -96,7 +96,7 @@ export class CreateMemberComponent implements OnInit {
       this.meta = res;
       this.getProvinces(this.person.address[0].countryCode);
     });
-   // this.meta = this.tempData.getData();
+    // for local data if needed this.meta = this.tempData.getData();
     this.additionalAddressLine = 0;
   }
 }

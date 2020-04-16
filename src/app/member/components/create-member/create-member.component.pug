@@ -41,12 +41,8 @@
         .form-group
           label(for='suffix') Suffix (optional)
           select#suffix.form-control(#suffix='ngModel', [(ngModel)]='person.profile.generationSuffix', type='', placeholder='')
-            option(value='null') None
-            option(value='JR') JR
-            option(value='SR') SR
-            option(value='II') II
-            option(value='III') III
-            option(value='IV') IV
+            option([value]="null")
+            option(*ngFor="let suffix of meta.suffix[currentLanguage]", [ngValue]="suffix.code") {{suffix.label}}
     .row
       .col
         .form-group
