@@ -3,8 +3,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonService } from 'src/app/services/person.service';
 import { TempData } from './tempdata';
 import { Person } from 'src/app/shared/models/person.model';
-import { Router } from '@angular/router';
 import { LookupsService } from 'src/app/services/lookups.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-member',
@@ -51,12 +51,15 @@ export class CreateMemberComponent implements OnInit {
   meta: any;
   provinces: [];
   currentLanguage = 'en_US';
+  memberId: string;
+  title = 'Member Information';
 
   constructor(
     private router: Router,
     private personService: PersonService,
     private tempData: TempData,
-    private lookups: LookupsService
+    private lookups: LookupsService,
+    private route: ActivatedRoute,
   ) {
     document.body.style.overflowY = 'inherit';
   }
@@ -83,12 +86,20 @@ export class CreateMemberComponent implements OnInit {
   }
 
   continue(): void {
-    this.person.phone[0].phoneNumber = this.stripPhone(this.person.phone[0].phoneNumber);
-    this.person.phone[1].phoneNumber = this.stripPhone(this.person.phone[1].phoneNumber);
+    if (this.memberId) {
+      delete this.person.address;
+      this.personService.createHouseholdPerson(this.person).subscribe((result) => {
+        this.router.navigate(['/paid-membership/hearabout', result.id]);
+      });
 
-    this.personService.createPerson(this.person).subscribe((result) => {
-      this.router.navigate(['/paid-membership/hearabout', result.id]);
-    });
+    } else {
+      this.person.phone[0].phoneNumber = this.stripPhone(this.person.phone[0].phoneNumber);
+      this.person.phone[1].phoneNumber = this.stripPhone(this.person.phone[1].phoneNumber);
+
+      this.personService.createPerson(this.person).subscribe((result) => {
+        this.router.navigate(['/paid-membership/hearabout', result.id]);
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -98,5 +109,12 @@ export class CreateMemberComponent implements OnInit {
     });
     // for local data if needed this.meta = this.tempData.getData();
     this.additionalAddressLine = 0;
+
+    this.route.params.subscribe(params => {
+      this.memberId = params.id;
+      if (params.id) {
+        this.title = 'Free Household Membership';
+      }
+   });
   }
 }

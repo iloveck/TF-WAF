@@ -13,4 +13,7 @@ export class PersonService {
   createPerson(body): Observable<any> {
     return this.httpService.post(environment.memberUrl + '/person', body, {});
   }
+  createHouseholdPerson(body): Observable<any> {
+    return this.httpService.post(environment.memberUrl + '/person/household', body, {});
+  }
 }
