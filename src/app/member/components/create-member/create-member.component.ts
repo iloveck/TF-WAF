@@ -88,6 +88,9 @@ export class CreateMemberComponent implements OnInit {
   continue(): void {
     if (this.memberId) {
       delete this.person.address;
+      this.person.phone[0].phoneNumber = this.stripPhone(this.person.phone[0].phoneNumber);
+      this.person.phone[1].phoneNumber = this.stripPhone(this.person.phone[1].phoneNumber);
+
       this.personService.createHouseholdPerson(this.person).subscribe((result) => {
         this.router.navigate(['/paid-membership/hearabout', result.id]);
       });
