@@ -50,6 +50,7 @@ export class Person {
     public baSameAsMa: boolean,
     public createdByChannel: string,
     public createdByUser: string,
-    public createdAtLocation: string
+    public createdAtLocation: string,
+    public primaryMemberId: string
   ) {}
 }

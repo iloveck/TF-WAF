@@ -45,7 +45,8 @@ export class CreateMemberComponent implements OnInit {
     true,
     'Desktop',
     'u5666',
-    '110'
+    '110',
+    ''
   );
   additionalAddressLine: number;
   meta: any;
@@ -90,6 +91,7 @@ export class CreateMemberComponent implements OnInit {
       delete this.person.address;
       this.person.phone[0].phoneNumber = this.stripPhone(this.person.phone[0].phoneNumber);
       this.person.phone[1].phoneNumber = this.stripPhone(this.person.phone[1].phoneNumber);
+      this.person.primaryMemberId = this.memberId;
 
       this.personService.createHouseholdPerson(this.person).subscribe((result) => {
         this.router.navigate(['/paid-membership/hearabout', result.id]);
@@ -98,6 +100,7 @@ export class CreateMemberComponent implements OnInit {
     } else {
       this.person.phone[0].phoneNumber = this.stripPhone(this.person.phone[0].phoneNumber);
       this.person.phone[1].phoneNumber = this.stripPhone(this.person.phone[1].phoneNumber);
+      delete this.person.primaryMemberId;
 
       this.personService.createPerson(this.person).subscribe((result) => {
         this.router.navigate(['/paid-membership/hearabout', result.id]);
