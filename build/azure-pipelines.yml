@@ -117,13 +117,7 @@ stages:
           targetPath: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
           artifact: $(DistributionFolder)
           publishLocation: 'pipeline'
-/*
-*======================================+=======================================*
-*                                                                              *
-*                                Deploy Stage                                  *
-*                                                                              *
-*==============================================================================*
-*/
+
 # ======================================+=======================================*
 #                                                                               *
 #                                  Build Stage                                  *
