@@ -36,37 +36,37 @@ stages:
     jobs:
 # -------------------------------- Build IAC ----------------------------------*
     - job: Build_IAC
-    steps:
-    - checkout: self
-    - checkout: MembershipAutomation
-    - task: CopyFiles@2
-      displayName: 'Copy TerraForm Code'
-      inputs:
-        sourceFolder: $(SelfRepositoryName)/deploy/terraform
-        contents: '**'
-        cleanTargetFolder: true
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    - task: CopyFiles@2
-      displayName: 'Copy TerraForm Templates'
-      inputs:
-        sourceFolder: '$(AutomationRepo)/templates/terraform/modules'
-        contents: '**'
-        cleanTargetFolder: false
-        TargetFolder: '$(Build.ArtifactStagingDirectory)/modules'
-        OverWrite: true
-    - task: CopyFiles@2
-      displayName: 'Copy Deploy Powershell Code'
-      inputs:
-        sourceFolder: $(SelfRepositoryName)/deploy/powershell
-        contents: '**'
-        cleanTargetFolder: false
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    - task: PublishPipelineArtifact@1
-      displayName: 'Publish IAC Artifacts '
-      inputs:
-        targetPath: '$(Build.ArtifactStagingDirectory)'
-        artifact: 'terraform'
-        publishLocation: 'pipeline'
+      steps:
+      - checkout: self
+      - checkout: MembershipAutomation
+      - task: CopyFiles@2
+        displayName: 'Copy TerraForm Code'
+        inputs:
+          sourceFolder: $(SelfRepositoryName)/deploy/terraform
+          contents: '**'
+          cleanTargetFolder: true
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: CopyFiles@2
+        displayName: 'Copy TerraForm Templates'
+        inputs:
+          sourceFolder: '$(AutomationRepo)/templates/terraform/modules'
+          contents: '**'
+          cleanTargetFolder: false
+          TargetFolder: '$(Build.ArtifactStagingDirectory)/modules'
+          OverWrite: true
+      - task: CopyFiles@2
+        displayName: 'Copy Deploy Powershell Code'
+        inputs:
+          sourceFolder: $(SelfRepositoryName)/deploy/powershell
+          contents: '**'
+          cleanTargetFolder: false
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish IAC Artifacts '
+        inputs:
+          targetPath: '$(Build.ArtifactStagingDirectory)'
+          artifact: 'terraform'
+          publishLocation: 'pipeline'
 # -------------------------------- Build APP ----------------------------------*
     - job: Build_APP
       steps:
