@@ -21,7 +21,7 @@ stages:
     - job: Build_app
       steps:
       - task: Npm@1
-        displayName: 'Npm Install'
+        displayName: 'Npm Install !'
         inputs:
           command: 'install'
       - script: 'sudo npm install -g @angular/cli@latest'
