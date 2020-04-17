@@ -1,5 +1,13 @@
 name: $(BuildDefinitionName).$(Build.SourceBranchName)$(Rev:.r)
 
+resources:
+  repositories:
+    - repository: MembershipAutomation
+      type: git
+      name: Membership/Membership-Automation
+      ref:  master
+
+
 variables:
   WebAppName: 'webservertestpoc'
   WebProjectName: 'mglo-web'
@@ -8,6 +16,8 @@ variables:
   DistributionFolder: 'dist'
   TestsFolder: 'tests'
   CoverageFolder: 'coverage'
+  SelfRepositoryName: "MGLO-Web"
+  AutomationRepo: "Membership-Automation"
 
 trigger:
 - master
@@ -15,7 +25,6 @@ trigger:
 - feature/*
 - release/*
 
-stages:
 
 /*
 *======================================+=======================================*
@@ -24,14 +33,44 @@ stages:
 *                                                                              *
 *==============================================================================*
 */
+stages:
   - stage: Build
     jobs:
-# -------------------------- Build IAC ------------------------------*
-
-
-
-# -------------------------- Build APP ------------------------------*
-    - job: Build_app
+# -------------------------------- Build IAC ----------------------------------*
+    - job: Build_IAC
+    steps:
+    - checkout: self
+    - checkout: MembershipAutomation
+    - task: CopyFiles@2
+      displayName: 'Copy TerraForm Code'
+      inputs:
+        sourceFolder: $(SelfRepositoryName)/deploy/terraform
+        contents: '**'
+        cleanTargetFolder: true
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: CopyFiles@2
+      displayName: 'Copy TerraForm Templates'
+      inputs:
+        sourceFolder: '$(AutomationRepo)/templates/terraform/modules'
+        contents: '**'
+        cleanTargetFolder: false
+        TargetFolder: '$(Build.ArtifactStagingDirectory)/modules'
+        OverWrite: true
+    - task: CopyFiles@2
+      displayName: 'Copy Deploy Powershell Code'
+      inputs:
+        sourceFolder: $(SelfRepositoryName)/deploy/powershell
+        contents: '**'
+        cleanTargetFolder: false
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish IAC Artifacts '
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+        artifact: 'terraform'
+        publishLocation: 'pipeline'
+# -------------------------------- Build APP ----------------------------------*
+    - job: Build_APP
       steps:
       - task: Npm@1
         displayName: 'Npm Install !'

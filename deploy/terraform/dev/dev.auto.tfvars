@@ -1,0 +1,19 @@
+projectName = "mglo"
+componentName = "search-api"
+location = "westus2"
+environment = "dev"
+VnetName = "az-np-westus2-usr-601-MGlo-network-vnet"
+VnetRGName = "az-np-westus2-usr-601-MGlo-network"
+SubnetName = "snet-FunctionApp1"
+FunctionAppPlanName = "MemberSignup"
+allowed_ip_addresses = ["170.172.0.0/16", "170.167.0.0/16","174.21.131.84/32","67.185.74.247/32"]
+FunctionAppPlanRGName = "MemberSignup-PersonAPI"
+FunctionName = "mglo-search-api-dev"
+app_settings = { 
+    SearchApiKey = "3339A3616B72CCB106DC4CC32D62F4AB"
+    SearchServiceName = "membership-adt"
+    SearchPersonIndexName = "person-index"
+    SearchApiDefaultPageSize = "20"
+    WEBSITE_RUN_FROM_PACKAGE = "1"
+    WEBSITE_ENABLE_SYNC_UPDATE_SITE = "true"
+}
