@@ -2,7 +2,7 @@ name: $(BuildDefinitionName).$(Build.SourceBranchName)$(Rev:.r)
 
 # Repository declaration
 resources:
-repositories:
+  repositories:
   - repository: MembershipAutomation
     type: git
     name: Membership/Membership-Automation
@@ -157,109 +157,109 @@ stages:
 #==============================================================================#
             # install TF
             - task: TerraformInstaller@0
-            displayName: 'Terraform Installer'
-            inputs:
-              terraformVersion: '0.12.23'
+              displayName: 'Terraform Installer'
+              inputs:
+                terraformVersion: '0.12.23'
             # add TF SA Ip whitelist
             - task: AzureCLI@2
-            displayName: 'Add Sa Ip Whitelist'
-            inputs:
-              azureSubscription: $(NonProdAzureServCon)
-              scriptType: 'pscore'
-              scriptLocation: 'inlineScript'
-              inlineScript: '$ip= ((Invoke-WebRequest -Method Get -Uri  http://ipinfo.io/json ).content|ConvertFrom-Json).ip;az storage account network-rule add --resource-group $(terraformRg) --account-name $(terraformSa) --ip-address $ip'
+              displayName: 'Add Sa Ip Whitelist'
+              inputs:
+                azureSubscription: $(NonProdAzureServCon)
+                scriptType: 'pscore'
+                scriptLocation: 'inlineScript'
+                inlineScript: '$ip= ((Invoke-WebRequest -Method Get -Uri  http://ipinfo.io/json ).content|ConvertFrom-Json).ip;az storage account network-rule add --resource-group $(terraformRg) --account-name $(terraformSa) --ip-address $ip'
             # download Iac code
             - task: DownloadPipelineArtifact@2
-            displayName: 'Download IaC Files'
-            inputs:
-              artifactName: 'terraform'
-              downloadPath: '$(System.DefaultWorkingDirectory)'
+              displayName: 'Download IaC Files'
+              inputs:
+                artifactName: 'terraform'
+                downloadPath: '$(System.DefaultWorkingDirectory)'
             # TF init
             - task: TerraformTaskV1@0
-            displayName: 'Terraform Init'
-            inputs:
-              provider: 'azurerm'
-              command: 'init'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/$(deploymentEnv)'
-              backendServiceArm: $(NonProdAzureServCon)
-              backendAzureRmResourceGroupName: $(terraformRg)
-              backendAzureRmStorageAccountName: $(terraformSa)
-              backendAzureRmContainerName: 'terraform'
-              backendAzureRmKey: 'tf/$(ProjectName)-$(ComponentName)/$(deploymentEnv)/terraform.tfstate'
+              displayName: 'Terraform Init'
+              inputs:
+                provider: 'azurerm'
+                command: 'init'
+                workingDirectory: '$(System.DefaultWorkingDirectory)/$(deploymentEnv)'
+                backendServiceArm: $(NonProdAzureServCon)
+                backendAzureRmResourceGroupName: $(terraformRg)
+                backendAzureRmStorageAccountName: $(terraformSa)
+                backendAzureRmContainerName: 'terraform'
+                backendAzureRmKey: 'tf/$(ProjectName)-$(ComponentName)/$(deploymentEnv)/terraform.tfstate'
             # TF Plan
             - task: TerraformTaskV1@0
-            displayName: 'Terraform Plan'
-            inputs:
-              provider: 'azurerm'
-              command: 'plan'
-              workingDirectory: '$(System.DefaultWorkingDirectory)/$(deploymentEnv)'
-              environmentServiceNameAzureRM: $(NonProdAzureServCon)
-              backendServiceArm: $(NonProdAzureServCon)
-              backendAzureRmResourceGroupName: $(terraformRg)
-              backendAzureRmStorageAccountName: $(terraformSa)
-              backendAzureRmContainerName: 'terraform'
-              backendAzureRmKey: 'tf/$(ProjectName)-$(ComponentName)/$(deploymentEnv)/terraform.tfstate'
+              displayName: 'Terraform Plan'
+              inputs:
+                provider: 'azurerm'
+                command: 'plan'
+                workingDirectory: '$(System.DefaultWorkingDirectory)/$(deploymentEnv)'
+                environmentServiceNameAzureRM: $(NonProdAzureServCon)
+                backendServiceArm: $(NonProdAzureServCon)
+                backendAzureRmResourceGroupName: $(terraformRg)
+                backendAzureRmStorageAccountName: $(terraformSa)
+                backendAzureRmContainerName: 'terraform'
+                backendAzureRmKey: 'tf/$(ProjectName)-$(ComponentName)/$(deploymentEnv)/terraform.tfstate'
             # TF apply
             - task: TerraformTaskV1@0
-            displayName: 'Terraform Apply'
-            name: TerraformOutputs
-            inputs:
-              provider: 'azurerm'
-              command: 'apply'
-              commandOptions: '-auto-approve'
-              environmentServiceNameAzureRM: $(NonProdAzureServCon)
-              workingDirectory: '$(System.DefaultWorkingDirectory)/$(deploymentEnv)'
-              backendServiceArm: $(NonProdAzureServCon)
-              backendAzureRmResourceGroupName: $(terraformRg)
-              backendAzureRmStorageAccountName: $(terraformSa)
-              backendAzureRmContainerName: 'terraform'
-              backendAzureRmKey: 'tf/$(ProjectName)-$(ComponentName)/$(deploymentEnv)/terraform.tfstate'
+              displayName: 'Terraform Apply'
+              name: TerraformOutputs
+              inputs:
+                provider: 'azurerm'
+                command: 'apply'
+                commandOptions: '-auto-approve'
+                environmentServiceNameAzureRM: $(NonProdAzureServCon)
+                workingDirectory: '$(System.DefaultWorkingDirectory)/$(deploymentEnv)'
+                backendServiceArm: $(NonProdAzureServCon)
+                backendAzureRmResourceGroupName: $(terraformRg)
+                backendAzureRmStorageAccountName: $(terraformSa)
+                backendAzureRmContainerName: 'terraform'
+                backendAzureRmKey: 'tf/$(ProjectName)-$(ComponentName)/$(deploymentEnv)/terraform.tfstate'
             # parse TF output for Vnet integration IP
             - task: AzurePowerShell@5
-            displayName: 'Parse Terraform output'
-            name: 'ParseTerraformOutput'
-            inputs:
-              azureSubscription: $(NonProdAzureServCon)
-              ScriptArguments: '-jsonPath $(TerraformOutput.jsonOutputVariablesPath)'
-              ScriptType: 'InlineScript'
-              Inline: |
-                $json = Get-Content $(TerraformOutputs.jsonOutputVariablesPath) | Out-String | ConvertFrom-Json
-                Write-Host "##vso[task.setvariable variable=functionRg]$($json.rg_name.value)"
-                Write-Host "##vso[task.setvariable variable=functionName]$($json.function_name.value)"
-              azurePowerShellVersion: 'LatestVersion'
-              pwsh: true
+              displayName: 'Parse Terraform output'
+              name: 'ParseTerraformOutput'
+              inputs:
+                azureSubscription: $(NonProdAzureServCon)
+                ScriptArguments: '-jsonPath $(TerraformOutput.jsonOutputVariablesPath)'
+                ScriptType: 'InlineScript'
+                Inline: |
+                  $json = Get-Content $(TerraformOutputs.jsonOutputVariablesPath) | Out-String | ConvertFrom-Json
+                  Write-Host "##vso[task.setvariable variable=functionRg]$($json.rg_name.value)"
+                  Write-Host "##vso[task.setvariable variable=functionName]$($json.function_name.value)"
+                azurePowerShellVersion: 'LatestVersion'
+                pwsh: true
             # Vnet Integration
             - task: AzureCLI@2
-            displayName: 'Add Vnet Integration'
-            inputs:
-              azureSubscription: $(NonProdAzureServCon)
-              scriptType: 'pscore'
-              scriptLocation: 'inlineScript'
-              inlineScript: |
-                $json = Get-Content $(TerraformOutputs.jsonOutputVariablesPath) | Out-String | ConvertFrom-Json
-                az functionapp vnet-integration add --name "$($json.function_name.value)" --resource-group "$($json.rg_name.value)" --subnet "$($json.subnet_name.value)" --vnet "$($json.vnet_name.value)"
+              displayName: 'Add Vnet Integration'
+              inputs:
+                azureSubscription: $(NonProdAzureServCon)
+                scriptType: 'pscore'
+                scriptLocation: 'inlineScript'
+                inlineScript: |
+                  $json = Get-Content $(TerraformOutputs.jsonOutputVariablesPath) | Out-String | ConvertFrom-Json
+                  az functionapp vnet-integration add --name "$($json.function_name.value)" --resource-group "$($json.rg_name.value)" --subnet "$($json.subnet_name.value)" --vnet "$($json.vnet_name.value)"
             # remove TF SA ip whitelist
             - task: AzureCLI@2
-            displayName: 'Remove SA Ip Whitelist'
-            inputs:
-              azureSubscription: $(NonProdAzureServCon)
-              scriptType: 'pscore'
-              scriptLocation: 'inlineScript'
-              inlineScript: '$ip= ((Invoke-WebRequest -Method Get -Uri  http://ipinfo.io/json ).content|ConvertFrom-Json).ip;az storage account network-rule remove --resource-group $(terraformRg) --account-name $(terraformSa) --ip-address $ip'
+              displayName: 'Remove SA Ip Whitelist'
+              inputs:
+                azureSubscription: $(NonProdAzureServCon)
+                scriptType: 'pscore'
+                scriptLocation: 'inlineScript'
+                inlineScript: '$ip= ((Invoke-WebRequest -Method Get -Uri  http://ipinfo.io/json ).content|ConvertFrom-Json).ip;az storage account network-rule remove --resource-group $(terraformRg) --account-name $(terraformSa) --ip-address $ip'
 
 #======================================+=======================================#
 #                             Deployment to Dev Slot                           #
 #==============================================================================#
             # create development slot
             - task: AzureCLI@2
-            inputs:
-              azureSubscription: 'WEBAKSPRD05142019'
-              scriptType: 'pscore'
-              scriptLocation: 'inlineScript'
-              inlineScript: |
-                az functionapp deployment slot create --name $(functionName) `
-                                                      --resource-group $(functionRg) `
-                                                      --slot "devTesting"
+              inputs:
+                azureSubscription: 'WEBAKSPRD05142019'
+                scriptType: 'pscore'
+                scriptLocation: 'inlineScript'
+                inlineScript: |
+                  az functionapp deployment slot create --name $(functionName) `
+                                                        --resource-group $(functionRg) `
+                                                        --slot "devTesting"
             # Downlaod Function Code
             - task: DownloadPipelineArtifact@2
               displayName: 'Download Deployment Archive'
@@ -276,15 +276,15 @@ stages:
 
               #Any checkin should deploy to the deployment slot.
               - task: AzureFunctionApp@1
-              displayName: 'Deploy Function to slot'
-              inputs:
-                azureSubscription: $(NonProdAzureServCon)
-                appType: 'functionApp'
+                displayName: 'Deploy Function to slot'
+                inputs:
+                  azureSubscription: $(NonProdAzureServCon)
+                  appType: 'functionApp'
                 #TODO this should be an output from the terraform.
-                appName: '$(ProjectName)-$(ComponentName)-$(deploymentEnv)'
-                package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-                deploymentMethod: 'auto'
-                slotName: 'devTesting'
+                  appName: '$(ProjectName)-$(ComponentName)-$(deploymentEnv)'
+                  package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+                  deploymentMethod: 'auto'
+                  slotName: 'devTesting'
               #If its the develop branch and scheduled, swap the deployment slot.
             - task: AzureCLI@2
               displayName: 'Swap Deployment Slot'
