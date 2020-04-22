@@ -2,7 +2,6 @@ output "function_name" {
   value = module.premium_function.function_name
 }
 
-
 output "rg_name" {
   value = module.resource_group.name
 }
@@ -25,4 +24,9 @@ output "vnet_id" {
 output "vnet_name" {
   value = module.premium_function.vnet_name
   description = "VNET for functions backend integration"
+}
+
+output "appgateway_name" {
+  value = module.application_gateway.appgateway_name
+  description = "appliction Gateway for Web App"
 }
