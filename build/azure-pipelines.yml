@@ -1,13 +1,17 @@
 name: $(BuildDefinitionName).$(Build.SourceBranchName)$(Rev:.r)
 
-resources:
-  repositories:
-    - repository: MembershipAutomation
-      type: git
-      name: Membership/Membership-Automation
-      ref:  master
+# Repository declaration 
+# resources:
+# repositories:
+# - repository: MembershipAutomation
+      # type: git
+      # name: Membership/Membership-Automation
+      # ref:  master
+      
 
 
+
+# Variables Defination
 variables:
   WebAppName: 'webservertestpoc'
   WebProjectName: 'mglo-web'
@@ -19,11 +23,16 @@ variables:
   SelfRepositoryName: "MGLO-Web"
   AutomationRepo: "Membership-Automation"
 
+  # CI Triggers
 trigger:
 - master
 - develop
 - feature/*
 - release/*
+# *====================================4=======================================8
+# naming standard                               = {ENVIRONMENT}-{REGION_MAP}-{SAP_VNET}-{CODENAME}_{TRACK}-{SID}_app##-nic
+
+
 
 # ======================================+=======================================*
 #                                                                               *
@@ -34,7 +43,10 @@ trigger:
 stages:
   - stage: Build
     jobs:
-# -------------------------------- Build IAC ----------------------------------*
+
+    #======================================+=======================================#
+    #                                  Build IAC                                   #
+    #==============================================================================#
     - job: Build_IAC
       steps:
       - checkout: self
@@ -67,7 +79,10 @@ stages:
           targetPath: '$(Build.ArtifactStagingDirectory)'
           artifact: 'terraform'
           publishLocation: 'pipeline'
-# -------------------------------- Build APP ----------------------------------*
+
+    #======================================+=======================================#
+    #                                  Build APP                                   #
+    #==============================================================================#
     - job: Build_APP
       steps:
       - task: Npm@1
@@ -120,14 +135,14 @@ stages:
 
 # ======================================+=======================================*
 #                                                                               *
-#                                  Build Stage                                  *
+#                                  Deploy Stage                                 *
 #                                                                               *
 # ==============================================================================*
 
   - stage: Deploy
     jobs:
     - deployment: Deploy_to_Dev
-      condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], variables['DevBranch']) ))
+#      condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], variables['DevBranch']) ))
       environment: development
       timeoutInMinutes: 10
       strategy:

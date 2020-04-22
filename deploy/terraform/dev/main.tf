@@ -1,13 +1,13 @@
-provider "azurerm" { 
+provider "azurerm" {
     version = "~> 2.0"
     features {}
-} 
+}
 
-terraform { 
+terraform {
  backend "azurerm" {
 
   }
-} 
+}
 
 module "resource_group" {
   source = "../modules/ResourceGroup"
@@ -42,4 +42,27 @@ module "premium_function" {
   FunctionAppPlanRGName = var.FunctionAppPlanRGName
   allowed_ip_addresses = var.allowed_ip_addresses
   app_settings = var.app_settings
+
+
+  module "application_gateway" {
+  source = "../modules/AppGateway"
+  resourceGroupName = module.resource_group.name
+  location = var.location
+  FrongEndIPAddr = var.FrongEndIPAddr
+
+
+  appInsightsKey = module.application_insights.instrumentation_key
+  projectName = var.projectName
+  FunctionName = var.FunctionName
+  componentName = var.componentName
+
+  environment = var.environment
+  VnetName = var.VnetName
+  VnetRGName = var.VnetRGName
+  SubnetName = var.SubnetName
+  FunctionAppPlanName = var.FunctionAppPlanName
+  FunctionAppPlanRGName = var.FunctionAppPlanRGName
+  allowed_ip_addresses = var.allowed_ip_addresses
+  app_settings = var.app_settings
+  # ......
 }
