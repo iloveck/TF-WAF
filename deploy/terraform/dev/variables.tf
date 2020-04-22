@@ -54,3 +54,11 @@ variable "FunctionName" {
 variable "app_settings" {
    type = map
 }
+
+variable "FrongEndIPAddr" {
+    type = string
+}
+
+variable "ssl_certificate_name" {
+    type = string
+}
