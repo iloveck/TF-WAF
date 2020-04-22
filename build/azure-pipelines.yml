@@ -275,16 +275,16 @@ stages:
 #                packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
               #Any checkin should deploy to the deployment slot.
-              - task: AzureFunctionApp@1
-                displayName: 'Deploy Function to slot'
-                inputs:
-                  azureSubscription: $(NonProdAzureServCon)
-                  appType: 'functionApp'
+            - task: AzureFunctionApp@1
+              displayName: 'Deploy Function to slot'
+              inputs:
+                azureSubscription: $(NonProdAzureServCon)
+                appType: 'functionApp'
                 #TODO this should be an output from the terraform.
-                  appName: '$(ProjectName)-$(ComponentName)-$(deploymentEnv)'
-                  package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-                  deploymentMethod: 'auto'
-                  slotName: 'devTesting'
+                appName: '$(ProjectName)-$(ComponentName)-$(deploymentEnv)'
+                package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+                deploymentMethod: 'auto'
+                slotName: 'devTesting'
               #If its the develop branch and scheduled, swap the deployment slot.
             - task: AzureCLI@2
               displayName: 'Swap Deployment Slot'
