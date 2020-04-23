@@ -44,7 +44,7 @@ module "premium_function" {
   app_settings = var.app_settings
 }
 
-  module "application_gateway" {
+module "application_gateway" {
   source = "../modules/AppGateway"
   resourceGroupName = module.resource_group.name
   location = var.location
