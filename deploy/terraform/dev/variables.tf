@@ -55,6 +55,14 @@ variable "app_settings" {
    type = map
 }
 
+variable "AppGatewayWAFPolicy" {
+    type = string
+}
+
+variable "AppGatewayName" {
+    type = string
+}
+
 variable "FrongEndIPAddr" {
     type = string
 }
@@ -62,3 +70,4 @@ variable "FrongEndIPAddr" {
 variable "ssl_certificate_name" {
     type = string
 }
+
