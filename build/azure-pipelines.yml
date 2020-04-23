@@ -148,7 +148,7 @@ stages:
   - stage: Deploy
     jobs:
     - deployment: Deploy_to_Dev
-      condition: and(succeeded()
+      condition:  succeeded()
 #     condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], variables['DevBranch']) ))
       environment: development
       timeoutInMinutes: 10
