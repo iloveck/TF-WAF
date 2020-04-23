@@ -12,13 +12,14 @@ resources:
 variables:
   WebAppName: 'webservertestpoc'
   WebProjectName: 'mglo-web'
-  NonProdAzureSubscription: 'WEBAKSPRD05142019'
+  NonProdAzureServCon: 'WEBAKSPRD05142019'
   DevBranch: 'refs/heads/develop'
   DistributionFolder: 'dist'
   TestsFolder: 'tests'
   CoverageFolder: 'coverage'
   SelfRepositoryName: "MGLO-Web"
   AutomationRepo: "Membership-Automation"
+
 # During initial development, the "dev" environment will be updated daily at noon
 # from the develop branch. This is to balance keeping it updated with constant deployment instability.
 # the devTesting deployment slot will be updated with feature branches and develop.
