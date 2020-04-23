@@ -153,6 +153,11 @@ stages:
 #     condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), eq(variables['Build.SourceBranch'], variables['DevBranch']) ))
       environment: development
       timeoutInMinutes: 10
+      variables:
+        deploymentEnv: 'dev'
+        subscription: 'az-np-usr-601-MGlo'
+        terraformSa: 'saterraformcicd'
+        terraformRg: 'rg-terraform-cicd'
       strategy:
         runOnce:
           deploy:
