@@ -24,12 +24,12 @@ variables:
 # the devTesting deployment slot will be updated with feature branches and develop.
 #warning: UTC time
 schedules:
-  - cron: "4 19 * * *"
-    displayName: Daily Dev build
-    branches:
-      include:
-      - develop
-    always: false
+- cron: "4 19 * * *"
+  displayName: Daily Dev build
+  branches:
+    include:
+    - develop
+  always: false
 # CI Triggers
 trigger:
 - master
@@ -46,7 +46,6 @@ trigger:
 stages:
   - stage: Build
     jobs:
-
 #======================================+=======================================#
 #                                  Build IAC                                   #
 #==============================================================================#
@@ -278,7 +277,6 @@ stages:
 #                appType: 'webApp'
 #                WebAppName: $(WebAppName)
 #                packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-
               #Any checkin should deploy to the deployment slot.
             - task: AzureFunctionApp@1
               displayName: 'Deploy Function to slot'
