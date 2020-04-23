@@ -19,17 +19,23 @@ variables:
   CoverageFolder: 'coverage'
   SelfRepositoryName: "MGLO-Web"
   AutomationRepo: "Membership-Automation"
-
-  # CI Triggers
+# During initial development, the "dev" environment will be updated daily at noon
+# from the develop branch. This is to balance keeping it updated with constant deployment instability.
+# the devTesting deployment slot will be updated with feature branches and develop.
+#warning: UTC time
+schedules:
+  - cron: "4 19 * * *"
+    displayName: Daily Dev build
+    branches:
+      include:
+      - develop
+    always: false
+# CI Triggers
 trigger:
 - master
 - develop
 - feature/*
 - release/*
-# *====================================4=======================================8
-# naming standard                               = {ENVIRONMENT}-{REGION_MAP}-{SAP_VNET}-{CODENAME}_{TRACK}-{SID}_app##-nic
-
-
 
 # ======================================+=======================================*
 #                                                                               *
@@ -140,7 +146,6 @@ stages:
 #                                  Deploy Stage                                 *
 #                                                                               *
 # ==============================================================================*
-
   - stage: Deploy
     jobs:
     - deployment: Deploy_to_Dev
