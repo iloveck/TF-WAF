@@ -6,7 +6,7 @@ resources:
   - repository: MembershipAutomation
     type: git
     name: Membership/Membership-Automation
-    ref:  web_cicd
+    ref:  feature/web_cicd
 
 # Variables Defination
 variables:
