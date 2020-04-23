@@ -270,14 +270,8 @@ stages:
               inputs:
                 artifactName: $(DistributionFolder)
                 downloadPath: '$(System.DefaultWorkingDirectory)'
-#            - task: AzureRmWebAppDeployment@4
-#              inputs:
-#                ConnectionType: 'AzureRM'
-#                azureSubscription: $(NonProdAzureSubscription)
-#                appType: 'webApp'
-#                WebAppName: $(WebAppName)
-#                packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-              #Any checkin should deploy to the deployment slot.
+
+            # Any checkin should deploy to the deployment slot.
             - task: AzureFunctionApp@1
               displayName: 'Deploy Function to slot'
               inputs:
