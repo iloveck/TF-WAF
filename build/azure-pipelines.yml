@@ -154,7 +154,7 @@ stages:
       environment: development
       timeoutInMinutes: 10
       variables:
-        deploymentEnv: 'dev'
+        deploymentEnv: 'poc'
         subscription: 'az-np-usr-601-MGlo'
         terraformSa: 'saterraformcicd'
         terraformRg: 'rg-terraform-cicd'
@@ -260,16 +260,6 @@ stages:
 #======================================+=======================================#
 #                             Deployment to Dev Slot                           #
 #==============================================================================#
-            # create development slot
-            - task: AzureCLI@2
-              inputs:
-                azureSubscription: 'WEBAKSPRD05142019'
-                scriptType: 'pscore'
-                scriptLocation: 'inlineScript'
-                inlineScript: |
-                  az functionapp deployment slot create --name $(functionName) `
-                                                        --resource-group $(functionRg) `
-                                                        --slot "devTesting"
             # Downlaod Function Code
             - task: DownloadPipelineArtifact@2
               displayName: 'Download Deployment Archive'
@@ -277,55 +267,9 @@ stages:
                 artifactName: $(DistributionFolder)
                 downloadPath: '$(System.DefaultWorkingDirectory)'
 
-            # Any checkin should deploy to the deployment slot.
-            - task: AzureFunctionApp@1
-              displayName: 'Deploy Function to slot'
+            - task: AzureRmWebAppDeployment@4
               inputs:
-                azureSubscription: $(NonProdAzureServCon)
-                appType: 'functionApp'
-                #TODO this should be an output from the terraform.
-                appName: '$(ProjectName)-$(ComponentName)-$(deploymentEnv)'
-                package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-                deploymentMethod: 'auto'
-                slotName: 'devTesting'
-              #If its the develop branch and scheduled, swap the deployment slot.
-            - task: AzureCLI@2
-              displayName: 'Swap Deployment Slot'
-              condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
-              inputs:
-                azureSubscription: 'WEBAKSPRD05142019'
-                scriptType: 'pscore'
-                scriptLocation: 'inlineScript'
-                inlineScript: |
-                  az functionapp deployment slot swap --target-slot "production" --name $(functionName) `
-                                                        --resource-group $(functionRg) `
-                                                        --slot "devTesting"
-              #If the slot was swapped, deploy the latest to the new slot for developers. The slot should always contain the latest.
-            - task: AzureFunctionApp@1
-              displayName: 'Deploy Function to slot after swap'
-              condition: and(succeeded(), or(eq(variables['force_deployment'], 'true'), and(eq(variables['Build.SourceBranch'], variables['DevBranch']),eq(variables['Build.Reason'], 'Schedule')) ))
-              inputs:
-                azureSubscription: $(NonProdAzureServCon)
-                appType: 'functionApp'
-                #TODO this should be an output from the terraform.
-                appName: '$(ProjectName)-$(ComponentName)-$(deploymentEnv)'
-                package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-                deploymentMethod: 'auto'
-            - task: AzureCLI@2
-              displayName: 'Add Function key to slot'
-              inputs:
-                azureSubscription: 'WEBAKSPRD05142019'
-                scriptType: 'pscore'
-                scriptLocation: 'scriptPath'
-                scriptPath: 'addHostKeys.ps1'
-                arguments: '-subscriptionName $(subscription) -resourceGroup "$(functionRg)" -webAppName "$(functionName)" -slotName "devTesting" -hostKey "efgh5678"'
-                workingDirectory: '$(System.DefaultWorkingDirectory)'
-            - task: AzureCLI@2
-              displayName: 'Add Function key'
-              inputs:
-                azureSubscription: 'WEBAKSPRD05142019'
-                scriptType: 'pscore'
-                scriptLocation: 'scriptPath'
-                scriptPath: 'addHostKeys.ps1'
-                arguments: '-subscriptionName $(subscription) -resourceGroup "$(functionRg)" -webAppName "$(functionName)" -hostKey "efgh5678"'
-                workingDirectory: '$(System.DefaultWorkingDirectory)'
+                ConnectionType: 'AzureRM'
+                azureSubscription: $(NonProdAzureSubscription)
+                appType: 'webApp'
+                WebAppName: $(WebAppName)
