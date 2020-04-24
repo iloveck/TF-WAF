@@ -270,6 +270,6 @@ stages:
             - task: AzureRmWebAppDeployment@4
               inputs:
                 ConnectionType: 'AzureRM'
-                azureSubscription: $(NonProdAzureSubscription)
+                azureSubscription: $(NonProdAzureServCon)
                 appType: 'webApp'
                 WebAppName: $(WebAppName)
