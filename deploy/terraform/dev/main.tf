@@ -46,7 +46,7 @@ module "premium_function" {
 
 module "application_gateway" {
   source = "../modules/AppGateway"
-  resourceGroupName = module.resource_group.name
+#  resourceGroupName = module.resource_group.name
   location = var.location
   FrongEndIPAddr = var.FrongEndIPAddr
   ssl_certificate_name = var.ssl_certificate_name
