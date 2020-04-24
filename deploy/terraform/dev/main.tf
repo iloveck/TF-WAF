@@ -46,8 +46,13 @@ module "premium_function" {
 
 module "application_gateway" {
   source = "../modules/AppGateway"
-#  resourceGroupName = module.resource_group.name
+  VnetName = var.VnetName
+  VnetRGName = var.VnetRGName
+  SubnetName = var.SubnetName
+  resourceGroupName = module.resource_group.name
   location = var.location
-  FrongEndIPAddr = var.FrongEndIPAddr
-  ssl_certificate_name = var.ssl_certificate_name
+  AppGatewayWAFPolicy = var.AppGatewayWAFPolicy
+  AppGatewayName  = var.AppGatewayName
+  FrongEndIPAddr  = var.FrongEndIPAddr
+  ssl_certificate_name  = var.ssl_certificate_name
 }
