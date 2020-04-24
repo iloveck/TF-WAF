@@ -50,5 +50,4 @@ module "application_gateway" {
   location = var.location
   FrongEndIPAddr = var.FrongEndIPAddr
   ssl_certificate_name = var.ssl_certificate_name
-  # ......
 }
