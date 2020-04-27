@@ -154,7 +154,7 @@ stages:
       environment: development
       timeoutInMinutes: 10
       variables:
-        deploymentEnv: 'poc'
+        deploymentEnv: 'dev'
         subscription: 'az-np-usr-601-MGlo'
         terraformSa: 'saterraformcicd'
         terraformRg: 'rg-terraform-cicd'
