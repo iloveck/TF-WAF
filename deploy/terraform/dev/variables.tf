@@ -14,7 +14,7 @@ variable "location" {
 
 variable "environment" {
     type = string
-    default = "dev"
+#    default = "dev"
 }
 
 variable "VnetName" {
