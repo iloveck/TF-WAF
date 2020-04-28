@@ -19,7 +19,7 @@ variables:
   DistributionFolder: 'dist'
   TestsFolder: 'tests'
   CoverageFolder: 'coverage'
-  SelfRepositoryName: "mGLO-Web"
+  SelfRepositoryName: "MGLO-Web"
   AutomationRepo: "Membership-Automation"
 
 # During initial development, the "dev" environment will be updated daily at noon
