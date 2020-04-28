@@ -13,6 +13,7 @@ FunctionAppPlanName = "Member-Web"
 FunctionAppPlanRGName = "Member-Web"
 FunctionName = "mglo-web-ui-poc"
 allowed_ip_addresses = ["170.172.0.0/16", "170.167.0.0/16","174.21.131.84/32","67.185.74.247/32"]
+appgw_fqdns = ["webservertestpoc.azurewebsites.net"]
 app_settings = {
     SearchApiKey = "3339A3616B72CCB106DC4CC32D62F4AB"
     SearchServiceName = "membership-adt"

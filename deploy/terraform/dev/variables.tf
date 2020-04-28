@@ -71,3 +71,8 @@ variable "ssl_certificate_name" {
     type = string
 }
 
+variable "appgw_fqdns" {
+    type = string
+}
+
+appgw_fqdns
