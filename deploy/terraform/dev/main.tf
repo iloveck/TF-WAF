@@ -55,5 +55,5 @@ module "application_gateway" {
   AppGatewayName  = var.AppGatewayName
   FrongEndIPAddr  = var.FrongEndIPAddr
   ssl_certificate_name  = var.ssl_certificate_name
-  environment = var.environment
+  #environment = var.environment
 }
