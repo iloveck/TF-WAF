@@ -72,6 +72,6 @@ variable "ssl_certificate_name" {
 }
 
 variable "appgw_fqdns" {
-    type = string
+    type = list(string)
 }
 
