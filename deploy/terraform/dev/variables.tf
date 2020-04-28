@@ -75,4 +75,3 @@ variable "appgw_fqdns" {
     type = string
 }
 
-appgw_fqdns
