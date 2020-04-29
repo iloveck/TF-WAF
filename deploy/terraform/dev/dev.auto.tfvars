@@ -1,7 +1,7 @@
 projectName = "mglo"
 componentName = "web-ui"
 location = "westus2"
-environment = "dev"
+environment = "poc"
 VnetName = "az-np-westus2-usr-601-MGlo-network-vnet"
 VnetRGName = "az-np-westus2-usr-601-MGlo-network"
 SubnetName = "snet-applicationgateway"
