@@ -56,7 +56,7 @@ module "application_gateway" {
   FrongEndIPAddr  = var.FrongEndIPAddr
   ssl_certificate_name  = var.ssl_certificate_name
   environment = var.environment
-  appgw_fqdns = var.appgw_fqdns
+  #appgw_fqdns = var.appgw_fqdns
 }
 
 resource "random_string" "secret_postfix" {
