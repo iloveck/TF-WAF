@@ -59,10 +59,3 @@ module "application_gateway" {
   #appgw_fqdns = var.appgw_fqdns
 }
 
-resource "random_string" "secret_postfix" {
-    length = 24
-    upper = false
-    lower = true
-    number = true
-    special = false
-}
