@@ -5,7 +5,15 @@ provider "azurerm" {
 
 terraform {
  backend "azurerm" {
-
+    resource_group_name   = "rg-terraform-cicd"
+    storage_account_name  = "saterraformcicd"
+    container_name        = "terraform"
+    key                   = "tf/mglo-web-ui/poc/terraform.tfstate"
+    subscription_id = "ac5d8c1d-bae3-43b9-9b21-07d431489f3f"
+    tenant_id = "6855a1b4-3816-43d2-bf35-178317e72fb0"
+    /* client_id = "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    client_secret = "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    */
   }
 }
 
@@ -25,8 +33,8 @@ module "application_insights" {
   environment = var.environment
   resourceGroupName = module.resource_group.name
 }
-
-module "premium_function" {
+/*
+module "  " {
   source = "../modules/functions"
   resourceGroupName = module.resource_group.name
   appInsightsKey = module.application_insights.instrumentation_key
@@ -43,7 +51,7 @@ module "premium_function" {
   allowed_ip_addresses = var.allowed_ip_addresses
   app_settings = var.app_settings
 }
-
+*/
 module "application_gateway" {
   source = "../modules/AppGateway"
   VnetName = var.VnetName
@@ -56,6 +64,6 @@ module "application_gateway" {
   FrongEndIPAddr  = var.FrongEndIPAddr
   ssl_certificate_name  = var.ssl_certificate_name
   environment = var.environment
-  # appgw_fqdns = var.appgw_fqdns
+# appgw_fqdns = var.appgw_fqdns
 }
 
