@@ -5,14 +5,12 @@ provider "azurerm" {
 
 terraform {
  backend "azurerm" {
-    resource_group_name   = "rg-terraform-cicd"
+    /*resource_group_name   = "rg-terraform-cicd"
     storage_account_name  = "saterraformcicd"
     container_name        = "terraform"
     key                   = "tf/mglo-web-ui/poc/terraform.tfstate"
     subscription_id = "ac5d8c1d-bae3-43b9-9b21-07d431489f3f"
     tenant_id = "6855a1b4-3816-43d2-bf35-178317e72fb0"
-    /* client_id = "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-    client_secret = "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     */
   }
 }
